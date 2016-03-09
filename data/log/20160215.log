@@ -1,0 +1,387 @@
+[2016-02-15 12:36:24] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455510984' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:37:00] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511020' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:37:06] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511026' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:37:34] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511054' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:38:27] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511107' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:38:29] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511109' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:38:40] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511120' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:38:42] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511122' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:38:59] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511139' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:40:44] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '2' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:44:20] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '2' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:44:58] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '2' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:47:24] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '1' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:47:35] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '1' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:47:47] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455511667' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 12:50:21] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '1' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:50:43] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_store_id = '1' ) AND ( voucher_t_gettype = '3' ) ORDER BY voucher_t_id asc LIMIT 1000  
+[2016-02-15 12:52:09] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '1' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 12:52:29] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '1' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 13:53:54] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '1' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 13:54:25] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '1' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 13:55:51] /mobile/index.php?act=goods&op=goods_detail&goods_id=234&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455515751' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 13:56:12] /mobile/index.php?act=goods&op=goods_detail&goods_id=234&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455515772' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 13:56:17] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455515777' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:01:05] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('7',NULL,'7','38','正品 2015春装新款 女 绣花针织衫 开衫外套浮桑初 蓝色','189.00','1_04418207207476705.jpg','3','不错哦','1','1455516065',NULL,NULL,'2','test','2_05088600611253569.jpg','','','')
+[2016-02-15 14:01:05] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('7',NULL,'1455516065',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 14:01:47] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516107' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:02:01] /mobile/index.php?act=goods&op=goods_list&keyword=%20%20%E6%AD%A3%E5%93%81%202015%E6%98%A5%E8%A3%85%E6%96%B0%E6%AC%BE%20%E5%A5%B3%20%E7%BB%A3%E8%8A%B1&page=10&curpage=1&keyword=++%E6%AD%A3%E5%93%81+2015%E6%98%A5%E8%A3%85%E6%96%B0%E6%AC%BE+%E5%A5%B3+%E7%BB%A3%E8%8A%B1 ( act=goods&op=goods_list ) 
+ERR: Db Error: Unknown column 'goods_id' in 'order clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_goods_common` WHERE ( store_id = '1' ) AND ( goods_state = '1' ) AND ( goods_verify = '1' ) GROUP BY nc_distinct ORDER BY is_own_shop desc,goods_id desc LIMIT 1  
+[2016-02-15 14:02:03] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516123' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:02:09] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:02:09] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:02:53] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:02:53] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:06:08] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516368' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:06:15] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516375' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:06:55] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516415' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:07:53] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:07:53] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:08:09] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:08:09] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:08:10] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:08:10] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:08:13] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:08:13] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:08:27] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:08:27] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:10:24] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:10:24] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:10:41] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:10:41] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:11:11] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) LIMIT 1  
+[2016-02-15 14:11:11] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT * FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) ORDER BY order_id desc LIMIT 0,20  
+[2016-02-15 14:11:15] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) LIMIT 1  
+[2016-02-15 14:11:15] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT * FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) ORDER BY order_id desc LIMIT 0,20  
+[2016-02-15 14:11:18] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) LIMIT 1  
+[2016-02-15 14:11:18] /mobile/index.php?act=member_order&op=order_list&page=10&curpage=1 ( act=member_order&op=order_list ) 
+ERR: Db Error: Unknown column 'order_type' in 'where clause'
+SELECT * FROM `33hao_order` WHERE ( order_type = '3' ) AND ( order_state = '30' ) AND ( buyer_id = '2' ) ORDER BY order_id desc LIMIT 0,20  
+[2016-02-15 14:12:56] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455516776' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:12:59] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:12:59] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=38&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '38' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:13:11] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:13:11] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:13:15] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:13:15] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:13:19] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:13:19] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:18:19] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455517099' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:18:25] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:18:25] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:18:38] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT COUNT(*) AS nc_count FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) LIMIT 1  
+[2016-02-15 14:18:38] /mobile/index.php?act=goods&op=goods_evaluate&goods_id=42&type=4&curpage=1&page=10 ( act=goods&op=goods_evaluate ) 
+ERR: Db Error: Unknown column 'geval_image_again' in 'where clause'
+SELECT * FROM `33hao_evaluate_goods` WHERE ( geval_goodsid = '42' ) AND ( (geval_image <> '') OR (geval_image_again <> '') ) ORDER BY geval_id desc LIMIT 0,10  
+[2016-02-15 14:22:57] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455517377' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 14:25:54] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('4',NULL,'4','52','新款 女款 拼接 不规则摆 长袖针织衫开衫 杏雨 白色','99.00','1_04418253240878850.jpg','3','可以的哦，哈哈哈','0','1455517554',NULL,NULL,'2','test','2_05088615421093899.jpg','','','')
+[2016-02-15 14:25:54] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('4',NULL,'1455517554',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 14:29:53] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('4',NULL,'4','52','新款 女款 拼接 不规则摆 长袖针织衫开衫 杏雨 白色','99.00','1_04418253240878850.jpg','5','不错哦','0','1455517793',NULL,NULL,'2','test','','','','')
+[2016-02-15 14:29:53] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('4',NULL,'1455517793',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 14:30:02] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('4',NULL,'4','52','新款 女款 拼接 不规则摆 长袖针织衫开衫 杏雨 白色','99.00','1_04418253240878850.jpg','5','不错哦','0','1455517802',NULL,NULL,'2','test','','','','')
+[2016-02-15 14:30:02] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('4',NULL,'1455517802',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 19:40:10] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '2' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 19:41:48] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455536508' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 19:43:55] /mobile/index.php?act=voucher&op=voucher_tpl_list ( act=voucher&op=voucher_tpl_list ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_store_id = '1' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '3' ) LIMIT 1000  
+[2016-02-15 19:44:07] /mobile/index.php?act=goods&op=goods_detail&goods_id=231&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455536647' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:44:17] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455536657' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:46:49] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455536809' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:47:05] /mobile/index.php?act=member_refund&op=get_refund_info&key=e052231e15974db1abcb7d865f3bde44&refund_id=4 ( act=member_refund&op=get_refund_info ) 
+ERR: Db Error: Table 'v4.33hao_refund_detail' doesn't exist
+SELECT * FROM `33hao_refund_detail` WHERE ( refund_id = '4' ) LIMIT 1  
+[2016-02-15 19:49:31] /mobile/index.php?act=member_refund&op=get_refund_info&key=e052231e15974db1abcb7d865f3bde44&refund_id=4 ( act=member_refund&op=get_refund_info ) 
+ERR: Db Error: Table 'v4.33hao_refund_detail' doesn't exist
+SELECT * FROM `33hao_refund_detail` WHERE ( refund_id = '4' ) LIMIT 1  
+[2016-02-15 19:51:25] /shop/index.php?act=pointshop&op=index ( act=pointshop&op=index ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_state = '1' ) AND ( voucher_t_gettype = '1' ) AND ( voucher_t_end_date > '1455537085' ) ORDER BY voucher_t_recommend desc,voucher_t_id desc LIMIT 1000  
+[2016-02-15 19:52:55] /mobile/index.php?act=goods&op=goods_detail&goods_id=52&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455537175' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:53:04] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455537184' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:53:47] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455537227' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 19:56:03] /mobile/index.php?act=goods&op=goods_detail&goods_id=42&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455537363' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 21:43:28] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455543808' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 21:43:39] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455543819' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 21:47:58] /mobile/index.php?act=goods&op=goods_detail&goods_id=38&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455544078' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 22:19:20] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','实得分顶替顶替','0','1455545960',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:19:20] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455545960',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:21:44] /mobile/index.php?act=goods&op=goods_detail&goods_id=48&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455546104' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 22:23:56] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','实得分顶替顶替','0','1455546236',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:23:56] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455546236',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:25:04] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','实得分顶替顶替','0','1455546304',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:25:04] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455546304',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:28:29] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','4','实得分顶替顶替','0','1455546509',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:28:29] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455546509',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:35:26] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','4','实得分顶替顶替','0','1455546926',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:35:26] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455546926',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:35:52] /mobile/index.php?act=goods&op=goods_detail&goods_id=48&key=e052231e15974db1abcb7d865f3bde44 ( act=goods&op=goods_detail ) 
+ERR: Db Error: Unknown column 'voucher_t_gettype' in 'where clause'
+SELECT * FROM `33hao_voucher_template` WHERE ( voucher_t_gettype = '3' ) AND ( voucher_t_state = '1' ) AND ( voucher_t_end_date > '1455546952' ) AND ( voucher_t_store_id IN ('1') ) LIMIT 1000  
+[2016-02-15 22:36:00] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','4','实得分顶替顶替','0','1455546960',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:36:00] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455546960',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:40:50] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','不错哦','0','1455547250',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:40:50] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547250',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:41:17] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','不错哦','0','1455547277',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:41:17] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547277',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:47:55] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','4','实得分顶替顶替','0','1455547675',NULL,NULL,'2','test','2_05088899572031830.jpg','','','')
+[2016-02-15 22:47:55] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547675',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:49:22] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','不错哦','1','1455547762',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:49:22] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547762',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:49:27] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','4654654','1','1455547767',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:49:27] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547767',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:50:17] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','4654654','1','1455547817',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:50:17] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547817',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:50:28] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','4654654','1','1455547828',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:50:28] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455547828',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:54:24] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','4654654','0','1455548064',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:54:24] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455548064',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:54:29] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','不错哦','0','1455548069',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:54:29] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455548069',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:54:42] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','567567567','0','1455548082',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:54:43] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455548083',NULL,NULL,'2','test','5','5','5')
+[2016-02-15 22:56:09] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Unknown column 'geval_content_again' in 'field list'
+INSERT INTO `33hao_evaluate_goods` (geval_orderid,geval_orderno,geval_ordergoodsid,geval_goodsid,geval_goodsname,geval_goodsprice,geval_goodsimage,geval_scores,geval_content,geval_isanonymous,geval_addtime,geval_storeid,geval_storename,geval_frommemberid,geval_frommembername,geval_image,geval_content_again,geval_image_again,geval_explain_again) VALUES ('12',NULL,'14','42','2015春款打底毛衫拼色毛衣 长袖套头针织衫 莺 蓝色','179.00','1_04418211646104580.jpg','5','不错哦','0','1455548169',NULL,NULL,'2','test','','','','')
+[2016-02-15 22:56:09] /mobile/index.php?act=member_evaluate&op=save ( act=member_evaluate&op=save ) 
+ERR: Db Error: Column 'seval_orderno' cannot be null
+INSERT  INTO `33hao_evaluate_store` (seval_orderid,seval_orderno,seval_addtime,seval_storeid,seval_storename,seval_memberid,seval_membername,seval_desccredit,seval_servicecredit,seval_deliverycredit) VALUES ('12',NULL,'1455548169',NULL,NULL,'2','test','5','5','5')

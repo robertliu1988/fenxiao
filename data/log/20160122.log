@@ -1,0 +1,3 @@
+[2016-01-22 12:59:53] /mobile/index.php?act=member_favorites&op=favorites_list&key=0eaece499bdf67eb98046697464ea264&curpage=1&page=10 ( act=member_favorites&op=favorites_list ) 
+ERR: Db Error: Unknown column 'is_book' in 'where clause'
+SELECT goods_id,goods_name,goods_price,goods_image,store_id FROM `33hao_goods` WHERE ( goods_id IN ('42') ) AND ( is_book = '0' ) LIMIT 1000  

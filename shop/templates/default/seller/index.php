@@ -7,6 +7,7 @@
         <dt class="seller-name">
           <h3><?php echo $_SESSION['seller_name']; ?></h3>
           <h5>(用户名：<?php echo $_SESSION['member_name']; ?>)</h5>
+          <h5>分销等级：<?php echo $output['store_info']['fenxiao_level']; ?></h5>
         </dt>
         <dd class="store-logo">
           <p><img src="<?php echo getStoreLogo($output['store_info']['store_label'],'store_logo');?>"/></p>

@@ -59,6 +59,7 @@ class store_classControl extends SystemControl{
 				$insert_array['sc_name'] = $_POST['sc_name'];
 				$insert_array['sc_bail'] = intval($_POST['sc_bail']);
 				$insert_array['sc_sort'] = intval($_POST['sc_sort']);
+                $insert_array['sc_fenxiao'] = intval($_POST['sc_fenxiao']);
 				$result = $model_class->addStoreClass($insert_array);
 				if ($result){
 					$url = array(
@@ -103,7 +104,8 @@ class store_classControl extends SystemControl{
 				$update_array['sc_name'] = $_POST['sc_name'];
 				$update_array['sc_bail'] = intval($_POST['sc_bail']);
 				$update_array['sc_sort'] = intval($_POST['sc_sort']);
-				$result = $model_class->editStoreClass($update_array,array('sc_id'=>intval($_POST['sc_id'])));
+                $update_array['sc_fenxiao'] = intval($_POST['sc_fenxiao']);
+                $result = $model_class->editStoreClass($update_array,array('sc_id'=>intval($_POST['sc_id'])));
 				if ($result){
 					$this->log(L('nc_edit,store_class').'['.$_POST['sc_name'].']',1);
 					showMessage($lang['nc_common_save_succ'],'index.php?act=store_class&op=store_class');

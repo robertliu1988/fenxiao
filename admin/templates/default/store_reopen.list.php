@@ -8,6 +8,8 @@
         <li><a href="index.php?act=store&op=store_joinin" ><span><?php echo $lang['pending'];?></span></a></li>
         <li><a href="JavaScript:void(0);" class="current" ><span>续签申请</span></a></li>
         <li><a href="index.php?act=store&op=store_bind_class_applay_list" ><span>经营类目申请</span></a></li>
+        <li><a href="index.php?act=store&op=newshop_add" ><span>新增店铺</span></a></li>
+        <li><a href="index.php?act=store&op=store_import" ><span>CSV导入店铺</span></a></li>
       </ul>
     </div>
   </div>

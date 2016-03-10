@@ -25,6 +25,15 @@ class seller_centerControl extends BaseSellerControl {
 		Language::read('member_home_index');
         // 店铺信息
         $store_info = $this->store_info;
+        $model_class = Model('store_class');
+        $class_info = $model_class->getStoreClassInfo(array('sc_id'=>intval($store_info['sc_id'])));
+
+        if ($class_info['sc_fenxiao'] == 1){
+            $store_info['fenxiao_level'] = '申请分销商';
+        }
+        else
+            $store_info['fenxiao_level'] = '分类暂不支持分销';
+
         if(intval($store_info['store_end_time']) > 0) {
             $store_info['store_end_time_text']	= date('Y-m-d', $store_info['store_end_time']);
             $reopen_time = $store_info['store_end_time'] -3600*24 + 1  - TIMESTAMP;

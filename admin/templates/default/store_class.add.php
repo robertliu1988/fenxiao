@@ -36,6 +36,15 @@
           <td class="vatop rowform"><input type="text" value="255" name="sc_sort" id="sc_sort" class="txt"></td>
           <td class="vatop tips"><?php echo $lang['update_sort'];?></td>
         </tr>
+
+        <tr>
+            <td colspan="2" class="required"><label>开启分销:</label>
+            </td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><label><input type="checkbox" name="sc_fenxiao" id="sc_fenxiao" value="1" checked>允许</label></td>
+        </tr>
+
       </tbody>
       <tfoot>
         <tr class="tfoot">

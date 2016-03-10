@@ -1,2 +1,2 @@
-ALTER TABLE `33hao_store_class` ADD `sc_fenxiao` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'ÊÇ·ñ¿ªÆô·ÖÏú£¬1ÊÇ£¬0·ñ' ;
+ALTER TABLE `33hao_store_class` ADD `sc_fenxiao` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'æ˜¯å¦å¼€å¯åˆ†é”€ï¼Œ1æ˜¯ï¼Œ0å¦' ;
 

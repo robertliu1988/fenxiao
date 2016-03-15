@@ -96,6 +96,16 @@ define('STORE_JOIN_STATE_PAY_FAIL', 31);
 //开店成功
 define('STORE_JOIN_STATE_FINAL', 40);
 
+/*
+ * 分销申请状态定义
+ */
+//审核中
+define('FENXIAO_JOIN_STATE_VERIFY', 1);
+//审核通过
+define('FENXIAO_JOIN_STATE_VERIFY_SUCCESS', 2);
+//审核失败
+define('FENXIAO_JOIN_STATE_VERIFY_FAIL', 3);
+
 //默认颜色规格id(前台显示图片的规格)
 define('DEFAULT_SPEC_COLOR_ID', 1);
 

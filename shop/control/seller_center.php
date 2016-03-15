@@ -28,8 +28,14 @@ class seller_centerControl extends BaseSellerControl {
         $model_class = Model('store_class');
         $class_info = $model_class->getStoreClassInfo(array('sc_id'=>intval($store_info['sc_id'])));
 
-        if ($class_info['sc_fenxiao'] == 1){
-            $store_info['fenxiao_level'] = '申请分销商';
+        $fenxiao_config = Model('fenxiao_config');
+        $fenxiao_all = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_all'));
+
+        if ($fenxiao_all['config_value'] == 0)
+            $store_info['fenxiao_level'] = '暂未开启';
+        else if ($class_info['sc_fenxiao'] == 1){
+            $href = urlShop('fenxiao_joinin', 'index', array());
+            $store_info['fenxiao_level'] = "<a href='$href' target='_blank'>申请分销商</a>";
         }
         else
             $store_info['fenxiao_level'] = '分类暂不支持分销';

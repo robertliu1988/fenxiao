@@ -259,4 +259,6 @@ $lang['nc_memory_cost']		= "占用内存";
  * 分销
  */
 $lang['nc_fenxiao']			= "分销";
+$lang['nc_fenxiaoconfig']			= "基础配置";
+$lang['nc_fenxiaomerchant']			= "分销商户";
 ?>

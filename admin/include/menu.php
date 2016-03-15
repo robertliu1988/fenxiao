@@ -39,7 +39,7 @@ $arr = array(
 				'args'	=> 'stat',
 				'text'	=> $lang['nc_stat']),
             9 => array(
-                'args'	=> '分销',
+                'args'	=> 'fenxiao',
                 'text'	=> $lang['nc_fenxiao']),
 		),
 		'left' =>array(
@@ -174,22 +174,30 @@ $arr = array(
                     array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站')
 				)
 			),
-			8 => array(
-				'nav' => 'stat',
-				'text' => $lang['nc_stat'],
-				'list' => array(
-			        array('args'=>'general,stat_general,stat',			'text'=>$lang['nc_statgeneral']),
-					array('args'=>'scale,stat_industry,stat',			'text'=>$lang['nc_statindustry']),
-			        array('args'=>'newmember,stat_member,stat',			'text'=>$lang['nc_statmember']),
-					array('args'=>'newstore,stat_store,stat',			'text'=>$lang['nc_statstore']),
-					array('args'=>'income,stat_trade,stat',				'text'=>$lang['nc_stattrade']),
-					array('args'=>'pricerange,stat_goods,stat',			'text'=>$lang['nc_statgoods']),
-					array('args'=>'promotion,stat_marketing,stat',		'text'=>$lang['nc_statmarketing']),
-					array('args'=>'refund,stat_aftersale,stat',			'text'=>$lang['nc_stataftersale']),
+            8 => array(
+                'nav' => 'stat',
+                'text' => $lang['nc_stat'],
+                'list' => array(
+                    array('args'=>'general,stat_general,stat',			'text'=>$lang['nc_statgeneral']),
+                    array('args'=>'scale,stat_industry,stat',			'text'=>$lang['nc_statindustry']),
+                    array('args'=>'newmember,stat_member,stat',			'text'=>$lang['nc_statmember']),
+                    array('args'=>'newstore,stat_store,stat',			'text'=>$lang['nc_statstore']),
+                    array('args'=>'income,stat_trade,stat',				'text'=>$lang['nc_stattrade']),
+                    array('args'=>'pricerange,stat_goods,stat',			'text'=>$lang['nc_statgoods']),
+                    array('args'=>'promotion,stat_marketing,stat',		'text'=>$lang['nc_statmarketing']),
+                    array('args'=>'refund,stat_aftersale,stat',			'text'=>$lang['nc_stataftersale']),
 
-				)
-			),
-		),
+                )
+            ),
+            9 => array(
+                'nav' => 'fenxiao',
+                'text' => $lang['nc_fenxiao'],
+                'list' => array(
+                    array('args'=>'system,fenxiao_config,fenxiao',			'text'=>$lang['nc_fenxiaoconfig']),
+                    array('args'=>'store,fenxiao_merchant,fenxiao',			'text'=>$lang['nc_fenxiaomerchant']),
+                )
+            ),
+        ),
 );
 if(C('flea_isuse')==1){
 	$arr['top'][] = array(

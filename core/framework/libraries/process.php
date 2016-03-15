@@ -70,6 +70,8 @@ class process{
 	public static function islock($type = null){
 		if (!self::$ifopen) return;
 		self::init($type);
+//        echo "aa";
+//        exit;
 		return self::$lock->get(self::$lockid[$type]);
 	}
 

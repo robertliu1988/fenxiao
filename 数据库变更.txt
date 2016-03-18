@@ -6,3 +6,6 @@ insert into 33hao_document open_fenxiao
 
 33hao_fenxiao_joinin
 
+ALTER TABLE `33hao_goods_common` ADD `is_fenxiao` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0为否，1为是' ;
+
+

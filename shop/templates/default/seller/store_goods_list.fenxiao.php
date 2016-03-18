@@ -3,8 +3,6 @@
 <div class="tabmenu">
   <?php include template('layout/submenu');?>
  <!--好商城V3-B11-->
-  <a title="批量生成商品二维码" class="ncsc-btn ncsc-btn-green" href="index.php?act=store_goods_online&amp;op=maker_qrcode" target="_blank" style="right:100px" onclick="return confirm('您确定要执行批量生成二维码吗？');">批量生成商品二维码</a>
-  <a href="<?php echo urlShop('store_goods_add');?>" class="ncsc-btn ncsc-btn-green" title="<?php echo $lang['store_goods_index_add_goods'];?>"> <?php echo $lang['store_goods_index_add_goods'];?></a></div>
 <form method="get" action="index.php">
   <table class="search-form">
     <input type="hidden" name="act" value="store_goods_online" />
@@ -83,8 +81,8 @@
             <?php }?>
             <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $val['goods_name']; ?></a></dt>
           <dd><?php echo $lang['store_goods_index_goods_no'].$lang['nc_colon'];?><?php echo $val['goods_serial'];?></dd>
-          <dd class="serve"> <span class="<?php if ($val['goods_commend'] == 1) { echo 'open';}?>" title="店铺推荐商品"><i class="commend">荐</i></span> 
-		  <span class="<?php if ($val['is_fenxiao'] == 1) { echo 'open';}?>" title="店铺分销商品"><i class="commend">分</i></span>
+          <dd class="serve"> <span class="<?php if ($val['goods_commend'] == 1) { echo 'open';}?>" title="店铺推荐商品"><i class="commend">荐</i></span>
+<span class="<?php if ($val['is_fenxiao'] == 1) { echo 'open';}?>" title="店铺分销商品"><i class="commend">分</i></span>
 		  <span class="<?php if ($val['mobile_body'] != '') { echo 'open';}?>" title="手机端商品详情"><i class="icon-tablet"></i></span> <span class="" title="商品页面二维码"><i class="icon-qrcode"></i>
             <div class="QRcode"><a target="_blank" href="<?php echo goodsQRCode(array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id'], 'store_id' => $_SESSION['store_id']));?>">下载标签</a>
               <p><img src="<?php echo goodsQRCode(array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id'], 'store_id' => $_SESSION['store_id']));?>"/></p>
@@ -105,16 +103,11 @@
         <p><?php echo $lang['nc_del'];?></p>
         </a></span>
 
-            <?php  if ($val['is_fenxiao'] == 0 || $val['is_fenxiao'] == 3) { ?>
-                <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
+            <?php  if ($val['is_fenxiao'] == 0) { ?>
+                <span><a href="<?php echo urlShop('store_goods_online', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
                       <p>分销申请</p>
                   </a></span>
-              <?php } else if ($val['is_fenxiao'] == 2){?>
-			  <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-                      <p>分销审核中</p>
-                  </a></span>
-				                <?php } ?>
-
+              <?php } ?>
 
         <?php } else {?>
         <span class="tip" title="该商品参加抢购活动期间不能进行编辑及删除等操作,可以编辑赠品和推荐组合"><a href="<?php if ($val['is_virtual'] ==1 ) {echo 'javascript:void(0);';} else {echo urlShop('store_goods_online', 'add_gift', array('commonid' => $val['goods_commonid']));}?>" class="btn-orange-current"><i class="icon-lock"></i>

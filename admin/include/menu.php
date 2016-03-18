@@ -195,6 +195,7 @@ $arr = array(
                 'list' => array(
                     array('args'=>'system,fenxiao_config,fenxiao',			'text'=>$lang['nc_fenxiaoconfig']),
                     array('args'=>'store,fenxiao_merchant,fenxiao',			'text'=>$lang['nc_fenxiaomerchant']),
+                    array('args'=>'goods,fenxiao_goods,fenxiao',			'text'=>$lang['nc_fenxiaogoods']),
                 )
             ),
         ),

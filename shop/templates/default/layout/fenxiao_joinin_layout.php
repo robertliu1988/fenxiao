@@ -47,7 +47,7 @@ var COOKIE_PRE = '<?php echo COOKIE_PRE;?>';var _CHARSET = '<?php echo strtolowe
 <div class="header">
   <h2 class="header_logo"><a href="<?php echo SHOP_SITE_URL;?>"><img src="<?php echo UPLOAD_SITE_URL.DS.ATTACH_COMMON.DS.$output['setting_config']['site_logo']; ?>" class="pngFix"></a></h2>
   <ul class="header_menu">
-    <li class="<?php echo $output['show_sign']=='joinin' ? 'current':'';?>"><a href="<?php echo urlShop('show_joinin', 'index');?>" class="joinin"><i></i>商家分销申请</a></li>
+    <li class="<?php echo $output['show_sign']=='joinin' ? 'current':'';?>"><a href="<?php echo urlShop('fenxiao_joinin', 'index');?>" class="joinin"><i></i>商家分销申请</a></li>
     <li class=""><a href="<?php echo urlShop('seller_center', 'index');?>" class="login"><i></i>商家管理中心</a></li>
     <li class="<?php echo $output['show_sign']=='help' ? 'current':'';?>"><a href="<?php echo urlShop('show_help', 'index');?>" class="faq"><i></i>商家帮助指南</a></li>
   </ul>

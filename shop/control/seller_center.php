@@ -31,11 +31,26 @@ class seller_centerControl extends BaseSellerControl {
         $fenxiao_config = Model('fenxiao_config');
         $fenxiao_all = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_all'));
 
+        $fenxiao_status_array = array(
+            -1 => '关闭',
+            1 => '审核中',
+            2 => '开启',
+            3 => '审核失败',
+            4 => '封禁'
+        );
+
         if ($fenxiao_all['config_value'] == 0)
             $store_info['fenxiao_level'] = '暂未开启';
         else if ($class_info['sc_fenxiao'] == 1){
-            $href = urlShop('fenxiao_joinin', 'index', array());
-            $store_info['fenxiao_level'] = "<a href='$href' target='_blank'>申请分销商</a>";
+            $fenxiao_status = intval($store_info['fenxiao_status']);
+
+            if ($fenxiao_status == -1 || $fenxiao_status == 3){
+                $href = urlShop('fenxiao_joinin', 'index', array());
+                $store_info['fenxiao_level'] = "<a href='$href' target='_blank'>申请分销商</a>";
+            }
+            else{
+                $store_info['fenxiao_level'] = $fenxiao_status_array[$fenxiao_status];
+            }
         }
         else
             $store_info['fenxiao_level'] = '分类暂不支持分销';

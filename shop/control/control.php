@@ -1040,6 +1040,7 @@ class BaseSellerControl extends Control {
             } else {
                 $left_menu = $_SESSION['seller_menu'][$current_menu['model']]['child'];
             }
+
             Tpl::output('left_menu', $left_menu);
             Tpl::output('seller_quicklink', $_SESSION['seller_quicklink']);
 
@@ -1140,6 +1141,7 @@ class BaseSellerControl extends Control {
                 array('name' => '商品发布', 'act'=>'store_goods_add', 'op'=>'index'),
 				array('name' => '淘宝导入', 'act'=>'taobao_import', 'op'=>'index'),
                 array('name' => '出售中的商品', 'act'=>'store_goods_online', 'op'=>'index'),
+                array('name' => '分销中的商品', 'act'=>'store_goods_fenxiao', 'op'=>'index'),
                 array('name' => '仓库中的商品', 'act'=>'store_goods_offline', 'op'=>'index'),
                 array('name' => '关联版式', 'act'=>'store_plate', 'op'=>'index'),
                 array('name' => '商品规格', 'act' => 'store_spec', 'op' => 'index'),

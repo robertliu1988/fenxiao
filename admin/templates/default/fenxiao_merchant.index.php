@@ -6,11 +6,7 @@
       <h3><?php echo $lang['store'];?></h3>
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="index.php?act=store&op=store_joinin" ><span><?php echo $lang['pending'];?></span></a></li>
-        <li><a href="index.php?act=store&op=reopen_list" ><span>续签申请</span></a></li>
-        <li><a href="index.php?act=store&op=store_bind_class_applay_list" ><span>经营类目申请</span></a></li>
-        <li><a href="index.php?act=store&op=newshop_add" ><span>新增店铺</span></a></li>
-        <li><a href="index.php?act=store&op=store_import" ><span>CSV导入店铺</span></a></li>
+        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin"><span>分销申请</span></a></li>
       </ul>
     </div>
   </div>
@@ -29,7 +25,7 @@
           <?php } ?>
           <?php } ?>
         </select></td><th><label for="owner_and_name"><?php echo $lang['store_user'];?></label></th>
-      <td><input type="text" value="<?php echo $output['owner_and_name'];?>" name="owner_and_name" id="owner_and_name" class="txt"></td><td></td><th><label>店铺类型</label></th>
+      <td><input type="text" value="<?php echo $output['owner_and_name'];?>" name="owner_and_name" id="owner_and_name" class="txt"></td><td></td><th><label>分销状态</label></th>
         <td>
             <select name="fenxiao_status">
                 <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
@@ -90,7 +86,8 @@
           <td class="align-center"><?php echo $output['search_grade_list'][$v['grade_id']];?></td>
           <td class="align-center w72"><?php echo $v['fenxiao_status'];?></td>
         <td class="align-center w200">
-            <a href="index.php?act=store&op=store_joinin_detail&member_id=<?php echo $v['member_id'];?>">查看</a>&nbsp;&nbsp;<a href="index.php?act=fenxiao_merchant&op=store_edit&store_id=<?php echo $v['store_id']?>"><?php echo $lang['nc_edit'];?></a>&nbsp;&nbsp;
+       <!--     <a href="index.php?act=fenxiao_merchant&op=store_joinin_detail&member_id=<?php echo $v['member_id'];?>">查看</a> -->
+			&nbsp;&nbsp;<a href="index.php?act=fenxiao_merchant&op=store_edit&store_id=<?php echo $v['store_id']?>"><?php echo $lang['nc_edit'];?></a>&nbsp;&nbsp;
             </td>
         </tr>
         <?php } ?>

@@ -54,8 +54,10 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('store_goods_class', $store_goods_class);
 
         $this->profile_menu('goods_list', 'goods_list');
+
         Tpl::showpage('store_goods_list.online');
     }
+
 
     /**
      * 编辑商品页面
@@ -218,6 +220,7 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('edit_goods_sign', true);
         Tpl::showpage('store_goods_add.step2');
     }
+
 
     /**
      * 编辑商品保存

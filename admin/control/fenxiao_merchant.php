@@ -87,69 +87,21 @@ class fenxiao_merchantControl extends SystemControl{
 		$model_store = Model('store');
 		//保存
 		if (chksubmit()){
-			//取店铺等级的审核
-			$model_grade = Model('store_grade');
-			$grade_array = $model_grade->getOneGrade(intval($_POST['grade_id']));
-			if (empty($grade_array)){
-				showMessage($lang['please_input_store_level']);
-			}
-			//结束时间
-			$time	= '';
-			if(trim($_POST['end_time']) != ''){
-				$time = strtotime($_POST['end_time']);
-			}
+
 			$update_array = array();
-			$update_array['store_name'] = trim($_POST['store_name']);
-			$update_array['sc_id'] = intval($_POST['sc_id']);
-			$update_array['grade_id'] = intval($_POST['grade_id']);
-			$update_array['store_end_time'] = $time;
-			$update_array['store_state'] = intval($_POST['store_state']);
-			$update_array['store_baozh'] = trim($_POST['store_baozh']);//保障服务开关
-			$update_array['store_baozhopen'] = trim($_POST['store_baozhopen']);//保证金显示开关
-			$update_array['store_baozhrmb'] = trim($_POST['store_baozhrmb']);//新加保证金-金额
-			$update_array['store_qtian'] = trim($_POST['store_qtian']);//保障服务-七天退换
-			$update_array['store_zhping'] = trim($_POST['store_zhping']);//保障服务-正品保证
-			$update_array['store_erxiaoshi'] = trim($_POST['store_erxiaoshi']);//保障服务-两小时发货
-			$update_array['store_tuihuo'] = trim($_POST['store_tuihuo']);//保障服务-退货承诺
-			$update_array['store_shiyong'] = trim($_POST['store_shiyong']);//保障服务-试用
-			$update_array['store_xiaoxie'] = trim($_POST['store_xiaoxie']);//保障服务-消协
-			$update_array['store_huodaofk'] = trim($_POST['store_huodaofk']);//保障服务-货到付款
-			$update_array['store_shiti'] = trim($_POST['store_shiti']);//保障服务-实体店铺
-			if ($update_array['store_state'] == 0){
-				//根据店铺状态修改该店铺所有商品状态
-				$model_goods = Model('goods');
-				$model_goods->editProducesOffline(array('store_id' => $_POST['store_id']));
-				$update_array['store_close_info'] = trim($_POST['store_close_info']);
-				$update_array['store_recommend'] = 0;
-			}else {
-				//店铺开启后商品不在自动上架，需要手动操作
-				$update_array['store_close_info'] = '';
-				$update_array['store_recommend'] = intval($_POST['store_recommend']);
-			}
+            $update_array['fenxiao_status'] = intval($_POST['fenxiao_status']);
+
             $result = $model_store->editStore($update_array, array('store_id' => $_POST['store_id']));
 			if ($result){
-			//店铺名称修改处理 v3-b12
-			$store_id=$_POST['store_id'];
-			$store_name=trim($_POST['store_name']);
-			$store_info = $model_store->getStoreInfoByID($store_id);
-			if(!empty($store_name))
-			{
-				$where=array();
-				$where['store_id']=$store_id;
-				$update=array();
-				$update['store_name']=$store_name;
-				$bllGoods=Model()->table('goods_common')->where($where)->update($update);
-				$bllGoods=Model()->table('goods')->where($where)->update($update);
-			}
-			
+
 			
 				$url = array(
 				array(
-				'url'=>'index.php?act=store&op=store',
+				'url'=>'index.php?act=fenxiao_merchant&op=store',
 				'msg'=>$lang['back_store_list'],
 				),
 				array(
-				'url'=>'index.php?act=store&op=store_edit&store_id='.intval($_POST['store_id']),
+				'url'=>'index.php?act=fenxiao_merchant&op=store_edit&store_id='.intval($_POST['store_id']),
 				'msg'=>$lang['countinue_add_store'],
 				),
 				);
@@ -165,16 +117,9 @@ class fenxiao_merchantControl extends SystemControl{
 		if (empty($store_array)){
 			showMessage($lang['store_no_exist']);
 		}
-		//整理店铺内容
-		$store_array['store_end_time'] = $store_array['store_end_time']?date('Y-m-d',$store_array['store_end_time']):'';
-		//店铺分类
-		$model_store_class = Model('store_class');
-		$parent_list = $model_store_class->getStoreClassList(array(),'',false);
-		//店铺等级
-		$model_grade = Model('store_grade');
-		$grade_list = $model_grade->getGradeList();
-		Tpl::output('grade_list',$grade_list);
-		Tpl::output('class_list',$parent_list);
+
+
+        Tpl::output('fenxiao_status', $this->_get_fenxiao_status_array());
 		Tpl::output('store_array',$store_array);
 
 		$joinin_detail = Model('store_joinin')->getOne(array('member_id'=>$store_array['member_id']));
@@ -412,7 +357,7 @@ class fenxiao_merchantControl extends SystemControl{
 	/**
 	 * 店铺 待审核列表
 	 */
-	public function store_joininOp(){
+	public function fenxiao_joininOp(){
 		//店铺列表
 		if(!empty($_GET['owner_and_name'])) {
 			$condition['member_name'] = array('like','%'.$_GET['owner_and_name'].'%');
@@ -423,231 +368,74 @@ class fenxiao_merchantControl extends SystemControl{
 		if(!empty($_GET['grade_id']) && intval($_GET['grade_id']) > 0) {
 			$condition['sg_id'] = $_GET['grade_id'];
 		}
-		if(!empty($_GET['joinin_state']) && intval($_GET['joinin_state']) > 0) {
-            $condition['joinin_state'] = $_GET['joinin_state'] ;
+		if(!empty($_GET['status']) && intval($_GET['status']) > 0) {
+            $condition['status'] = $_GET['status'] ;
         } else {
-            $condition['joinin_state'] = array('gt',0);
+            $condition['status'] = array('gt',0);
         }
-		$model_store_joinin = Model('store_joinin');
-		$store_list = $model_store_joinin->getList($condition, 10, 'joinin_state asc');
-		Tpl::output('store_list', $store_list);
-        Tpl::output('joinin_state_array', $this->get_store_joinin_state());
+		$model_fenxiao_joinin = Model('fenxiao_joinin');
+		$store_list = $model_fenxiao_joinin->getList($condition, 10, 'status asc');
 
-		//店铺等级
-		$model_grade = Model('store_grade');
-		$grade_list = $model_grade->getGradeList();
-		Tpl::output('grade_list', $grade_list);
-
-		Tpl::output('page',$model_store_joinin->showpage('2'));
-		Tpl::showpage('store_joinin');
-	}
-
-	/**
-	 * 经营类目申请列表
-	 */
-	public function store_bind_class_applay_listOp(){
-	    $condition = array();
-
-        // 不显示自营店铺绑定的类目
-        if ($_GET['state'] != '') {
-            $condition['state'] = intval($_GET['state']);
-            if (!in_array($condition['state'], array('0', '1', )))
-                unset($condition['state']);
-        } else {
-            $condition['state'] = array('in', array('0', '1', ));
-        }
-
-	    if(intval($_GET['store_id'])) {
-	        $condition['store_id'] = intval($_GET['store_id']);
-	    }
-
-        $model_store_bind_class = Model('store_bind_class');
-        $store_bind_class_list = $model_store_bind_class->getStoreBindClassList($condition, 15,'state asc,bid desc');
-        $goods_class = Model('goods_class')->getGoodsClassIndexedListAll();
-        $store_ids = array();
-        for($i = 0, $j = count($store_bind_class_list); $i < $j; $i++) {
-            $store_bind_class_list[$i]['class_1_name'] = $goods_class[$store_bind_class_list[$i]['class_1']]['gc_name'];
-            $store_bind_class_list[$i]['class_2_name'] = $goods_class[$store_bind_class_list[$i]['class_2']]['gc_name'];
-            $store_bind_class_list[$i]['class_3_name'] = $goods_class[$store_bind_class_list[$i]['class_3']]['gc_name'];
-            $store_ids[] = $store_bind_class_list[$i]['store_id'];
-        }
-        //取店铺信息
         $model_store = Model('store');
-        $store_list = $model_store->getStoreList(array('store_id'=>array('in',$store_ids)),null);
-        $bind_store_list = array();
-        if (!empty($store_list) && is_array($store_list)) {
-            foreach ($store_list as $k => $v) {
-                $bind_store_list[$v['store_id']]['store_name'] = $v['store_name'];
-                $bind_store_list[$v['store_id']]['seller_name'] = $v['seller_name'];
-            }
+        $store_result = array();
+
+        foreach ($store_list as $store) {
+            $store_info = $model_store->getStoreInfoByID($store['member_id']);
+            $store_info['apply_reason'] = $store['apply_reason'];
+            $store_info['status'] = $store['status'];
+            $store_result[] = $store_info;
         }
 
-        Tpl::output('bind_list', $store_bind_class_list);
-        Tpl::output('bind_store_list',$bind_store_list);
+        Tpl::output('store_list', $store_result);
+        Tpl::output('joinin_state_array', $this->get_fenxiao_joinin_state());
 
-	    Tpl::output('page',$model_store_bind_class->showpage('2'));
-	    Tpl::showpage('store_bind_class_applay.list');
+		Tpl::output('page',$model_fenxiao_joinin->showpage('2'));
+		Tpl::showpage('fenxiao_joinin');
 	}
 
-	/**
-	 * 审核经营类目申请
-	 */
-	public function store_bind_class_applay_checkOp() {
-	    $model_store_bind_class = Model('store_bind_class');
-	    $condition = array();
-	    $condition['bid'] = intval($_GET['bid']);
-	    $condition['state'] = 0;
-	    $update = $model_store_bind_class->editStoreBindClass(array('state'=>1),$condition);
-	    if ($update) {
-	        $this->log('审核新经营类目申请，店铺ID：'.$_GET['store_id'],1);
-	        showMessage('审核成功',getReferer());
-	    } else {
-	        showMessage('审核失败',getReferer(),'html','error');
-	    }
-	}
-
-	/**
-	 * 删除经营类目申请
-	 */
-	public function store_bind_class_applay_delOp() {
-	    $model_store_bind_class = Model('store_bind_class');
-	    $condition = array();
-	    $condition['bid'] = intval($_GET['bid']);
-	    $del = $model_store_bind_class->delStoreBindClass($condition);
-	    if ($del) {
-	        $this->log('删除经营类目，店铺ID：'.$_GET['store_id'],1);
-	        showMessage('删除成功',getReferer());
-	    } else {
-	        showMessage('删除失败',getReferer(),'html','error');
-	    }
-	}
-
-    private function get_store_joinin_state() {
+    private function get_fenxiao_joinin_state() {
         $joinin_state_array = array(
-            STORE_JOIN_STATE_NEW => '新申请',
-            STORE_JOIN_STATE_PAY => '已付款',
-            STORE_JOIN_STATE_VERIFY_SUCCESS => '待付款',
-            STORE_JOIN_STATE_VERIFY_FAIL => '审核失败',
-            STORE_JOIN_STATE_PAY_FAIL => '付款审核失败',
-            STORE_JOIN_STATE_FINAL => '开店成功',
+            1 => '审核中',
+            2 => '审核通过',
+            3 => '审核失败',
         );
         return $joinin_state_array;
     }
 
-    /**
-     * 店铺续签申请列表
-     */
-    public function reopen_listOp(){
-        $condition = array();
-        if(intval($_GET['store_id'])) {
-            $condition['re_store_id'] = intval($_GET['store_id']);
-        }
-        if(!empty($_GET['store_name'])) {
-            $condition['re_store_name'] = $_GET['store_name'];
-        }
-        if ($_GET['re_state'] != '') {
-            $condition['re_state'] = intval($_GET['re_state']);
-        }
-        $model_store_reopen = Model('store_reopen');
-        $reopen_list = $model_store_reopen->getStoreReopenList($condition, 15);
-
-        Tpl::output('reopen_list', $reopen_list);
-
-        Tpl::output('page',$model_store_reopen->showpage('2'));
-        Tpl::showpage('store_reopen.list');
-    }
-
-    /**
-     * 审核店铺续签申请
-     */
-    public function reopen_checkOp() {
-        if (intval($_GET['re_id']) <= 0) exit();
-        $model_store_reopen = Model('store_reopen');
-        $condition = array();
-        $condition['re_id'] = intval($_GET['re_id']);
-        $condition['re_state'] = 1;
-        //取当前申请信息
-        $reopen_info = $model_store_reopen->getStoreReopenInfo($condition);
-
-        //取目前店铺有效截止日期
-        $store_info = Model('store')->getStoreInfoByID($reopen_info['re_store_id']);
-        $data = array();
-        $data['re_start_time'] = strtotime(date('Y-m-d 0:0:0',$store_info['store_end_time']))+24*3600;
-        $data['re_end_time'] = strtotime(date('Y-m-d 23:59:59', $data['re_start_time'])." +".intval($reopen_info['re_year'])." year");
-        $data['re_state'] = 2;
-        $update = $model_store_reopen->editStoreReopen($data,$condition);
-        if ($update) {
-            //更新店铺有效期
-            Model('store')->editStore(array('store_end_time'=>$data['re_end_time']),array('store_id'=>$reopen_info['re_store_id']));
-            $msg = '审核通过店铺续签申请，店铺ID：'.$reopen_info['re_store_id'].'，续签时间段：'.date('Y-m-d',$data['re_start_time']).' - '.date('Y-m-d',$data['re_end_time']);
-            $this->log($msg,1);
-            showMessage('续签成功，店铺有效成功延续到了'.date('Y-m-d',$data['re_end_time']).'日',getReferer());
-        } else {
-            showMessage('审核失败',getReferer(),'html','error');
-        }
-    }
-
-    /**
-     * 删除店铺续签申请
-     */
-    public function reopen_delOp() {
-        $model_store_reopen = Model('store_reopen');
-        $condition = array();
-        $condition['re_id'] = intval($_GET['re_id']);
-        $condition['re_state'] = array('in',array(0,1));
-
-        //取当前申请信息
-        $reopen_info = $model_store_reopen->getStoreReopenInfo($condition);
-        $cert_file = BASE_UPLOAD_PATH.DS.ATTACH_STORE_JOININ.DS.$reopen_info['re_pay_cert'];
-        $del = $model_store_reopen->delStoreReopen($condition);
-        if ($del) {
-            if (is_file($cert_file)) {
-                unlink($cert_file);
-            }
-            $this->log('删除店铺续签目申请，店铺ID：'.$_GET['re_store_id'],1);
-            showMessage('删除成功',getReferer());
-        } else {
-            showMessage('删除失败',getReferer(),'html','error');
-        }
-    }
 
 	/**
 	 * 审核详细页
 	 */
-	public function store_joinin_detailOp(){
-		$model_store_joinin = Model('store_joinin');
+	public function fenxiao_joinin_detailOp(){
+		$model_fenxiao_joinin = Model('fenxiao_joinin');
+        $fenxiao_joinin_detail = $model_fenxiao_joinin->getOne(array('member_id'=>$_GET['member_id']));
+
+        $model_store_joinin = Model('store_joinin');
         $joinin_detail = $model_store_joinin->getOne(array('member_id'=>$_GET['member_id']));
+
+        $joinin_detail['apply_reason'] = $fenxiao_joinin_detail['apply_reason'];
+        $joinin_detail['status'] = $fenxiao_joinin_detail['status'];
+
         $joinin_detail_title = '查看';
-        if(in_array(intval($joinin_detail['joinin_state']), array(STORE_JOIN_STATE_NEW, STORE_JOIN_STATE_PAY))) {
+        if(in_array(intval($joinin_detail['status']), array(1))) {
             $joinin_detail_title = '审核';
         }
-        if (!empty($joinin_detail['sg_info'])) {
-            $store_grade_info = Model('store_grade')->getOneGrade($joinin_detail['sg_id']);
-            $joinin_detail['sg_price'] = $store_grade_info['sg_price'];
-        } else {
-            $joinin_detail['sg_info'] = @unserialize($joinin_detail['sg_info']);
-            if (is_array($joinin_detail['sg_info'])) {
-                $joinin_detail['sg_price'] = $joinin_detail['sg_info']['sg_price'];
-            }
-        }
+
         Tpl::output('joinin_detail_title', $joinin_detail_title);
 		Tpl::output('joinin_detail', $joinin_detail);
-		Tpl::showpage('store_joinin.detail');
+		Tpl::showpage('fenxiao_joinin.detail');
 	}
 
 	/**
 	 * 审核
 	 */
-	public function store_joinin_verifyOp() {
-        $model_store_joinin = Model('store_joinin');
-        $joinin_detail = $model_store_joinin->getOne(array('member_id'=>$_POST['member_id']));
+	public function fenxiao_joinin_verifyOp() {
+        $model_fenxiao_joinin = Model('fenxiao_joinin');
+        $joinin_detail = $model_fenxiao_joinin->getOne(array('member_id'=>$_POST['member_id']));
 
-        switch (intval($joinin_detail['joinin_state'])) {
-            case STORE_JOIN_STATE_NEW:
-                $this->store_joinin_verify_pass($joinin_detail);
-                break;
-            case STORE_JOIN_STATE_PAY:
-                $this->store_joinin_verify_open($joinin_detail);
+        switch (intval($joinin_detail['status'])) {
+            case FENXIAO_JOIN_STATE_VERIFY:
+                $this->fenxiao_joinin_verify_pass($joinin_detail);
                 break;
             default:
                 showMessage('参数错误','');
@@ -655,109 +443,20 @@ class fenxiao_merchantControl extends SystemControl{
         }
 	}
 
-    private function store_joinin_verify_pass($joinin_detail) {
+    private function fenxiao_joinin_verify_pass($joinin_detail) {
         $param = array();
-        $param['joinin_state'] = $_POST['verify_type'] === 'pass' ? STORE_JOIN_STATE_VERIFY_SUCCESS : STORE_JOIN_STATE_VERIFY_FAIL;
+        $param['status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
         $param['joinin_message'] = $_POST['joinin_message'];
-        $param['paying_amount'] = abs(floatval($_POST['paying_amount']));
-        $param['store_class_commis_rates'] = implode(',', $_POST['commis_rate']);
-        $model_store_joinin = Model('store_joinin');
-        $model_store_joinin->modify($param, array('member_id'=>$_POST['member_id']));
-        if ($param['paying_amount'] > 0) {
-            showMessage('店铺入驻申请审核完成','index.php?act=store&op=store_joinin');
-        } else {
-            //如果开店支付费用为零，则审核通过后直接开通，无需再上传付款凭证
-            $this->store_joinin_verify_open($joinin_detail);
-        }
-    }
 
-    private function store_joinin_verify_open($joinin_detail) {
-        $model_store_joinin = Model('store_joinin');
+        $model_fenxiao_joinin = Model('fenxiao_joinin');
+        $model_fenxiao_joinin->modify($param, array('member_id'=>$_POST['member_id']));
+
+        $param = array();
         $model_store	= Model('store');
-        $model_seller = Model('seller');
+        $param['fenxiao_status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
+        $model_store->editStore($param, array('member_id'=>$_POST['member_id']));
+        showMessage('分销审核完毕','index.php?act=fenxiao_merchant&op=fenxiao_joinin');
 
-        //验证卖家用户名是否已经存在
-        if($model_seller->isSellerExist(array('seller_name' => $joinin_detail['seller_name']))) {
-            showMessage('卖家用户名已存在','');
-        }
-
-        $param = array();
-        $param['joinin_state'] = $_POST['verify_type'] === 'pass' ? STORE_JOIN_STATE_FINAL : STORE_JOIN_STATE_PAY_FAIL;
-        $param['joinin_message'] = $_POST['joinin_message'];
-        $model_store_joinin->modify($param, array('member_id'=>$_POST['member_id']));
-        if($_POST['verify_type'] === 'pass') {
-            //开店
- 			$shop_array		= array();
-            $shop_array['member_id']	= $joinin_detail['member_id'];
-            $shop_array['member_name']	= $joinin_detail['member_name'];
-            $shop_array['seller_name'] = $joinin_detail['seller_name'];
-			$shop_array['grade_id']		= $joinin_detail['sg_id'];
-			$shop_array['store_name']	= $joinin_detail['store_name'];
-			$shop_array['sc_id']		= $joinin_detail['sc_id'];
-            $shop_array['store_company_name'] = $joinin_detail['company_name'];
-			$shop_array['province_id']	= $joinin_detail['company_province_id'];
-			$shop_array['area_info']	= $joinin_detail['company_address'];
-			$shop_array['store_address']= $joinin_detail['company_address_detail'];
-			$shop_array['store_zip']	= '';
-			$shop_array['store_zy']		= '';
-			$shop_array['store_state']	= 1;
-            $shop_array['store_time']	= time();
-            $shop_array['store_end_time'] = strtotime(date('Y-m-d 23:59:59', strtotime('+1 day'))." +".intval($joinin_detail['joinin_year'])." year");
-            $store_id = $model_store->addStore($shop_array);
-
-            if($store_id) {
-                //写入卖家账号
-                $seller_array = array();
-                $seller_array['seller_name'] = $joinin_detail['seller_name'];
-                $seller_array['member_id'] = $joinin_detail['member_id'];
-                $seller_array['seller_group_id'] = 0;
-                $seller_array['store_id'] = $store_id;
-                $seller_array['is_admin'] = 1;
-                $state = $model_seller->addSeller($seller_array);
-            }
-
-			if($state) {
-				// 添加相册默认
-				$album_model = Model('album');
-				$album_arr = array();
-				$album_arr['aclass_name'] = Language::get('store_save_defaultalbumclass_name');
-				$album_arr['store_id'] = $store_id;
-				$album_arr['aclass_des'] = '';
-				$album_arr['aclass_sort'] = '255';
-				$album_arr['aclass_cover'] = '';
-				$album_arr['upload_time'] = time();
-				$album_arr['is_default'] = '1';
-				$album_model->addClass($album_arr);
-
-				$model = Model();
-				//插入店铺扩展表
-				$model->table('store_extend')->insert(array('store_id'=>$store_id));
-				$msg = Language::get('store_save_create_success');
-
-                //插入店铺绑定分类表
-                $store_bind_class_array = array();
-                $store_bind_class = unserialize($joinin_detail['store_class_ids']);
-                $store_bind_commis_rates = explode(',', $joinin_detail['store_class_commis_rates']);
-                for($i=0, $length=count($store_bind_class); $i<$length; $i++) {
-                    list($class1, $class2, $class3) = explode(',', $store_bind_class[$i]);
-                    $store_bind_class_array[] = array(
-                        'store_id' => $store_id,
-                        'commis_rate' => $store_bind_commis_rates[$i],
-                        'class_1' => $class1,
-                        'class_2' => $class2,
-                        'class_3' => $class3,
-                        'state' => 1
-                    );
-                }
-                $model_store_bind_class = Model('store_bind_class');
-                $model_store_bind_class->addStoreBindClassAll($store_bind_class_array);
-                showMessage('店铺开店成功','index.php?act=store&op=store_joinin');
-            } else {
-                showMessage('店铺开店失败','index.php?act=store&op=store_joinin');
-            }
-        } else {
-            showMessage('店铺开店拒绝','index.php?act=store&op=store_joinin');
-        }
     }
 
     /**
@@ -821,28 +520,13 @@ class fenxiao_merchantControl extends SystemControl{
 	  public function del_joinOp()
     {
         $member_id = (int) $_GET['id'];
-        $store_joinin = model('store_joinin');
+        $fenxiao_joinin = model('fenxiao_joinin');
         $condition = array(
             'member_id' => $member_id,
         );
-		$mm=$store_joinin->getOne($condition);
-		if(empty($mm))
-		{
-			showMessage('操作失败', getReferer());
-		}
-		if($mm['joinin_state']=='20')
-		{
-		}
-		$store_name=$mm['store_name'];
-		$storeModel = model('store');
-		$scount=$storeModel->getStoreCount($condition);
-		if($scount>0)
-		{
-		   showMessage('操作失败已有店铺在运营', getReferer());
-		}
-        // 完全删除店铺入驻
-        $store_joinin->drop($condition);
-        $this->log("删除店铺入驻:".$store_name);
+
+        $fenxiao_joinin->drop($condition);
+        $this->log("删除分销申请:".$member_id);
         showMessage('操作成功', getReferer());
     }
     public function newshop_addOp()

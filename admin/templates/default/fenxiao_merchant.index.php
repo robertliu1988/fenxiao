@@ -6,7 +6,7 @@
       <h3><?php echo $lang['store'];?></h3>
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin"><span>分销申请</span></a></li>
+        <li><a href="index.php?act=fenxiao_member&op=fenxiao_joinin"><span>分销申请</span></a></li>
       </ul>
     </div>
   </div>

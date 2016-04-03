@@ -37,6 +37,7 @@ class operationControl extends SystemControl{
                 $update_array['points_isuse'] = $_POST['points_isuse'];
                 $update_array['pointshop_isuse'] = $_POST['pointshop_isuse'];
                 $update_array['voucher_allow'] = $_POST['voucher_allow'];
+                $update_array['fenxiao_allow'] = $_POST['fenxiao_allow'];
                 $update_array['pointprod_isuse'] = $_POST['pointprod_isuse'];
                 $update_array['points_reg'] = intval($_POST['points_reg'])?$_POST['points_reg']:0;
                 $update_array['points_login'] = intval($_POST['points_login'])?$_POST['points_login']:0;

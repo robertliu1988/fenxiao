@@ -2,10 +2,17 @@ ALTER TABLE `33hao_store_class` ADD `sc_fenxiao` TINYINT(1) UNSIGNED NOT NULL DE
 
 CREATE TABLE `33hao`.`33hao_fenxiao_config` ( `config_name` VARCHAR(24) NOT NULL , `config_value` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '1为是，0为否' , PRIMARY KEY (`config_name`) ) ENGINE = InnoDB;
 
-insert into 33hao_document open_fenxiao
+insert into 33hao_document open_fenxiao  member_fenxiao
 
-33hao_fenxiao_joinin
+新增 33hao_fenxiao_joinin
+
+33hao_store  fenxiao_status  fenxiao_time
 
 ALTER TABLE `33hao_goods_common` ADD `is_fenxiao` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0为否，1为是' ;
+
+ALTER TABLE `33hao_goods` ADD `is_fenxiao` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否分销' ;
+
+新增 member_fenxiao_joinin
+
 
 

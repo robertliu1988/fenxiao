@@ -37,6 +37,7 @@ class brandControl extends BaseHomeControl {
 		//页面输出
 		Tpl::output('index_sign','brand');
 		Model('seo')->type('brand')->show();
+
 		Tpl::showpage('brand');
 	}
 

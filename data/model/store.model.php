@@ -324,6 +324,42 @@ class storeModel extends Model {
     	}
     	return $store_array_new;
     }
+
+    /**
+     * 获取店铺分销商品
+     *
+     */
+    public function getStoreFenxiaoList($store_array) {
+        $store_array_new = array();
+        if(!empty($store_array)){
+            $model = Model();
+            $no_cache_store = array();
+            foreach ($store_array as $value) {
+                //$store_search_info = rcache($value['store_id'],'store_search_info');
+                //print_r($store_array);exit();
+                //if($store_search_info !== FALSE) {
+                //	$store_array_new[$value['store_id']] = $store_search_info;
+                //} else {
+                //	$no_cache_store[$value['store_id']] = $value;
+                //}
+                $no_cache_store[$value['store_id']] = $value;
+            }
+            if(!empty($no_cache_store)) {
+                //获取店铺商品数
+                $no_cache_store = $this->getStoreInfoBasic($no_cache_store);
+                //获取店铺近期销量
+                $no_cache_store = $this->getGoodsCountJq($no_cache_store);
+                //获取店铺推荐商品
+                $no_cache_store = $this->getGoodsListByFenxiao($no_cache_store);
+                //写入缓存
+                foreach ($no_cache_store as $value) {
+                    wcache($value['store_id'],$value,'store_search_info');
+                }
+                $store_array_new = array_merge($store_array_new,$no_cache_store);
+            }
+        }
+        return $store_array_new;
+    }
     
     /**
      * 获得店铺标志、信用、商品数量、店铺评分等信息
@@ -431,5 +467,15 @@ class storeModel extends Model {
     		$store_array[$value['store_id']]['search_list_goods'] = $model->table('goods')->field($field)->where(array('store_id'=>$value['store_id'],'goods_state'=>1))->order('goods_salenum desc')->limit(8)->select();
     	}
     	return $store_array;
+    }
+
+    //获取店铺分销商品
+    private function getGoodsListByFenxiao($store_array) {
+        $model = Model();
+        $field = '*';
+        foreach ($store_array as $value) {
+            $store_array[$value['store_id']]['search_list_goods'] = $model->table('goods')->field($field)->where(array('store_id'=>$value['store_id'],'is_fenxiao'=>1))->order('goods_salenum desc')->select();
+        }
+        return $store_array;
     }
 }

@@ -262,4 +262,5 @@ $lang['nc_fenxiao']			= "分销";
 $lang['nc_fenxiaoconfig']			= "基础配置";
 $lang['nc_fenxiaomerchant']			= "分销商户";
 $lang['nc_fenxiaogoods']			= "分销商品";
+$lang['nc_fenxiaomember']			= "分销员";
 ?>

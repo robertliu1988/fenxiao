@@ -497,6 +497,10 @@ class BaseMemberControl extends Control {
                         'member_points'     => array('name' => '我的积分', 'url'=>urlShop('member_points', 'index')),
                         'member_voucher'    => array('name' => '我的代金券', 'url'=>urlShop('member_voucher', 'index'))
                 )),
+                'fenxiao' => array('name' => '分销中心', 'child' => array(
+                    'fenxiao_apply'      => array('name' => '申请分销员', 'url'=>urlShop('member_fenxiao_joinin', 'index')),
+                    'fenxiao_goods'      => array('name' => '分销商品', 'url'=>urlShop('member_fenxiao', 'goods')),
+                )),
                 'serv' => array('name' => '客户服务', 'child' => array(
                         'member_refund'     => array('name' => '退款及退货', 'url'=>urlShop('member_refund', 'index')),
                         'member_complain'   => array('name' => '交易投诉', 'url'=>urlShop('member_complain', 'index')),

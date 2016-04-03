@@ -231,6 +231,9 @@ $(function(){
       <?php if (C('groupbuy_allow')){ ?>
       <li><a href="<?php echo urlShop('show_groupbuy', 'index');?>" <?php if($output['index_sign'] == 'groupbuy' && $output['index_sign'] != '0') {echo 'class="current"';} ?>> <?php echo $lang['nc_groupbuy'];?></a></li>
       <?php } ?>
+        <?php if (C('fenxiao_allow')){ ?>
+            <li><a href="<?php echo urlShop('fenxiao_goods', 'index');?>" <?php if($output['index_sign'] == 'fenxiao' && $output['index_sign'] != '0') {echo 'class="current"';} ?>> 分销</a></li>
+        <?php } ?>
       <li><a href="<?php echo urlShop('brand', 'index');?>" <?php if($output['index_sign'] == 'brand' && $output['index_sign'] != '0') {echo 'class="current"';} ?>> <?php echo $lang['nc_brand'];?></a></li>
       <?php if (C('points_isuse') && C('pointshop_isuse')){ ?>
       <li><a href="<?php echo urlShop('pointshop', 'index');?>" <?php if($output['index_sign'] == 'pointshop' && $output['index_sign'] != '0') {echo 'class="current"';} ?>> <?php echo $lang['nc_pointprod'];?></a></li>

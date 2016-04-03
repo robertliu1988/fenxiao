@@ -3,10 +3,10 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3><?php echo $lang['store'];?></h3>
+      <h3>分销员</h3>
       <ul class="tab-base">
-        <li><a href="index.php?act=fenxiao_merchant&op=store" ><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span>分销申请</span></a></li>
+        <li><a href="index.php?act=fenxiao_member&op=member" ><span><?php echo $lang['manage'];?></span></a></li>
+        <li><a href="JavaScript:void(0);" class="current"><span>等待审核</span></a></li>
       </ul>
     </div>
   </div>
@@ -68,24 +68,24 @@
     <table class="table tb-type2">
       <thead>
         <tr class="thead">
-          <th><?php echo $lang['store_name'];?></th>
+          <th><?php echo $lang['member_index_name'];?></th>
           <th><?php echo $lang['store_user_name'];?></th>
           <th class="align-center"><?php echo $lang['state'];?></th>
           <th class="align-center"><?php echo $lang['operation'];?></th>
         </tr>
       </thead>
       <tbody>
-        <?php if(!empty($output['store_list']) && is_array($output['store_list'])){ ?>
-        <?php foreach($output['store_list'] as $k => $v){ ?>
+        <?php if(!empty($output['member_list']) && is_array($output['member_list'])){ ?>
+        <?php foreach($output['member_list'] as $k => $v){ ?>
         <tr class="hover edit">
-          <td><?php echo $v['store_name'];?></td>
+          <td><?php echo $v['member_name'];?></td>
           <td><?php echo $v['member_name'];?></td>
           <td class="align-center"><?php echo $output['joinin_state_array'][$v['status']];?></td>
           <td class="w72 align-center">
               <?php if(in_array(intval($v['status']), array(1))) { ?>
-              <a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin_detail&member_id=<?php echo $v['member_id'];?>">审核</a>
+              <a href="index.php?act=fenxiao_member&op=fenxiao_joinin_detail&member_id=<?php echo $v['member_id'];?>">审核</a>
               <?php } else { ?>
-              <a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin_detail&member_id=<?php echo $v['member_id'];?>">查看</a>
+              <a href="index.php?act=fenxiao_member&op=fenxiao_joinin_detail&member_id=<?php echo $v['member_id'];?>">查看</a>
               <?php } ?>
                <?php if(intval($v['joinin_state'])<40) { ?>
               &nbsp;&nbsp; <a href="index.php?act=fenxiao_merchant&op=del_join&id=<?php echo $v['member_id']?>">删除</a>

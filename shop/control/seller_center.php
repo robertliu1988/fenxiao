@@ -41,6 +41,8 @@ class seller_centerControl extends BaseSellerControl {
 
         if ($fenxiao_all['config_value'] == 0)
             $store_info['fenxiao_level'] = '暂未开启';
+        else if ($store_info['is_own_shop'] == 1)
+            $store_info['fenxiao_level'] = '开启';
         else if ($class_info['sc_fenxiao'] == 1){
             $fenxiao_status = intval($store_info['fenxiao_status']);
 

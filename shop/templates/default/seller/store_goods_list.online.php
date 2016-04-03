@@ -113,6 +113,10 @@
 			  <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
                       <p>分销审核中</p>
                   </a></span>
+              <?php } else {?>
+                  <span><a href="#" class="btn-blue"><i class="icon-edit"></i>
+                          <p>分销中</p>
+                      </a></span>
 				                <?php } ?>
 
 

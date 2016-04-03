@@ -87,6 +87,17 @@
         </tr>
 
         <tr>
+            <td colspan="2" class="required"><?php echo $lang['fenxiao_allow'];?>: </td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform onoff"><label for="fenxiao_allow_1" class="cb-enable <?php if($output['list_setting']['fenxiao_allow'] == '1'){ ?>selected<?php } ?>" title="<?php echo $lang['open'];?>"><span><?php echo $lang['open'];?></span></label>
+                <label for="fenxiao_allow_0" class="cb-disable <?php if($output['list_setting']['fenxiao_allow'] == '0'){ ?>selected<?php } ?>" title="<?php echo $lang['close'];?>"><span><?php echo $lang['close'];?></span></label>
+                <input id="fenxiao_allow_1" name="fenxiao_allow" <?php if($output['list_setting']['fenxiao_allow'] == '1'){ ?>checked="checked"<?php } ?> value="1" type="radio">
+                <input id="fenxiao_allow_0" name="fenxiao_allow" <?php if($output['list_setting']['fenxiao_allow'] == '0'){ ?>checked="checked"<?php } ?> value="0" type="radio"></td>
+            <td class="vatop tips"><?php echo $lang['fenxiao_allow_notice'];?></td>
+        </tr>
+
+        <tr>
           <td class="" colspan="2"><table class="table tb-type2 nomargin">
               <thead>
                 <tr class="space">

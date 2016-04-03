@@ -265,10 +265,14 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
         $fenxiao_config = Model('fenxiao_config');
         $fenxiao_goods = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_goods'));
 
-        if ($fenxiao_goods && $update_common['is_fenxiao'] == 1)
+        if ($fenxiao_goods['config_value'] && $update_common['is_fenxiao'] == 1)
             $update_common['is_fenxiao']         = 2;
 
         $return = $model_goods->editGoodsCommon($update_common, array('goods_commonid' => $common_id, 'store_id' => $_SESSION['store_id']));
+
+        $update_goods = array();
+        $update_goods['is_fenxiao']         = $update_common['is_fenxiao'];
+        $return = $model_goods->editGoods($update_goods,array('goods_commonid'=>$common_id));
 
         if ($return) {
             //提交事务

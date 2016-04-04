@@ -74,7 +74,7 @@ function query(name, value){
     <ul class="tab-bar">
 	  <li><a href="<?php echo urlShop('fenxiao_goods', 'index');?>">全部分销商品</a></li>
       <li class="current"><a href="<?php echo urlShop('fenxiao_store', 'index');?>">全部分销商户</a></li>
-      <li><a href="<?php echo urlShop('fenxiao_user', 'index');?>">全部分销员</a></li>
+      <li><a href="<?php echo urlShop('fenxiao_member', 'index');?>">全部分销员</a></li>
     </ul>
   </div>
   
@@ -131,8 +131,8 @@ function query(name, value){
 <?php foreach($output['store_list'] as $skey => $store){?>
     <li class="item">
       <dl class="shop-info">
-        <dt class="shop-name"><a href="<?php echo urlShop('show_store','', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a></dt>
-        <dd class="shop-pic"><a href="<?php echo urlShop('show_store','', array('store_id'=>$store['store_id']),$store['store_domain']);?>" title="" target="_blank"><span class="size72"><img src="<?php echo getStoreLogo($store['store_avatar']);?>"  alt="<?php echo $store['store_name'];?>" title="<?php echo $store['store_name'];?>" class="size72" /></span></a></dd>
+        <dt class="shop-name"><a href="<?php echo urlShop('fenxiao_store','goods', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a></dt>
+        <dd class="shop-pic"><a href="<?php echo urlShop('fenxiao_store','goods', array('store_id'=>$store['store_id']),$store['store_domain']);?>" title="" target="_blank"><span class="size72"><img src="<?php echo getStoreLogo($store['store_avatar']);?>"  alt="<?php echo $store['store_name'];?>" title="<?php echo $store['store_name'];?>" class="size72" /></span></a></dd>
         <dd class="main-runs" title="<?php echo $store['store_zy']?>"><?php echo $lang['store_class_index_store_zy'].$lang['nc_colon'];?><?php echo $store['store_zy']?></dd>
         <dd class="shopkeeper"><?php echo $lang['store_class_index_owner'].$lang['nc_colon'];?><?php echo $store['member_name'];?><a target="_blank" class="message" href="index.php?act=member_message&op=sendmsg&member_id=<?php echo $store['member_id'];?>"></a><span>
         <?php if(!empty($store['store_qq'])){?>

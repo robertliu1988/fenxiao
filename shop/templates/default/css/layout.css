@@ -620,3 +620,38 @@ form label.validate_right { padding-left:20px; background:transparent url(../ima
 .v_module_recommend li .goods-info .goods-price em { font-size: 14px; font-weight: bold; color: #ff3c00;}
 .v_module_recommend li .goods-info .buy-btn a { line-height: 20px; color: #FFF; background-color: #ff3c00; height: 20px; display: inline-block; *display: inline; padding: 3px 12px; *zoom: 1; border-radius: 2px;}
 .v_module_recommend li .goods-info .buy-btn a:hover { text-decoration: none; background-color: #04AFC8;}
+
+/*分销员页面*/
+.squares .goods-content-fenxiao { line-height: 18px; background-color: #FFF; width: 230px; height: 370px; margin: 3px; border: solid 1px #F0F0F0; border-radius: 2px; position:relative; z-index: 11; overflow: hidden; box-shadow: 0 0 3px rgba(153,153,153,0.1); transition: border-color 0.4s ease-in-out 0s;}
+.squares .goods-content-fenxiao:hover { z-index: 12;}
+.squares .goods-normal { font: 12px/20px Arial; background-color: #FFF; white-space: nowrap; display: block; height: 20px; padding: 4px 10px 4px 25px; overflow: hidden;}
+.squares .goods-fenxiao-name {
+    font-size: 12px;
+    line-height: 16px;
+    color: #999;
+    background-color: #FFF;
+    height: 22px;
+    display: block;
+    padding: 0 10px;
+    overflow: hidden;
+	text-align:center;
+}
+.squares .goods-fenxiao-pic {
+    background: #FFF;
+    width: 220px;
+    height: 160px;
+    padding: 5px 5px 0 5px;
+    margin: 0;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+.squares .goods-fenxiao-pic a {
+    line-height: 0;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    width: 220px;
+    height: 160px;
+    overflow: hidden;
+}

@@ -75,7 +75,7 @@ function query(name, value){
     <ul class="tab-bar">
 	  <li><a href="<?php echo urlShop('fenxiao_goods', 'index');?>">全部分销商品</a></li>
       <li class="current"><a href="<?php echo urlShop('fenxiao_store', 'index');?>">全部分销商户</a></li>
-      <li><a href="<?php echo urlShop('fenxiao_user', 'index');?>">全部分销员</a></li>
+      <li><a href="<?php echo urlShop('fenxiao_member', 'index');?>">全部分销员</a></li>
     </ul>
   </div>
   

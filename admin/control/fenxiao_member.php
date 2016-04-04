@@ -124,52 +124,26 @@ class fenxiao_memberControl extends SystemControl{
 		 * 保存
 		 */
 		if (chksubmit()){
-			/**
-			 * 验证
-			 */
-			$obj_validate = new Validate();
-			$obj_validate->validateparam = array(
-			array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email']),
-			);
-			$error = $obj_validate->validate();
-			if ($error != ''){
-				showMessage($error);
-			}else {
+
 				$update_array = array();
 				$update_array['member_id']			= intval($_POST['member_id']);
-				if (!empty($_POST['member_passwd'])){
-					$update_array['member_passwd'] = md5($_POST['member_passwd']);
-				}
-				$update_array['member_email']		= $_POST['member_email'];
-				$update_array['member_truename']	= $_POST['member_truename'];
-				$update_array['member_sex'] 		= $_POST['member_sex'];
-				$update_array['member_qq'] 			= $_POST['member_qq'];
-				$update_array['member_ww']			= $_POST['member_ww'];
-				$update_array['inform_allow'] 		= $_POST['inform_allow'];
-				$update_array['is_buy'] 			= $_POST['isbuy'];
-				$update_array['is_allowtalk'] 		= $_POST['allowtalk'];
-				$update_array['member_state'] 		= $_POST['memberstate'];
-				//v3-b11 新增
-				$update_array['member_cityid']		= $_POST['city_id'];
-			        $update_array['member_provinceid']	= $_POST['province_id'];
-			        $update_array['member_areainfo']	= $_POST['area_info'];
-				$update_array['member_mobile'] 		= $_POST['member_mobile'];
-				$update_array['member_email_bind'] 	= intval($_POST['memberemailbind']);
-				$update_array['member_mobile_bind'] 	= intval($_POST['membermobilebind']);
 
-			
-				if (!empty($_POST['member_avatar'])){
-					$update_array['member_avatar'] = $_POST['member_avatar'];
-				}
+				$update_array['member_truename']	= $_POST['member_truename'];
+				$update_array['member_mobile'] 		= $_POST['member_mobile'];
+                $update_array['business_licence_number'] 		= $_POST['business_licence_number'];
+                $update_array['alipay_num'] 		= $_POST['alipay_num'];
+                $update_array['weixin_num'] 		= $_POST['weixin_num'];
+                $update_array['fenxiao_status'] 		= $_POST['fenxiao_status'];
+
 				$result = $model_member->editMember(array('member_id'=>intval($_POST['member_id'])),$update_array);
 				if ($result){
 					$url = array(
 					array(
-					'url'=>'index.php?act=member&op=member',
+					'url'=>'index.php?act=fenxiao_member&op=member',
 					'msg'=>$lang['member_edit_back_to_list'],
 					),
 					array(
-					'url'=>'index.php?act=member&op=member_edit&member_id='.intval($_POST['member_id']),
+					'url'=>'index.php?act=fenxiao_member&op=member_edit&member_id='.intval($_POST['member_id']),
 					'msg'=>$lang['member_edit_again'],
 					),
 					);
@@ -178,73 +152,26 @@ class fenxiao_memberControl extends SystemControl{
 				}else {
 					showMessage($lang['member_edit_fail']);
 				}
-			}
+
 		}
 		$condition['member_id'] = intval($_GET['member_id']);
 		$member_array = $model_member->getMemberInfo($condition);
 
 		Tpl::output('member_array',$member_array);
-		Tpl::showpage('member.edit');
+        Tpl::output('fenxiao_status', $this->_get_fenxiao_status_array());
+        Tpl::showpage('fenxiao_member.edit');
 	}
 
-	/**
-	 * 新增会员
-	 */
-	public function member_addOp(){
-		$lang	= Language::getLangContent();
-		$model_member = Model('member');
-		/**
-		 * 保存
-		 */
-		if (chksubmit()){
-			/**
-			 * 验证
-			 */
-			$obj_validate = new Validate();
-			$obj_validate->validateparam = array(
-			    array("input"=>$_POST["member_name"], "require"=>"true", "message"=>$lang['member_add_name_null']),
-			    array("input"=>$_POST["member_passwd"], "require"=>"true", "message"=>'密码不能为空'),
-			    array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email'])
-			);
-			$error = $obj_validate->validate();
-			if ($error != ''){
-				showMessage($error);
-			}else {
-				$insert_array = array();
-				$insert_array['member_name']	= trim($_POST['member_name']);
-				$insert_array['member_passwd']	= trim($_POST['member_passwd']);
-				$insert_array['member_email']	= trim($_POST['member_email']);
-				$insert_array['member_truename']= trim($_POST['member_truename']);
-				$insert_array['member_sex'] 	= trim($_POST['member_sex']);
-				$insert_array['member_qq'] 		= trim($_POST['member_qq']);
-				$insert_array['member_ww']		= trim($_POST['member_ww']);
-                //默认允许举报商品
-                $insert_array['inform_allow'] 	= '1';
-				if (!empty($_POST['member_avatar'])){
-					$insert_array['member_avatar'] = trim($_POST['member_avatar']);
-				}
+    private function _get_fenxiao_status_array() {
+        return array(
+            -1 => '关闭',
+            1 => '审核中',
+            2 => '开启',
+            3 => '审核失败',
+            4 => '封禁'
+        );
+    }
 
-				$result = $model_member->addMember($insert_array);
-				if ($result){
-					$url = array(
-					array(
-					'url'=>'index.php?act=member&op=member',
-					'msg'=>$lang['member_add_back_to_list'],
-					),
-					array(
-					'url'=>'index.php?act=member&op=member_add',
-					'msg'=>$lang['member_add_again'],
-					),
-					);
-					$this->log(L('nc_add,member_index_name').'[	'.$_POST['member_name'].']',1);
-					showMessage($lang['member_add_succ'],$url);
-				}else {
-					showMessage($lang['member_add_fail']);
-				}
-			}
-		}
-		Tpl::showpage('member.add');
-	}
 
 	/**
 	 * ajax操作
@@ -373,15 +300,82 @@ class fenxiao_memberControl extends SystemControl{
         $param['status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
 //        $param['joinin_message'] = $_POST['joinin_message'];
 
+
         $model_fenxiao_joinin = Model('fenxiao_member_joinin');
         $model_fenxiao_joinin->modify($param, array('member_id'=>$_POST['member_id']));
 
+        $joinin_detail = $model_fenxiao_joinin->getOne(array('member_id'=>$_POST['member_id']));
+
         $param = array();
-        $model_store	= Model('member');
+        $model_member	= Model('member');
         $param['fenxiao_status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
-        $model_store->editMember($param, array('member_id'=>$_POST['member_id']));
+        $param['member_truename'] = $joinin_detail['member_truename'];
+        $param['member_mobile'] = $joinin_detail['member_mobile'];
+        $param['business_licence_number'] = $joinin_detail['business_licence_number'];
+        $param['alipay_num'] = $joinin_detail['alipay_num'];
+        $param['weixin_num'] = $joinin_detail['weixin_num'];
+
+        $model_member->editMember( array('member_id'=>$_POST['member_id']),$param);
         showMessage('分销审核完毕','index.php?act=fenxiao_member&op=fenxiao_joinin');
 
     }
+
+    /**
+     * 分销员等级
+     */
+    public function gradeOp(){
+        /**
+         * 读取语言包
+         */
+        Language::read('store_grade,store');
+
+        $lang	= Language::getLangContent();
+
+        $model_grade = Model('fenxiao_member_grade');
+
+        $condition = array();
+        $grade_list = $model_grade->getGradeList($condition);
+
+        Tpl::output('like_sg_name',trim($_POST['like_sg_name']));
+        Tpl::output('grade_list',$grade_list);
+        Tpl::showpage('fenxiao_member_grade.index');
+    }
+
+    /**
+     * 等级编辑
+     */
+    public function grade_editOp(){
+        Language::read('store_grade,store');
+
+        $lang	= Language::getLangContent();
+
+        $model_grade = Model('fenxiao_member_grade');
+        if (chksubmit()){
+            $update_array = array();
+            $update_array['fmg_id'] = intval($_POST['fmg_id']);
+            $update_array['fmg_name'] = trim($_POST['fmg_name']);
+            $update_array['fmg_goods_limit'] = trim($_POST['fmg_goods_limit']);
+            $update_array['fmg_points'] = trim($_POST['fmg_points']);
+
+            $result = $model_grade->update($update_array);
+            if ($result){
+                dkcache('fenxiao_member_grade');
+                $this->log(L('nc_edit,store_grade').'['.$_POST['sg_name'].']',1);
+                showMessage($lang['nc_common_save_succ']);
+            }else {
+                showMessage($lang['nc_common_save_fail']);
+            }
+        }
+
+        $grade_array = $model_grade->getOneGrade(intval($_GET['fmg_id']));
+
+        if (empty($grade_array)){
+            showMessage($lang['illegal_parameter']);
+        }
+
+        Tpl::output('grade_array',$grade_array);
+        Tpl::showpage('fenxiao_member_grade.edit');
+    }
+
 
 }

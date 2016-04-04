@@ -6,7 +6,8 @@
       <h3>分销员</h3>
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_manage']?></span></a></li>
-		<li><a href="index.php?act=fenxiao_member&op=fenxiao_joinin"><span>等待审核</span></a></li>
+		<li><a href="index.php?act=fenxiao_member&op=fenxiao_joinin"><span>分销审核</span></a></li>
+		<li><a href="index.php?act=fenxiao_member&op=grade"><span>分销员等级</span></a></li>
       </ul>
     </div>
   </div>
@@ -74,7 +75,6 @@
     <table class="table tb-type2 nobdb">
       <thead>
         <tr class="thead">
-          <th>&nbsp;</th>
           <th colspan="2"><?php echo $lang['member_index_name']?></th>
           <th class="align-center"><span fieldname="logins" nc_type="order_by"><?php echo $lang['member_index_login_time']?></span></th>
           <th class="align-center"><span fieldname="last_login" nc_type="order_by"><?php echo $lang['member_index_last_login']?></span></th>
@@ -89,7 +89,6 @@
         <?php if(!empty($output['member_list']) && is_array($output['member_list'])){ ?>
         <?php foreach($output['member_list'] as $k => $v){ ?>
         <tr class="hover member">
-          <td class="w24"><input type="checkbox" name='del_id[]' value="<?php echo $v['member_id']; ?>" class="checkitem"></td>
           <td class="w48 picture"><div class="size-44x44"><span class="thumb size-44x44"><i></i><img src="<?php if ($v['member_avatar'] != ''){ echo UPLOAD_SITE_URL.DS.ATTACH_AVATAR.DS.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,44,44);"/></span></div></td>
           <td><p class="name"><strong><?php echo $v['member_name']; ?></strong>(<?php echo $lang['member_index_true_name']?>: <?php echo $v['member_truename']; ?>)</p>
             <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['member_time']; ?></p>
@@ -121,7 +120,7 @@
           <td class="align-center"><?php echo $v['member_exppoints'];?></td>
           <td class="align-center"><?php echo $v['member_grade'];?></td>
           <td class="align-center"><?php echo $v['member_state'] == 1?$lang['member_edit_allow']:$lang['member_edit_deny']; ?></td>
-          <td class="align-center"><a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>"><?php echo $lang['nc_edit']?></a> | <a href="index.php?act=notice&op=notice&member_name=<?php echo ltrim(base64_encode($v['member_name']),'='); ?>"><?php echo $lang['member_index_to_message'];?></a></td>
+          <td class="align-center"><a href="index.php?act=fenxiao_member&op=member_edit&member_id=<?php echo $v['member_id']; ?>"><?php echo $lang['nc_edit']?></a> </td>
         </tr>
         <?php } ?>
         <?php }else { ?>
@@ -133,10 +132,9 @@
       <tfoot class="tfoot">
         <?php if(!empty($output['member_list']) && is_array($output['member_list'])){ ?>
         <tr>
-        <td class="w24"><input type="checkbox" class="checkall" id="checkallBottom"></td>
+        <td class="w24"></td>
           <td colspan="16">
-          <label for="checkallBottom"><?php echo $lang['nc_select_all']; ?></label>
-            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" onclick="if(confirm('<?php echo $lang['nc_ensure_del']?>')){$('#form_member').submit();}"><span><?php echo $lang['nc_del'];?></span></a>
+         
             <div class="pagination"> <?php echo $output['page'];?> </div></td>
         </tr>
         <?php } ?>

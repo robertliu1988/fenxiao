@@ -949,4 +949,64 @@ class fenxiao_merchantControl extends SystemControl{
     	}
     	return $out;
     }
+
+    /**
+     * 分销员等级
+     */
+    public function gradeOp(){
+        /**
+         * 读取语言包
+         */
+        Language::read('store_grade,store');
+
+        $lang	= Language::getLangContent();
+
+        $model_grade = Model('fenxiao_merchant_grade');
+
+        $condition = array();
+        $grade_list = $model_grade->getGradeList($condition);
+
+        Tpl::output('like_sg_name',trim($_POST['like_sg_name']));
+        Tpl::output('grade_list',$grade_list);
+
+        Tpl::showpage('fenxiao_merchant_grade.index');
+    }
+
+    /**
+     * 等级编辑
+     */
+    public function grade_editOp(){
+        Language::read('store_grade,store');
+
+        $lang	= Language::getLangContent();
+
+        $model_grade = Model('fenxiao_merchant_grade');
+        if (chksubmit()){
+            $update_array = array();
+            $update_array['fmg_id'] = intval($_POST['fmg_id']);
+            $update_array['fmg_name'] = trim($_POST['fmg_name']);
+            $update_array['fmg_goods_limit'] = trim($_POST['fmg_goods_limit']);
+            $update_array['fmg_member_limit'] = trim($_POST['fmg_member_limit']);
+            $update_array['fmg_points'] = trim($_POST['fmg_points']);
+
+            $result = $model_grade->update($update_array);
+            if ($result){
+                dkcache('fenxiao_merchant_grade');
+                $this->log(L('nc_edit,store_grade').'['.$_POST['sg_name'].']',1);
+                showMessage($lang['nc_common_save_succ']);
+            }else {
+                showMessage($lang['nc_common_save_fail']);
+            }
+        }
+
+        $grade_array = $model_grade->getOneGrade(intval($_GET['fmg_id']));
+
+        if (empty($grade_array)){
+            showMessage($lang['illegal_parameter']);
+        }
+
+        Tpl::output('grade_array',$grade_array);
+        Tpl::showpage('fenxiao_merchant_grade.edit');
+    }
+
 }

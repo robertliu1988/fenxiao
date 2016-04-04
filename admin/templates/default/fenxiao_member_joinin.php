@@ -6,8 +6,9 @@
       <h3>分销员</h3>
       <ul class="tab-base">
         <li><a href="index.php?act=fenxiao_member&op=member" ><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span>等待审核</span></a></li>
-      </ul>
+        <li><a href="JavaScript:void(0);" class="current"><span>分销审核</span></a></li>
+ 		<li><a href="index.php?act=fenxiao_member&op=grade"><span>分销员等级</span></a></li>
+     </ul>
     </div>
   </div>
   <div class="fixed-empty"></div>

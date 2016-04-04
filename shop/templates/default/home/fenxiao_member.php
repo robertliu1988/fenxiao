@@ -10,9 +10,9 @@ _behavior: url(<?php echo SHOP_TEMPLATES_URL;
 <div class="nch-container wrapper" >
 	<div class="nch-all-menu">
     <ul class="tab-bar">
-	  <li class="current"><a href="<?php echo urlShop('fenxiao_goods', 'index');?>">全部分销商品</a></li>
+	  <li><a href="<?php echo urlShop('fenxiao_goods', 'index');?>">全部分销商品</a></li>
       <li><a href="<?php echo urlShop('fenxiao_store', 'index');?>">全部分销商户</a></li>
-      <li><a href="<?php echo urlShop('fenxiao_member', 'index');?>">全部分销员</a></li>
+      <li class="current"><a href="<?php echo urlShop('fenxiao_member', 'index');?>">全部分销员</a></li>
     </ul>
   </div>
   <div class="left">
@@ -54,26 +54,6 @@ _behavior: url(<?php echo SHOP_TEMPLATES_URL;
     <div class="nch-module"><?php echo loadadv(37,'html');?></div>
     <!-- 最近浏览 -->
 
-    <div class="nch-module nch-module-style03">
-      <div class="title">
-        <h3><?php echo $lang['goods_class_viewed_goods']; ?></h3>
-      </div>
-      <div class="content">
-        <div class="nch-sidebar-viewed" id="nchSidebarViewed">
-          <ul>
-            <?php if(!empty($output['viewed_goods']) && is_array($output['viewed_goods'])){?><?php foreach ($output['viewed_goods'] as $k=>$v){?>
-            <li class="nch-sidebar-bowers">
-              <div class="goods-pic"><a href="<?php echo urlShop('goods','index',array('goods_id'=>$v['goods_id'])); ?>" target="_blank"><img src="<?php echo UPLOAD_SITE_URL;?>/shop/common/loading.gif" rel="lazy" data-url="<?php echo thumb($v, 60); ?>" title="<?php echo $v['goods_name']; ?>" alt="<?php echo $v['goods_name']; ?>" ></a></div>
-              <dl>
-                <dt><a href="<?php echo urlShop('goods','index',array('goods_id'=>$v['goods_id'])); ?>" target="_blank"><?php echo $v['goods_name']; ?></a></dt>
-                <dd><?php echo $lang['currency'];?><?php echo $v['goods_promotion_price']; ?></dd>
-              </dl>
-            </li>
-            <?php } ?><?php } ?>
-          </ul>
-        </div>
-        <a href="<?php echo SHOP_SITE_URL;?>/index.php?act=member_goodsbrowse&op=list" class="nch-sidebar-all-viewed">全部浏览历史</a></div>
-    </div>
 
   </div>
   <div class="right">
@@ -199,15 +179,13 @@ _behavior: url(<?php echo SHOP_TEMPLATES_URL;
       <!-- 商品列表循环  -->
 
       <div>
-        <?php require_once (BASE_TPL_PATH.'/home/goods.squares.php');?>
+        <?php require_once (BASE_TPL_PATH.'/home/member.squares.php');?>
       </div>
       <div class="tc mt20 mb20">
         <div class="pagination"> <?php echo $output['show_page']; ?> </div>
       </div>
     </div>
 
-    <!-- 猜你喜欢 -->
-    <div id="guesslike_div" style="width:980px;"></div>
   </div>
   <div class="clear"></div>
 </div>

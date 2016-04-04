@@ -45,7 +45,7 @@ class member_fenxiao_joininControl extends BaseHomeControl {
 	}
 
     private function check_joinin_state() {
-        $model_fenxiao_joinin = Model('member_fenxiao_joinin');
+        $model_fenxiao_joinin = Model('fenxiao_member_joinin');
         $joinin_detail = $model_fenxiao_joinin->getOne(array('member_id'=>$_SESSION['member_id']));
 
         if(!empty($joinin_detail)) {
@@ -117,7 +117,7 @@ class member_fenxiao_joininControl extends BaseHomeControl {
 
             $this->step2_save_valid($param);
 			
-            $model_member_fenxiao_joinin = Model('member_fenxiao_joinin');
+            $model_member_fenxiao_joinin = Model('fenxiao_member_joinin');
             $joinin_info = $model_member_fenxiao_joinin->getOne(array('member_id' => $_SESSION['member_id']));
             if(empty($joinin_info)) {
                 $param['member_id'] = $_SESSION['member_id'];

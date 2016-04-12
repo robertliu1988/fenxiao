@@ -53,7 +53,7 @@
       <h3><?php echo $lang['store'];?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=fenxiao_merchant&op=store"><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin" ><span>分销申请</span></a></li>
+        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin" ><span>分销商申请</span></a></li>
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $output['joinin_detail_title'];?></span></a></li>
       </ul>
     </div>

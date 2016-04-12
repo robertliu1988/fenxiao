@@ -71,8 +71,8 @@ class fenxiao_goodsControl extends SystemControl{
         if (in_array($_GET['search_state'], array('0','1','10'))) {
             $where['goods_state'] = $_GET['search_state'];
         }
-        if (in_array($_GET['search_verify'], array('0','1','10'))) {
-            $where['goods_verify'] = $_GET['search_verify'];
+        if (in_array($_GET['search_verify'], array('0','1','2','3'))) {
+            $where['is_fenxiao'] = $_GET['search_verify'];
         }
 
         switch ($_GET['type']) {
@@ -87,7 +87,15 @@ class fenxiao_goodsControl extends SystemControl{
                 break;
         }
 
-        Tpl::output('goods_list', $goods_list);
+
+        $final_goods = array();
+        foreach ($goods_list as $goods) {
+            $goods['fenxiao_fanli'] = $goods['fenxiao_v4']."/".$goods['fenxiao_v3']."/".$goods['fenxiao_v2']."/".$goods['fenxiao_v1'];
+            $goods['fenxiao_endtime'] = date("Y-m-d",$goods['fenxiao_time']);
+            $final_goods[] = $goods;
+        }
+
+        Tpl::output('goods_list', $final_goods);
         Tpl::output('page', $model_goods->showpage(2));
 
         $storage_array = $model_goods->calculateStorage($goods_list);

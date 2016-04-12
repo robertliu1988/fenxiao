@@ -19,5 +19,22 @@ ALTER TABLE `33hao_member` ADD `fenxiao_points` INT(11) NOT NULL ;
 
 新增 33hao_fenxiao_member_grade
 
+ALTER TABLE `33hao_store` ADD `fenxiao_points` INT(11) NOT NULL ;
+
+ALTER TABLE `33hao_goods_class` ADD `fenxiao_rate` FLOAT UNSIGNED NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `33hao_goods_common` ADD `fenxiao_v1` FLOAT NOT NULL DEFAULT '0' , ADD `fenxiao_v2` FLOAT NOT NULL DEFAULT '0' , ADD `fenxiao_v3` FLOAT NOT NULL DEFAULT '0' , ADD `fenxiao_v4` FLOAT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `33hao_goods_common` ADD `fenxiao_time` INT(11) NOT NULL ;
+
+ALTER TABLE `33hao_goods_common` ADD `fenxiao_day` INT NOT NULL ;
+
+ALTER TABLE `33hao_goods` ADD `fenxiao_v1` FLOAT NOT NULL , ADD `fenxiao_v2` FLOAT NOT NULL , ADD `fenxiao_v3` FLOAT NOT NULL , ADD `fenxiao_v4` FLOAT NOT NULL ;
+
+新增 33hao_fenxiao_goods_member
+
+新增 33hao_fenxiao_fanli
+
+
 
 

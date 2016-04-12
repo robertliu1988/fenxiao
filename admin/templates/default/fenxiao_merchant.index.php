@@ -26,7 +26,9 @@
           <?php } ?>
           <?php } ?>
         </select></td><th><label for="owner_and_name"><?php echo $lang['store_user'];?></label></th>
-      <td><input type="text" value="<?php echo $output['owner_and_name'];?>" name="owner_and_name" id="owner_and_name" class="txt"></td><td></td><th><label>分销状态</label></th>
+      <td><input type="text" value="<?php echo $output['owner_and_name'];?>" name="owner_and_name" id="owner_and_name" class="txt"></td><td></td>
+	  
+	  <th><label>分销状态</label></th>
         <td>
             <select name="fenxiao_status">
                 <option value=""><?php echo $lang['nc_please_choose'];?>...</option>

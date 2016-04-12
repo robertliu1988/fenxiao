@@ -1,6 +1,6 @@
 <?php defined('InShopNC') or exit('Access Invalid!');?>
 
-<?php if (is_array($output['joinin_detail']) && !empty($output['joinin_detail'])) { ?>
+<?php if (empty($output['joinin_detail'])) { ?>
 
 <div id="apply_company_info" class="apply-company-info">
 	
@@ -59,9 +59,11 @@
 <?php
 } else {
 ?>
+
 <div class="explain"><i></i><?php echo $output['joinin_message'];?></div>
 
 <?php } ?>
+
 <div class="bottom">
   <?php if($output['btn_next']) { ?>
   <a id="" href="<?php echo $output['btn_next'];?>" class="btn">下一步</a>

@@ -199,7 +199,7 @@ _behavior: url(<?php echo SHOP_TEMPLATES_URL;
       <!-- 商品列表循环  -->
 
       <div>
-        <?php require_once (BASE_TPL_PATH.'/home/goods.squares.php');?>
+        <?php require_once (BASE_TPL_PATH.'/home/fenxiao_goods.squares.php');?>
       </div>
       <div class="tc mt20 mb20">
         <div class="pagination"> <?php echo $output['show_page']; ?> </div>
@@ -211,6 +211,7 @@ _behavior: url(<?php echo SHOP_TEMPLATES_URL;
   </div>
   <div class="clear"></div>
 </div>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
 <script src="<?php echo RESOURCE_SITE_URL;?>/js/waypoints.js"></script>
 <script src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/search_category_menu.js"></script>
 <script type="text/javascript">

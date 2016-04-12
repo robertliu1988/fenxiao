@@ -261,6 +261,8 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
 
         $update_common = array();
         $update_common['is_fenxiao']         = $_POST['is_fenxiao'];
+        $update_common['fenxiao_time']         = strtotime(date("Y-m-d"))+24*3600*(intval($_POST['fenxiao_day'])+1);
+        $update_common['fenxiao_day']         = intval($_POST['fenxiao_day']);
 
         $fenxiao_config = Model('fenxiao_config');
         $fenxiao_goods = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_goods'));
@@ -268,10 +270,36 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
         if ($fenxiao_goods['config_value'] && $update_common['is_fenxiao'] == 1)
             $update_common['is_fenxiao']         = 2;
 
+        //判断返利规则是否符合要求
+        $fenxiao_v1 = $_POST['fenxiao_v1'];
+        $fenxiao_v2 = $_POST['fenxiao_v2'];
+        $fenxiao_v3 = $_POST['fenxiao_v3'];
+        $fenxiao_v4 = $_POST['fenxiao_v4'];
+
+        $model_goods = Model('goods');
+        $goodscommon_info = $model_goods->getGoodeCommonInfoByID($common_id);
+        $model_class = Model('goods_class');
+        $class_array = $model_class->getGoodsClassInfoById($goodscommon_info['gc_id']);
+
+        if ($class_array['fenxiao_rate'] >= $fenxiao_v4 & $fenxiao_v4 >= $fenxiao_v3 && $fenxiao_v3 >= $fenxiao_v2 && $fenxiao_v2 >= $fenxiao_v1){
+            $update_common['fenxiao_v1']         = $fenxiao_v1;
+            $update_common['fenxiao_v2']         = $fenxiao_v2;
+            $update_common['fenxiao_v3']         = $fenxiao_v3;
+            $update_common['fenxiao_v4']         = $fenxiao_v4;
+        }
+        else
+            showDialog(L('store_goods_index_goods_edit_fail'), urlShop('store_goods_online', 'index'));
+
+
         $return = $model_goods->editGoodsCommon($update_common, array('goods_commonid' => $common_id, 'store_id' => $_SESSION['store_id']));
 
         $update_goods = array();
         $update_goods['is_fenxiao']         = $update_common['is_fenxiao'];
+        $update_goods['fenxiao_v1']         = $update_common['fenxiao_v1'];
+        $update_goods['fenxiao_v2']         = $update_common['fenxiao_v2'];
+        $update_goods['fenxiao_v3']         = $update_common['fenxiao_v3'];
+        $update_goods['fenxiao_v4']         = $update_common['fenxiao_v4'];
+
         $return = $model_goods->editGoods($update_goods,array('goods_commonid'=>$common_id));
 
         if ($return) {

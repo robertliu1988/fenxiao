@@ -655,3 +655,37 @@ form label.validate_right { padding-left:20px; background:transparent url(../ima
     height: 160px;
     overflow: hidden;
 }
+
+/*分销商品*/
+.squares .fenxiao-fanli{
+    font: 12px/20px Arial;
+    background-color: #FFF;
+    white-space: nowrap;
+    display: block;
+    height: 120px;
+    padding: 5px 10px;
+    overflow: hidden;
+    border-top:solid 1px #EEE;
+}
+
+.squares .fenxiao-fanli span{
+    width:100px;
+    display: inline-block;
+}
+
+
+.squares .goods-content-fenxiao-goods {
+    line-height: 18px; background-color: #FFF; width: 230px; height: 490px; margin: 3px; border: solid 1px #F0F0F0; border-radius: 2px; position:relative; z-index: 11; overflow: hidden; box-shadow: 0 0 3px rgba(153,153,153,0.1); transition: border-color 0.4s ease-in-out 0s;
+}
+
+.squares .list_pic .item-fenxiao{
+    font-size: 12px;
+    vertical-align: middle;
+    letter-spacing: normal;
+    word-spacing: normal;
+    display: inline-block;
+    width: 238px;
+    height: 490px;
+    margin: 12px 0 0 12px;
+}
+

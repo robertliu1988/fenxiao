@@ -500,6 +500,7 @@ class BaseMemberControl extends Control {
                 'fenxiao' => array('name' => '分销中心', 'child' => array(
                     'fenxiao_apply'      => array('name' => '申请分销员', 'url'=>urlShop('member_fenxiao_joinin', 'index')),
                     'fenxiao_goods'      => array('name' => '分销商品', 'url'=>urlShop('member_fenxiao', 'goods')),
+                    'fenxiao_fanli'      => array('name' => '分销返利', 'url'=>urlShop('member_fenxiao', 'fanli')),
                 )),
                 'serv' => array('name' => '客户服务', 'child' => array(
                         'member_refund'     => array('name' => '退款及退货', 'url'=>urlShop('member_refund', 'index')),
@@ -1146,6 +1147,7 @@ class BaseSellerControl extends Control {
 				array('name' => '淘宝导入', 'act'=>'taobao_import', 'op'=>'index'),
                 array('name' => '出售中的商品', 'act'=>'store_goods_online', 'op'=>'index'),
                 array('name' => '分销中的商品', 'act'=>'store_goods_fenxiao', 'op'=>'index'),
+                array('name' => '分销员申请', 'act'=>'store_goods_fenxiao_member', 'op'=>'index'),
                 array('name' => '仓库中的商品', 'act'=>'store_goods_offline', 'op'=>'index'),
                 array('name' => '关联版式', 'act'=>'store_plate', 'op'=>'index'),
                 array('name' => '商品规格', 'act' => 'store_spec', 'op' => 'index'),
@@ -1206,6 +1208,7 @@ class BaseSellerControl extends Control {
                 array('name' => '店铺消费', 'act'=>'store_cost', 'op'=>'cost_list'),
             ))
         );
+
         return $menu_list;
     }
 

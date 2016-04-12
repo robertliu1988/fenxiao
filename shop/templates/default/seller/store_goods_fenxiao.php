@@ -73,6 +73,38 @@
           <p class="hint">分销商提交了产品分销后，不可再进行任何更改、终止操作。若有特殊情况，可对该产品提请申述，提交申述理由至后台。</p>
         </dd>
       </dl>
+
+        <dl>
+            <dt>分销返利（普通）：</dt>
+            <dd>
+                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v1']; ?>" name="fenxiao_v1">%
+                <p class="hint">高一级返利必须大于低一级返利。</p>
+            </dd>
+        </dl>
+        <dl>
+            <dt>分销返利（铜牌）：</dt>
+            <dd>
+                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v2']; ?>" name="fenxiao_v2">%
+            </dd>
+        </dl>
+        <dl>
+            <dt>分销返利（银牌）：</dt>
+            <dd>
+                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v3']; ?>" name="fenxiao_v3">%
+            </dd>
+        </dl>
+        <dl>
+            <dt>分销返利（金牌）：</dt>
+            <dd>
+                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v4']; ?>" name="fenxiao_v4">%
+            </dd>
+        </dl>
+        <dl>
+            <dt>分销时效：</dt>
+            <dd>
+                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_day']; ?>" name="fenxiao_day">天
+            </dd>
+        </dl>
  
     </div>
     <div class="bottom tc hr32">

@@ -8,4 +8,8 @@ class inviteControl extends BaseHomeControl{
 	public function indexOp(){
 		Tpl::showpage('invite');
 	}
+
+    public function fenxiaoOp(){
+        Tpl::showpage('invite_fenxiao');
+    }
 }

@@ -199,11 +199,7 @@ function query(name, value){
       <td><span <?php if ($output['storage_array'][$val['goods_commonid']]['alarm']) { echo 'style="color:red;"';}?>><?php echo $output['storage_array'][$val['goods_commonid']]['sum'].$lang['piece']; ?></span></td>
       <td class="goods-time"><?php echo @date('Y-m-d',$val['goods_addtime']);?></td>
       <td class="nscs-table-handle" style="width:220px;"><?php if ($val['goods_lock'] == 0) {?>
-        <span><a href="<?php echo urlShop('store_goods_online', 'edit_goods', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-        <p><?php echo $lang['nc_edit'];?></p>
-        </a></span> <span><a href="javascript:void(0);" onclick="ajax_get_confirm('<?php echo $lang['nc_ensure_del'];?>', '<?php echo urlShop('store_goods_online', 'drop_goods', array('commonid' => $val['goods_commonid']));?>');" class="btn-red"><i class="icon-trash"></i>
-        <p><?php echo $lang['nc_del'];?></p>
-        </a></span>
+
 
             <?php  if ($val['is_fenxiao'] == 0 || $val['is_fenxiao'] == 3) { ?>
                 <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>

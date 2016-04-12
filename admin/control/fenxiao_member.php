@@ -22,37 +22,7 @@ class fenxiao_memberControl extends SystemControl{
 	public function memberOp(){
 		$lang	= Language::getLangContent();
 		$model_member = Model('member');
-				/**
-		 * 删除
-		 */
-		if (chksubmit()){
-			/**
-			 * 判断是否是管理员，如果是，则不能删除
-			 */
-			/**
-			 * 删除
-			 */
-			if (!empty($_POST['del_id'])){
-				if (is_array($_POST['del_id'])){
-					foreach ($_POST['del_id'] as $k => $v){
-						$v = intval($v);
-						$rs = true;//$model_member->del($v);
-						if ($rs){
-							//删除该会员商品,店铺
-							//获得该会员店铺信息
-							$member = $model_member->getMemberInfo(array(
-								'member_id'=>$v
-							));
-							//删除用户
-							$model_member->del($v);
-						}
-					}
-				}
-				showMessage($lang['nc_common_del_succ']);
-			}else {
-				showMessage($lang['nc_common_del_fail']);
-			}
-		}
+
 		//会员级别
 		$member_grade = $model_member->getMemberGradeArr();
 		if ($_GET['search_field_value'] != '') {
@@ -96,7 +66,11 @@ class fenxiao_memberControl extends SystemControl{
 		if (empty($order)) {
 		    $order = 'member_id desc';
 		}
-		$member_list = $model_member->getMemberList($condition, '*', 10, $order);		
+
+        if (!empty($_GET['fenxiao_status']))
+            $condition['fenxiao_status'] = $_GET['fenxiao_status'];
+
+        $member_list = $model_member->getMemberList($condition, '*', 10, $order);
 		//整理会员信息
 		if (is_array($member_list)){
 			foreach ($member_list as $k=> $v){
@@ -105,13 +79,23 @@ class fenxiao_memberControl extends SystemControl{
 				$member_list[$k]['member_grade'] = ($t = $model_member->getOneMemberGrade($v['member_exppoints'], false, $member_grade))?$t['level_name']:'';
 			}
 		}
-		Tpl::output('member_grade',$member_grade);
+
+        $fenxiao_status_array = $this->_get_fenxiao_status_array();
+
+        $new_member_list = array();
+        foreach ($member_list as $member) {
+            $member['fenxiao_status'] = $fenxiao_status_array[intval($member['fenxiao_status'])];
+            $new_member_list[] = $member;
+        }
+
+        Tpl::output('member_grade',$member_grade);
 		Tpl::output('search_sort',trim($_GET['search_sort']));
 		Tpl::output('search_field_name',trim($_GET['search_field_name']));
 		Tpl::output('search_field_value',trim($_GET['search_field_value']));
-		Tpl::output('member_list',$member_list);
+		Tpl::output('member_list',$new_member_list);
 		Tpl::output('page',$model_member->showpage());
-		Tpl::showpage('fenxiao_member.index');
+        Tpl::output('fenxiao_status', $this->_get_fenxiao_status_array());
+        Tpl::showpage('fenxiao_member.index');
 	}
 
 	/**

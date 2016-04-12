@@ -80,6 +80,7 @@ class goodsControl extends BaseGoodsControl {
                 }
             }
         }
+
         Tpl::output('goods', $goods_info);
 		
 		
@@ -153,6 +154,23 @@ class goodsControl extends BaseGoodsControl {
         $seo_param['key'] = $goods_info['goods_keywords'];
         $seo_param['description'] = $goods_info['goods_description'];
         Model('seo')->type('product')->param($seo_param)->show();
+
+        //判断分销信息
+        if ($_GET['inviter']){
+            $inviter = base64_decode($_GET['inviter']);
+
+            $inviter_arr = array();
+
+            if (cookie('inviter'))
+                $inviter_arr = json_decode(base64_decode(cookie('inviter')),true);
+
+            $inviter_arr[$goods_id] = $inviter;
+
+            $inviter_str = base64_encode(json_encode($inviter_arr));
+
+            setNcCookie('inviter',$inviter_str);
+        }
+
         Tpl::showpage('goods');
     }
     /**

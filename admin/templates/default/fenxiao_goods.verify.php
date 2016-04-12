@@ -23,12 +23,8 @@
         <tr>
           <th> <label for="search_goods_name"><?php echo $lang['goods_index_name'];?></label></th>
           <td><input type="text" value="<?php echo $output['search']['search_goods_name'];?>" name="search_goods_name" id="search_goods_name" class="txt"></td>
-          <th>审核状态</th>
-          <td><select name="search_verify">
-              <option><?php echo $lang['nc_please_choose'];?>...</option>
-              <option value="10" <?php if ($output['search']['search_verify'] != '' && $output['search']['search_verify'] == 10) {?>selected="selected"<?php }?>>等待审核</option>
-              <option value="0" <?php if ($output['search']['search_verify'] != '' && $output['search']['search_verify'] == 0) {?>selected="selected"<?php }?>>未通过</option>
-            </select></td>
+
+
           <th><label><?php echo $lang['goods_index_class_name'];?></label></th>
           <td id="searchgc_td"></td>
           <input type="hidden" id="choose_gcid" name="choose_gcid" value="0"/>
@@ -110,7 +106,9 @@
           <th class="w60">平台货号</th>
           <th colspan="2"><?php echo $lang['goods_index_name'];?></th>
           <th><?php echo $lang['goods_index_brand'];?>&<?php echo $lang['goods_index_class_name'];?></th>
-          <th class="w72 align-center">价格（元）</th>
+          <th class="w72 align-center">各级返利（百分比）</th>
+            <th class="w72 align-center">分销时效/到期日</th>
+            <th class="w72 align-center">价格（元）</th>
           <th class="w72 align-center">库存</th>
           <th class="w72 align-center">审核状态</th>
           <th class="w96 align-center"><?php echo $lang['nc_handle'];?></th>
@@ -144,7 +142,15 @@
             </dl></td>
           <td class><p><?php echo $v['gc_name'];?></p>
             <p class="goods-brand">品牌：<?php echo $v['brand_name'];?></p></td>
-          <td class="align-center"><?php echo $lang['currency'].$v['goods_price']?></td>
+            <td class="align-center"><?php echo $v['fenxiao_fanli']?></td>
+
+            <td class="align-center"><p><?php echo $v['fenxiao_day']?>天</p>
+                <p><?php echo $v['fenxiao_endtime']?></p>
+            </td>
+
+
+
+            <td class="align-center"><?php echo $lang['currency'].$v['goods_price']?></td>
           <td class="align-center"><?php echo $output['storage_array'][$v['goods_commonid']]['sum']?></td>
           <td class="align-center"><p><?php echo $output['verify'][$v['is_fenxiao']];?></p>
            </td>

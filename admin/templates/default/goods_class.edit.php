@@ -76,6 +76,20 @@
             % </td>
           <td class="vatop tips">必须为0-100的整数</td>
         </tr>
+
+        <tr>
+            <td colspan="2" class="required"><label class="validation">分销最高返利比例:</label>
+            <span>
+            <label for="t_fenxiao_rate">
+                <input id="t_fenxiao_rate" class="checkbox" type="checkbox" checked="checked" value="1" name="t_fenxiao_rate">
+                关联到子分类</label>
+            </span></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input id="fenxiao_rate" class="w60" type="text" value="<?php echo $output['class_array']['fenxiao_rate'];?>" name="fenxiao_rate">
+                % </td>
+        </tr>
+
 	<!--v3-10 33hao.com-->
 	<tr>
           <td colspan="2" class="required"><label for="parent_id"><?php echo $lang['goods_class_add_sup_class'];?>:</label></td>

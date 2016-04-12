@@ -54,7 +54,7 @@ class fenxiao_goodsControl extends BaseHomeControl {
         }
         $model_goods = Model('goods');
         // 字段
-        $fields = "goods_id,goods_commonid,goods_name,goods_jingle,gc_id,store_id,store_name,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,is_virtual,is_fcode,is_appoint,is_presell,have_gift";
+        $fields = "goods_id,goods_commonid,goods_name,goods_jingle,gc_id,store_id,store_name,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,is_virtual,is_fcode,is_appoint,is_presell,have_gift,fenxiao_v1,fenxiao_v2,fenxiao_v3,fenxiao_v4";
 
         $condition = array();
         if (is_array($indexer_ids)) {
@@ -109,6 +109,7 @@ class fenxiao_goodsControl extends BaseHomeControl {
             $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fields, $order, self::PAGESIZE);
         }
 
+
         Tpl::output('show_page1', $model_goods->showpage(4));
         Tpl::output('show_page', $model_goods->showpage(5));
 
@@ -153,7 +154,29 @@ class fenxiao_goodsControl extends BaseHomeControl {
                 }
             }
         }
-        Tpl::output('goods_list', $goods_list);
+
+        //判断每个商品的分销状态
+        $final_goods = array();
+        $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+        foreach ($goods_list as $goods) {
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+            $info = $model_fenxiao_goods_member->getOne($condition);
+
+            if (!empty($info)){
+                if ($info['status'] == 1)
+                    $goods['member_fenxiao'] = 2;//已分销
+                else
+                    $goods['member_fenxiao'] = 1;//分销审核中
+            }
+            else
+                $goods['member_fenxiao'] = 0;//未分销
+
+            $final_goods[] = $goods;
+        }
+
+        Tpl::output('goods_list', $final_goods);
         if ($_GET['keyword'] != ''){
             Tpl::output('show_keyword',  $_GET['keyword']);
         } else {
@@ -341,5 +364,52 @@ class fenxiao_goodsControl extends BaseHomeControl {
             Tpl::output('goodslist',$goodslist);
             Tpl::showpage('goods_guesslike','null_layout');
         }
+    }
+
+    /**
+     * 分销申请
+     */
+    public function goods_applyOp(){
+
+        if (chksubmit()) {
+
+            $goods_id = $_POST['goods_id'];
+            $member_id = $_SESSION['member_id'];
+
+            $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+            $param['goods_id'] = $goods_id;
+            $param['member_id'] = $member_id;
+            $param['apply_time'] = time();
+
+            $fenxiao_config = Model('fenxiao_config');
+            $config_info = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_goods_member'));
+            if ($config_info['config_value'] == 0){
+                $param['status'] = 1;
+            }
+            else
+                $param['status'] = 0;
+
+            $model_fenxiao_goods_member->save($param);
+
+            showDialog(L('nc_common_op_succ'), 'reload', 'succ');
+        }
+
+        $member_id = $_SESSION['member_id'];
+
+        $apply_msg = "";
+        if (!is_null($member_id)){
+            $model_member	= Model('member');
+            $member_info = $model_member->getMemberInfoByID($member_id);
+            if ($member_info['fenxiao_status'] == 2)
+                $status = 1;
+            else
+                $status = 0;
+        }
+        else
+            $status = 0;
+
+        Tpl::output('status', $status);
+        Tpl::output('goods_id', $_GET['id']);
+        Tpl::showpage('fenxiao_goods.goods_apply', 'null_layout');
     }
 }

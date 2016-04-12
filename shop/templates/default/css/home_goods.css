@@ -711,3 +711,11 @@ zoom: 1; }
 .pagination li a span, .pagination li a:visited span { color: #005AA0; text-decoration: none; background-color: #FFF; position: relative; z-index: 1; }
 .pagination li a:hover span, .pagination li a:active span { color: #FFF; text-decoration: none; background-color: #F87622; border-color: #CA3300; position: relative; z-index: 9; cursor:pointer; }
 .pagination li span.currentpage { color: #AAA; font-weight: bold; background-color: #FAFAFA; border-color: #E6E6E6; position: relative; z-index: 2; }
+
+/* 分销提示信息 */
+.ncs-fenxiao { font-size: 14px; color: 666; background-color: #FFF7D1; display: block; height: 95px; padding: 5px 9px; border: solid 1px #E5DEBC; position: absolute; z-index: 1; top: 74px; left: 380px; box-shadow: 3px 3px 0 rgba(0,0,0,0.10); }
+.ncs-fenxiao i { background: url(../images/shop/2014_ncs_public_img.png) no-repeat -70px -100px; display: block; width: 8px; height: 8px; margin-top: -13px; margin-left: 8px; margin-bottom: 5px; }
+.ncs-fenxiao div { line-height: 24px; }
+.ncs-fenxiao div strong { font-weight: 600; color: #FF5C4D; margin: 0 2px; }
+.ncs-fenxiao div a { color: #0066CC; text-decoration: underline; margin: 0 2px; }
+.ncs-fenxiao div.look { font-weight: 600; color: #FF5C4D; }

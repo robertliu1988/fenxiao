@@ -98,6 +98,7 @@ class goods_classControl extends SystemControl{
 				$insert_array['type_name']		= trim($_POST['t_name']);
 				$insert_array['gc_parent_id']	= intval($_POST['gc_parent_id']);
 				$insert_array['commis_rate']    = intval($_POST['commis_rate']);
+                $insert_array['fenxiao_rate']    = $_POST['fenxiao_rate'];
 				$insert_array['gc_sort']		= intval($_POST['gc_sort']);
                 $insert_array['gc_virtual']     = intval($_POST['gc_virtual']);
 				$result = $model_class->addGoodsClass($insert_array);
@@ -184,6 +185,7 @@ class goods_classControl extends SystemControl{
 			$update_array['type_id']		= intval($_POST['t_id']);
 			$update_array['type_name']		= trim($_POST['t_name']);
 			$update_array['commis_rate']    = intval($_POST['commis_rate']);
+            $update_array['fenxiao_rate']    = $_POST['fenxiao_rate'];
 			$update_array['gc_sort']		= intval($_POST['gc_sort']);
             $update_array['gc_virtual']     = intval($_POST['gc_virtual']);
             //好商城 v3-b10
@@ -202,7 +204,7 @@ class goods_classControl extends SystemControl{
 			}
 
             // 检测是否需要关联自己操作，统一查询子分类
-            if ($_POST['t_commis_rate'] == '1' || $_POST['t_associated'] == '1' || $_POST['t_gc_virtual'] == '1') {
+            if ($_POST['t_commis_rate'] == '1' || $_POST['t_fenxiao_rate'] == '1' || $_POST['t_associated'] == '1' || $_POST['t_gc_virtual'] == '1') {
                 $gc_id_list = $model_class->getChildClass($_POST['gc_id']);
                 $gc_ids = array();
                 if (is_array($gc_id_list) && !empty($gc_id_list)) {
@@ -216,6 +218,11 @@ class goods_classControl extends SystemControl{
 			if ($_POST['t_commis_rate'] == '1' && !empty($gc_ids)){
 	            $model_class->editGoodsClass(array('commis_rate'=>$update_array['commis_rate']),array('gc_id'=>array('in',$gc_ids)));
 			}
+
+            // 更新该分类下子分类的所有分销最高比例
+            if ($_POST['t_fenxiao_rate'] == '1' && !empty($gc_ids)){
+                $model_class->editGoodsClass(array('fenxiao_rate'=>$update_array['fenxiao_rate']),array('gc_id'=>array('in',$gc_ids)));
+            }
 
 			// 更新该分类下子分类的所有类型
 			if ($_POST['t_associated'] == '1' && !empty($gc_ids)){

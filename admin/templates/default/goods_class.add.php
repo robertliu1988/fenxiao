@@ -46,6 +46,15 @@
             %</td>
           <td class="vatop tips">必须为0-100的整数</td>
         </tr>
+
+        <tr>
+            <td colspan="2" class="required"><label class="validation">分销返利最高比例:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input id="fenxiao_rate" class="w60" type="text" value="" name="fenxiao_rate">
+                %</td>
+        </tr>
+
         <tr>
           <td colspan="2" class="required"><label for="parent_id"><?php echo $lang['goods_class_add_sup_class'];?>:</label></td>
         </tr>

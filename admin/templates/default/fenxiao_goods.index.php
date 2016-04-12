@@ -15,7 +15,7 @@
   </div>
   <div class="fixed-empty"></div>
   <form method="get" name="formSearch" id="formSearch">
-    <input type="hidden" name="act" value="goods">
+    <input type="hidden" name="act" value="fenxiao_goods">
     <input type="hidden" name="op" value="goods">
     <table class="tb-type1 noborder search">
       <tbody>
@@ -93,7 +93,7 @@
               <option value="<?php echo $key;?>" <?php if($output['search']['search_state'] != '' && $output['search']['search_state'] == $key){?>selected<?php }?>><?php echo $val;?></option>
               <?php }?>
             </select></td>
-         <th><label>等待审核</label></th>
+         <th><label>分销状态</label></th>
           <td><select name="search_verify">
               <option value=""  ><?php echo $lang['nc_please_choose'];?>...</option>
               <?php foreach ($output['verify'] as $key => $val){?>
@@ -126,14 +126,13 @@
       <thead>
         <tr class="thead">
           <th class="w24"></th>
-          <th class="w24"></th>
           <th class="w60 align-center">平台货号</th>
           <th colspan="2"><?php echo $lang['goods_index_name'];?></th>
           <th><?php echo $lang['goods_index_brand'];?>&<?php echo $lang['goods_index_class_name'];?></th>
           <th class="w72 align-center">价格(元)</th>
           <th class="w72 align-center">库存</th>
           <th class="w72 align-center">商品状态</th>
-          <th class="w72 align-center">审核状态</th>
+          <th class="w72 align-center">分销状态</th>
           <th class="w108 align-center"><?php echo $lang['nc_handle'];?> </th>
         </tr>
       </thead>
@@ -141,7 +140,6 @@
         <?php if (!empty($output['goods_list']) && is_array($output['goods_list'])) { ?>
         <?php foreach ($output['goods_list'] as $k => $v) {?>
         <tr class="hover edit">
-          <td><input type="checkbox" name="id[]" value="<?php echo $v['goods_commonid'];?>" class="checkitem"></td>
           <td><i class="icon-plus-sign" style="cursor: pointer;" nctype="ajaxGoodsList" data-comminid="<?php echo $v['goods_commonid'];?>" title="点击展开查看此商品全部规格；规格值过多时请横向拖动区域内的滚动条进行浏览。"></i></td>
           <td class="align-center"><?php echo $v['goods_commonid'];?></td>
           <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><img src="<?php echo thumb($v, 60);?>" onload="javascript:DrawImage(this,56,56);"/></span></div></td>
@@ -178,9 +176,7 @@
       </tbody>
       <tfoot>
         <tr class="tfoot">
-          <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
-          <td colspan="16"><label for="checkallBottom"><?php echo $lang['nc_select_all']; ?></label>
-            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" nctype="lockup_batch"><span>违规下架</span></a>
+          <td colspan="16">
             <div class="pagination"> <?php echo $output['page'];?> </div></td>
         </tr>
       </tfoot>

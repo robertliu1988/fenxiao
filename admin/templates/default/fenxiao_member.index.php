@@ -13,7 +13,7 @@
   </div>
   <div class="fixed-empty"></div>
   <form method="get" name="formSearch" id="formSearch">
-    <input type="hidden" value="member" name="act">
+    <input type="hidden" value="fenxiao_member" name="act">
     <input type="hidden" value="member" name="op">
     <table class="tb-type1 noborder search">
       <tbody>
@@ -27,26 +27,19 @@
               <option <?php if($output['search_field_name'] == 'member_truename'){ ?>selected='selected'<?php } ?> value="member_truename"><?php echo $lang['member_index_true_name']?></option>
             </select></td>
           <td><input type="text" value="<?php echo $output['search_field_value'];?>" name="search_field_value" class="txt"></td>
-          <td><select name="search_sort" >
-              <option value=""><?php echo $lang['nc_sort']?></option>
-              <option <?php if($output['search_sort'] == 'member_login_time desc'){ ?>selected='selected'<?php } ?> value="member_login_time desc"><?php echo $lang['member_index_last_login']?></option>
-              <option <?php if($output['search_sort'] == 'member_login_num desc'){ ?>selected='selected'<?php } ?> value="member_login_num desc"><?php echo $lang['member_index_login_time']?></option>
-            </select></td>
-          <td><select name="search_state" >
-              <option <?php if($_GET['search_state'] == ''){ ?>selected='selected'<?php } ?> value=""><?php echo $lang['member_index_state']; ?></option>
-              <option <?php if($_GET['search_state'] == 'no_informallow'){ ?>selected='selected'<?php } ?> value="no_informallow"><?php echo $lang['member_index_inform_deny']; ?></option>
-              <option <?php if($_GET['search_state'] == 'no_isbuy'){ ?>selected='selected'<?php } ?> value="no_isbuy"><?php echo $lang['member_index_buy_deny']; ?></option>
-              <option <?php if($_GET['search_state'] == 'no_isallowtalk'){ ?>selected='selected'<?php } ?> value="no_isallowtalk"><?php echo $lang['member_index_talk_deny']; ?></option>
-              <option <?php if($_GET['search_state'] == 'no_memberstate'){ ?>selected='selected'<?php } ?> value="no_memberstate"><?php echo $lang['member_index_login_deny']; ?></option>
-            </select></td>
-          <td><select name="search_grade" >
-              <option value='-1'>会员级别</option>
-              <?php if ($output['member_grade']){?>
-              	<?php foreach ($output['member_grade'] as $k=>$v){?>
-              	<option <?php if(isset($_GET['search_grade']) && $_GET['search_grade'] == $k){ ?>selected='selected'<?php } ?> value="<?php echo $k;?>"><?php echo $v['level_name'];?></option>
-              	<?php }?>
-              <?php }?>
-            </select></td>
+          
+          <th><label>分销状态</label></th>
+        <td>
+            <select name="fenxiao_status">
+                <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
+                <?php if(!empty($output['fenxiao_status']) && is_array($output['fenxiao_status'])){ ?>
+                <?php foreach($output['fenxiao_status'] as $k => $v){ ?>
+                <option value="<?php echo $k;?>" <?php if($_GET['fenxiao_status'] == $k){?>selected<?php }?>><?php echo $v;?></option>
+                <?php } ?>
+                <?php } ?>
+            </select>
+        </td>
+		  
           <td><a href="javascript:void(0);" id="ncsubmit" class="btn-search " title="<?php echo $lang['nc_query'];?>">&nbsp;</a>
             <?php if($output['search_field_value'] != '' or $output['search_sort'] != ''){?>
             <a href="index.php?act=member&op=member" class="btns "><span><?php echo $lang['nc_cancel_search']?></span></a>
@@ -78,11 +71,9 @@
           <th colspan="2"><?php echo $lang['member_index_name']?></th>
           <th class="align-center"><span fieldname="logins" nc_type="order_by"><?php echo $lang['member_index_login_time']?></span></th>
           <th class="align-center"><span fieldname="last_login" nc_type="order_by"><?php echo $lang['member_index_last_login']?></span></th>
-          <th class="align-center"><?php echo $lang['member_index_points']; ?></th>
-          <th class="align-center"><?php echo $lang['member_index_prestore'];?></th>
-          <th class="align-center">经验值</th>
+          <th class="align-center">分销积分</th>
+          <th class="align-center">分销状态</th>
           <th class="align-center">级别</th>
-          <th class="align-center"><?php echo $lang['member_index_login']; ?></th>
           <th class="align-center"><?php echo $lang['nc_handle']; ?></th>
         </tr>
       <tbody>
@@ -113,13 +104,9 @@
           <td class="align-center"><?php echo $v['member_login_num']; ?></td>
           <td class="w150 align-center"><p><?php echo $v['member_login_time']; ?></p>
             <p><?php echo $v['member_login_ip']; ?></p></td>
-          <td class="align-center"><?php echo $v['member_points']; ?></td>
-          <td class="align-center"><p><?php echo $lang['member_index_available'];?>:&nbsp;<strong class="red"><?php echo $v['available_predeposit']; ?></strong>&nbsp;<?php echo $lang['currency_zh']; ?></p>
-            <p><?php echo $lang['member_index_frozen'];?>:&nbsp;<strong class="red"><?php echo $v['freeze_predeposit']; ?></strong>&nbsp;<?php echo $lang['currency_zh']; ?></p>
-          </td>
-          <td class="align-center"><?php echo $v['member_exppoints'];?></td>
+          <td class="align-center"><?php echo $v['fenxiao_points']; ?></td>
+          <td class="align-center"><?php echo $v['fenxiao_status'];?></td>
           <td class="align-center"><?php echo $v['member_grade'];?></td>
-          <td class="align-center"><?php echo $v['member_state'] == 1?$lang['member_edit_allow']:$lang['member_edit_deny']; ?></td>
           <td class="align-center"><a href="index.php?act=fenxiao_member&op=member_edit&member_id=<?php echo $v['member_id']; ?>"><?php echo $lang['nc_edit']?></a> </td>
         </tr>
         <?php } ?>

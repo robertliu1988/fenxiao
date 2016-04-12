@@ -13,34 +13,24 @@
   </div>
   <div class="fixed-empty"></div>
   <form method="get" name="formSearch">
-    <input type="hidden" value="store" name="act">
-    <input type="hidden" value="store_joinin" name="op">
+    <input type="hidden" value="fenxiao_member" name="act">
+    <input type="hidden" value="fenxiao_joinin" name="op">
     <table class="tb-type1 noborder search">
       <tbody>
         <tr>
-          <th><label for="store_name"><?php echo $lang['store_name'];?></label></th>
-          <td><input type="text" value="" name="store_name" id="store_name" class="txt"></td>
-          <th><label for="owner_and_name"><?php echo $lang['store_user'];?></label></th>
-          <td><input type="text" value="" name="owner_and_name" id="owner_and_name" class="txt"></td>
-          <th><label><?php echo $lang['belongs_level'];?></label></th>
-          <td><select name="grade_id">
-              <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
-              <?php if(!empty($output['grade_list']) && is_array($output['grade_list'])){ ?>
-              <?php foreach($output['grade_list'] as $k => $v){ ?>
-              <option value="<?php echo $v['sg_id'];?>" <?php if($v['sg_id']==$_GET['grade_id']) { echo 'selected'; }?>><?php echo $v['sg_name'];?></option>
-              <?php } ?>
-              <?php } ?>
-            </select></td>
+					  
+		  <th><label>分销状态：</label></th>
             <td>
-                <select name="joinin_state">
+                <select name="status">
                     <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
                     <?php if(!empty($output['joinin_state_array']) && is_array($output['joinin_state_array'])){ ?>
                     <?php foreach($output['joinin_state_array'] as $k => $v){ ?>
-                    <option value="<?php echo $k;?>" <?php if($k==$_GET['joinin_state']) { echo 'selected'; }?>><?php echo $v;?></option>
+                    <option value="<?php echo $k;?>" <?php if($k==$_GET['status']) { echo 'selected'; }?>><?php echo $v;?></option>
                     <?php } ?>
                     <?php } ?>
                 </select>
             </td>
+
             <td><a href="javascript:document.formSearch.submit();" class="btn-search " title="<?php echo $lang['nc_query'];?>">&nbsp;</a>
                 <?php if($output['owner_and_name'] != '' or $output['store_name'] != '' or $output['grade_id'] != ''){?>
                 <a href="index.php?act=store&op=store_joinin" class="btns " title="<?php echo $lang['nc_cancel_search'];?>"><span><?php echo $lang['nc_cancel_search'];?></span></a>
@@ -70,7 +60,7 @@
       <thead>
         <tr class="thead">
           <th><?php echo $lang['member_index_name'];?></th>
-          <th><?php echo $lang['store_user_name'];?></th>
+          <th>真实姓名</th>
           <th class="align-center"><?php echo $lang['state'];?></th>
           <th class="align-center"><?php echo $lang['operation'];?></th>
         </tr>
@@ -80,7 +70,7 @@
         <?php foreach($output['member_list'] as $k => $v){ ?>
         <tr class="hover edit">
           <td><?php echo $v['member_name'];?></td>
-          <td><?php echo $v['member_name'];?></td>
+          <td><?php echo $v['member_truename'];?></td>
           <td class="align-center"><?php echo $output['joinin_state_array'][$v['status']];?></td>
           <td class="w72 align-center">
               <?php if(in_array(intval($v['status']), array(1))) { ?>

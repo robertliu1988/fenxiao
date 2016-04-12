@@ -3,8 +3,8 @@
 <div class="tabmenu">
   <?php include template('layout/submenu');?>
  <!--好商城V3-B11-->
-  <a title="批量生成商品二维码" class="ncsc-btn ncsc-btn-green" href="index.php?act=store_goods_online&amp;op=maker_qrcode" target="_blank" style="right:100px" onclick="return confirm('您确定要执行批量生成二维码吗？');">批量生成商品二维码</a>
-  <a href="<?php echo urlShop('store_goods_add');?>" class="ncsc-btn ncsc-btn-green" title="<?php echo $lang['store_goods_index_add_goods'];?>"> <?php echo $lang['store_goods_index_add_goods'];?></a></div>
+  <a title="批量生成商品二维码" style="display:none;" class="ncsc-btn ncsc-btn-green" href="index.php?act=store_goods_online&amp;op=maker_qrcode" target="_blank" style="right:100px" onclick="return confirm('您确定要执行批量生成二维码吗？');">批量生成商品二维码</a>
+  <a href="<?php echo urlShop('store_goods_add');?>" style="display:none;" class="ncsc-btn ncsc-btn-green" title="<?php echo $lang['store_goods_index_add_goods'];?>"> <?php echo $lang['store_goods_index_add_goods'];?></a></div>
 <form method="get" action="index.php">
   <table class="search-form">
     <input type="hidden" name="act" value="store_goods_online" />
@@ -41,32 +41,25 @@
 <table class="ncsc-default-table">
   <thead>
     <tr nc_type="table_header">
-      <th class="w30">&nbsp;</th>
+	 <th class="w150">申请人/真实姓名</th>
+
       <th class="w50">&nbsp;</th>
       <th coltype="editable" column="goods_name" checker="check_required" inputwidth="230px"><?php echo $lang['store_goods_index_goods_name'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_price'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_stock'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_add_time'];?></th>
+      <th class="w100">申请人等级</th>
+      <th class="w150">申请时间</th>
+      <th class="w150">状态</th>
       <th class="w120"><?php echo $lang['nc_handle'];?></th>
     </tr>
-    <?php if (!empty($output['goods_list'])) { ?>
-    <tr>
-      <td class="tc"><input type="checkbox" id="all" class="checkall"/></td>
-      <td colspan="20"><label for="all" ><?php echo $lang['nc_select_all'];?></label>
-        <a href="javascript:void(0);" class="ncsc-btn-mini" nc_type="batchbutton" uri="<?php echo urlShop('store_goods_online', 'drop_goods');?>" name="commonid" confirm="<?php echo $lang['nc_ensure_del'];?>"><i class="icon-trash"></i><?php echo $lang['nc_del'];?></a> <a href="javascript:void(0);" class="ncsc-btn-mini" nc_type="batchbutton" uri="<?php echo urlShop('store_goods_online', 'goods_unshow');?>" name="commonid"><i class="icon-level-down"></i><?php echo $lang['store_goods_index_unshow'];?></a> <a href="javascript:void(0);" class="ncsc-btn-mini" nctype="batch" data-param="{url:'<?php echo urlShop('store_goods_online', 'edit_jingle');?>', sign:'jingle'}"><i></i>设置广告词</a> <a href="javascript:void(0);" class="ncsc-btn-mini" nctype="batch" data-param="{url:'<?php echo urlShop('store_goods_online', 'edit_plate');?>', sign:'plate'}"><i></i>设置关联版式</a></td>
-    </tr>
-    <?php } ?>
+   
   </thead>
   <tbody>
-    <?php if (!empty($output['goods_list'])) { ?>
-    <?php foreach ($output['goods_list'] as $val) { ?>
+    <?php if (!empty($output['apply_list'])) { ?>
+    <?php foreach ($output['apply_list'] as $val) { ?>
+    
     <tr>
-      <th class="tc"><input type="checkbox" class="checkitem tc" <?php if ($val['goods_lock'] == 1) {?>disabled="disabled"<?php }?> value="<?php echo $val['goods_commonid']; ?>"/></th>
-      <th colspan="20">平台货号：<?php echo $val['goods_commonid'];?></th>
-    </tr>
-    <tr>
-      <td class="trigger"><i class="tip icon-plus-sign" nctype="ajaxGoodsList" data-comminid="<?php echo $val['goods_commonid'];?>" title="点击展开查看此商品全部规格；规格值过多时请横向拖动区域内的滚动条进行浏览。"></i></td>
-      <td><div class="pic-thumb"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id']));?>" target="_blank"><img src="<?php echo thumb($val, 60);?>"/></a></div></td>
+	      <td><span><?php echo $val['member_name']; ?></span></td>
+
+      <td><div class="pic-thumb"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $val['goods_id']));?>" target="_blank"><img src="<?php echo thumb($val, 60);?>"/></a></div></td>
       <td class="tl"><dl class="goods-name">
           <dt style="max-width: 350px !important;">
             <?php if ($val['is_virtual'] ==1) {?>
@@ -81,7 +74,7 @@
             <?php if ($val['is_appoint'] ==1) {?>
             <span class="type-appoint" title="预约销售提示商品">预约</span>
             <?php }?>
-            <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $val['goods_name']; ?></a></dt>
+            <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $val['goods_id']));?>" target="_blank"><?php echo $val['goods_name']; ?></a></dt>
           <dd><?php echo $lang['store_goods_index_goods_no'].$lang['nc_colon'];?><?php echo $val['goods_serial'];?></dd>
           <dd class="serve"> <span class="<?php if ($val['goods_commend'] == 1) { echo 'open';}?>" title="店铺推荐商品"><i class="commend">荐</i></span>
 <span class="<?php if ($val['is_fenxiao'] == 1) { echo 'open';}?>" title="店铺分销商品"><i class="commend">分</i></span>
@@ -95,27 +88,23 @@
             <?php }?>
           </dd>
         </dl></td>
-      <td><span><?php echo $lang['currency'].$val['goods_price']; ?></span></td>
-      <td><span <?php if ($output['storage_array'][$val['goods_commonid']]['alarm']) { echo 'style="color:red;"';}?>><?php echo $output['storage_array'][$val['goods_commonid']]['sum'].$lang['piece']; ?></span></td>
-      <td class="goods-time"><?php echo @date('Y-m-d',$val['goods_addtime']);?></td>
-      <td class="nscs-table-handle" style="width:220px;"><?php if ($val['goods_lock'] == 0) {?>
-        <span><a href="<?php echo urlShop('store_goods_online', 'edit_goods', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-        <p><?php echo $lang['nc_edit'];?></p>
-        </a></span> <span><a href="javascript:void(0);" onclick="ajax_get_confirm('<?php echo $lang['nc_ensure_del'];?>', '<?php echo urlShop('store_goods_online', 'drop_goods', array('commonid' => $val['goods_commonid']));?>');" class="btn-red"><i class="icon-trash"></i>
+      <td><span><?php echo $val['member_level']; ?></span></td>
+      <td class="goods-time"><?php echo @date('Y-m-d H:i:s',$val['apply_time']);?></td>
+      <td><span><?php echo $val['status']; ?></span></td>
+      <td class="nscs-table-handle" style="width:220px;">
+        
+		
+		<span><a href="javascript:void(0);" onclick="ajax_get_confirm('确定通过审核', '<?php echo urlShop('store_goods_fenxiao_member', 'verify', array('goods_id' => $val['goods_id'],'member_id' => $val['member_id']));?>');" class="btn-blue"><i class="icon-trash"></i>
+        <p>通过</p>
+        </a></span>
+		
+		
+		<span><a href="javascript:void(0);" onclick="ajax_get_confirm('<?php echo $lang['nc_ensure_del'];?>', '<?php echo urlShop('store_goods_fenxiao_member', 'delete', array('goods_id' => $val['goods_id'],'member_id' => $val['member_id']));?>');" class="btn-red"><i class="icon-trash"></i>
         <p><?php echo $lang['nc_del'];?></p>
         </a></span>
 
-            <?php  if ($val['is_fenxiao'] == 0) { ?>
-                <span><a href="<?php echo urlShop('store_goods_online', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-                      <p>分销申请</p>
-                  </a></span>
-              <?php } ?>
-
-        <?php } else {?>
-        <span class="tip" title="该商品参加抢购活动期间不能进行编辑及删除等操作,可以编辑赠品和推荐组合"><a href="<?php if ($val['is_virtual'] ==1 ) {echo 'javascript:void(0);';} else {echo urlShop('store_goods_online', 'add_gift', array('commonid' => $val['goods_commonid']));}?>" class="btn-orange-current"><i class="icon-lock"></i>
-        <p>锁定</p>
-        </a></span>
-        <?php }?></td>
+            
+		</td>
     </tr>
     <tr style="display:none;">
       <td colspan="20"><div class="ncsc-goods-sku ps-container"></div></td>
@@ -128,12 +117,8 @@
     <?php } ?>
   </tbody>
   <tfoot>
-    <?php  if (!empty($output['goods_list'])) { ?>
-    <tr>
-      <th class="tc"><input type="checkbox" id="all2" class="checkall"/></th>
-      <th colspan="10"><label for="all2"><?php echo $lang['nc_select_all'];?></label>
-        <a href="javascript:void(0);" nc_type="batchbutton" uri="<?php echo urlShop('store_goods_online', 'drop_goods');?>" name="commonid" confirm="<?php echo $lang['nc_ensure_del'];?>" class="ncsc-btn-mini"><i class="icon-trash"></i><?php echo $lang['nc_del'];?></a> <a href="javascript:void(0);" nc_type="batchbutton" uri="<?php echo urlShop('store_goods_online', 'goods_unshow');?>" name="commonid" class="ncsc-btn-mini"><i class="icon-level-down"></i><?php echo $lang['store_goods_index_unshow'];?></a> <a href="javascript:void(0);" class="ncsc-btn-mini" nctype="batch" data-param="{url:'<?php echo urlShop('store_goods_online', 'edit_jingle');?>', sign:'jingle'}"><i></i>设置广告词</a> <a href="javascript:void(0);" class="ncsc-btn-mini" nctype="batch" data-param="{url:'<?php echo urlShop('store_goods_online', 'edit_plate');?>', sign:'plate'}"><i></i>设置关联版式</a> </th>
-    </tr>
+    <?php  if (!empty($output['apply_list'])) { ?>
+    
     <tr>
       <td colspan="20"><div class="pagination"> <?php echo $output['show_page']; ?> </div></td>
     </tr>

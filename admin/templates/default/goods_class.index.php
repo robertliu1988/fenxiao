@@ -35,6 +35,7 @@
           <!--<th>是否显示</th>-->
           <th><?php echo $lang['goods_class_add_type'];?></th>
           <th><?php echo $lang['goods_class_add_commis_rate'];?></th>
+            <th>分销返利最高比例</th>
           <th></th>
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
@@ -61,6 +62,7 @@
             <?php } ?></td>-->
           <td><?php echo $v['type_name'];?></td>
           <td><?php echo $v['commis_rate'];?> %</td>
+          <td><?php echo $v['fenxiao_rate'];?> %</td>
           <td><?php if ($v['gc_virtual'] == 1) {?>虚拟<?php }?></td>
           <td class="w96"><a href="index.php?act=goods_class&op=nav_edit&gc_id=<?php echo $v['gc_id'];?>">设置</a> | <a href="index.php?act=goods_class&op=goods_class_edit&gc_id=<?php echo $v['gc_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('<?php echo $lang['goods_class_index_ensure_del'];?>'))window.location = 'index.php?act=goods_class&op=goods_class_del&gc_id=<?php echo $v['gc_id'];?>';"><?php echo $lang['nc_del'];?></a></td>
         </tr>

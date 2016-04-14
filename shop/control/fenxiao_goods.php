@@ -158,13 +158,21 @@ class fenxiao_goodsControl extends BaseHomeControl {
         //判断每个商品的分销状态
         $final_goods = array();
         $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+        $model_store	= Model('store');
+
         foreach ($goods_list as $goods) {
             $condition = array();
             $condition['goods_id'] = $goods['goods_id'];
             $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
             $info = $model_fenxiao_goods_member->getOne($condition);
 
-            if (!empty($info)){
+            $condition = array();
+            $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+            $store_info = $model_store->getStoreInfo($condition);
+
+            if ($store_info['store_id'] == $goods['store_id'])
+                $goods['member_fenxiao'] = -1;//无法分销
+            else if (!empty($info)){
                 if ($info['status'] == 1)
                     $goods['member_fenxiao'] = 2;//已分销
                 else
@@ -380,6 +388,14 @@ class fenxiao_goodsControl extends BaseHomeControl {
             $param['goods_id'] = $goods_id;
             $param['member_id'] = $member_id;
             $param['apply_time'] = time();
+
+            //获取商品信息
+            $model_goods	= Model('goods');
+            $condition = array();
+            $condition['goods_id'] = $goods_id;
+
+            $goods_info = $model_goods->getGoodsInfo($condition);
+            $param['store_id'] = $goods_info['store_id'];
 
             $fenxiao_config = Model('fenxiao_config');
             $config_info = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_goods_member'));

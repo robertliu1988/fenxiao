@@ -79,6 +79,10 @@
 
                   <a href="javascript:void(0);" class="btn">申请中</a>
 
+              <?php } else if ($value['member_fenxiao'] == -1){  ?>
+
+                  <a href="javascript:void(0);" class="btn">无法分销自己店铺</a>
+
               <?php } else if ($value['member_fenxiao'] == 0){  ?>
 
               <a href="javascript:void(0);" class="btn" nctype="verify_batch" data-param="{goods_id:<?php echo $value['goods_id'];?>}">我要分销</a>

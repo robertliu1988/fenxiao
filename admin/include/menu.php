@@ -26,21 +26,21 @@ $arr = array(
 			4 => array(
 				'args'	=> 'member',
 				'text'	=> $lang['nc_member']),
-			5 => array(
-				'args' 	=> 'trade',
-				'text'	=> $lang['nc_trade']),
-			6 => array(
-				'args'	=> 'website',
-				'text' 	=> $lang['nc_website']),
-			7 => array(
-				'args'	=> 'operation',
-				'text'	=> $lang['nc_operation']),
-			8 => array(
-				'args'	=> 'stat',
-				'text'	=> $lang['nc_stat']),
-            9 => array(
+            5 => array(
                 'args'	=> 'fenxiao',
                 'text'	=> $lang['nc_fenxiao']),
+            6 => array(
+				'args' 	=> 'trade',
+				'text'	=> $lang['nc_trade']),
+			7 => array(
+				'args'	=> 'website',
+				'text' 	=> $lang['nc_website']),
+			8 => array(
+				'args'	=> 'operation',
+				'text'	=> $lang['nc_operation']),
+			9 => array(
+				'args'	=> 'stat',
+				'text'	=> $lang['nc_stat']),
 		),
 		'left' =>array(
 			0 => array(
@@ -124,7 +124,17 @@ $arr = array(
 					array('args'=>'chat_log,chat_log,member',				'text'=>'聊天记录')
 				)
 			),
-			5 => array(
+            5 => array(
+                'nav' => 'fenxiao',
+                'text' => $lang['nc_fenxiao'],
+                'list' => array(
+                    array('args'=>'system,fenxiao_config,fenxiao',			'text'=>$lang['nc_fenxiaoconfig']),
+                    array('args'=>'store,fenxiao_merchant,fenxiao',			'text'=>$lang['nc_fenxiaomerchant']),
+                    array('args'=>'goods,fenxiao_goods,fenxiao',			'text'=>$lang['nc_fenxiaogoods']),
+                    array('args'=>'member,fenxiao_member,fenxiao',			'text'=>$lang['nc_fenxiaomember']),
+                )
+            ),
+			6 => array(
 				'nav' => 'trade',
 				'text' => $lang['nc_trade'],
 				'list' => array(
@@ -139,7 +149,7 @@ $arr = array(
 					array('args'=>'complain_new_list,complain,trade',		'text'=>$lang['nc_complain_config']),
 				)
 			),
-			6 => array(
+			7 => array(
 				'nav' => 'website',
 				'text' => $lang['nc_website'],
 				'list' => array(
@@ -153,7 +163,7 @@ $arr = array(
 					array('args'=>'link,link,website',			'text'=>友情连接),
 				)
 			),
-			7 => array(
+			8 => array(
 				'nav' => 'operation',
 				'text' => $lang['nc_operation'],
 				'list' => array(
@@ -174,7 +184,7 @@ $arr = array(
                     array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站')
 				)
 			),
-            8 => array(
+            9 => array(
                 'nav' => 'stat',
                 'text' => $lang['nc_stat'],
                 'list' => array(
@@ -188,17 +198,7 @@ $arr = array(
                     array('args'=>'refund,stat_aftersale,stat',			'text'=>$lang['nc_stataftersale']),
 
                 )
-            ),
-            9 => array(
-                'nav' => 'fenxiao',
-                'text' => $lang['nc_fenxiao'],
-                'list' => array(
-                    array('args'=>'system,fenxiao_config,fenxiao',			'text'=>$lang['nc_fenxiaoconfig']),
-                    array('args'=>'store,fenxiao_merchant,fenxiao',			'text'=>$lang['nc_fenxiaomerchant']),
-                    array('args'=>'goods,fenxiao_goods,fenxiao',			'text'=>$lang['nc_fenxiaogoods']),
-                    array('args'=>'member,fenxiao_member,fenxiao',			'text'=>$lang['nc_fenxiaomember']),
-                )
-            ),
+            )
         ),
 );
 if(C('flea_isuse')==1){

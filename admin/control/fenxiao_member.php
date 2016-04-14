@@ -22,7 +22,7 @@ class fenxiao_memberControl extends SystemControl{
 	public function memberOp(){
 		$lang	= Language::getLangContent();
 		$model_member = Model('member');
-
+        $_GET['fenxiao_status'] = 2;
 		//会员级别
 		$member_grade = $model_member->getMemberGradeArr();
 		if ($_GET['search_field_value'] != '') {

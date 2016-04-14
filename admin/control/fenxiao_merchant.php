@@ -20,6 +20,7 @@ class fenxiao_merchantControl extends SystemControl{
 		$lang = Language::getLangContent();
 
 		$model_store = Model('store');
+        $_GET['fenxiao_status'] = 2;
 
 		if(trim($_GET['owner_and_name']) != ''){
 			$condition['member_name']	= array('like', '%'.$_GET['owner_and_name'].'%');

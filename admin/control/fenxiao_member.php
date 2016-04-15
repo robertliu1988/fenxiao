@@ -22,7 +22,9 @@ class fenxiao_memberControl extends SystemControl{
 	public function memberOp(){
 		$lang	= Language::getLangContent();
 		$model_member = Model('member');
-        $_GET['fenxiao_status'] = 2;
+
+        if (!isset($_GET['fenxiao_status']))
+            $_GET['fenxiao_status'] = 2;
 		//会员级别
 		$member_grade = $model_member->getMemberGradeArr();
 		if ($_GET['search_field_value'] != '') {
@@ -197,6 +199,9 @@ class fenxiao_memberControl extends SystemControl{
      * 分销员 待审核列表
      */
     public function fenxiao_joininOp(){
+        if (!isset($_GET['status']))
+            $_GET['status'] = 1;
+
         //店铺列表
         if(!empty($_GET['owner_and_name'])) {
             $condition['member_name'] = array('like','%'.$_GET['owner_and_name'].'%');

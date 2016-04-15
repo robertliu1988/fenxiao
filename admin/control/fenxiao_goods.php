@@ -48,7 +48,9 @@ class fenxiao_goodsControl extends SystemControl{
         $gccache_arr = Model('goods_class')->getGoodsclassCache($choose_gcid,3);
 	    Tpl::output('gc_json',json_encode($gccache_arr['showclass']));
 		Tpl::output('gc_choose_json',json_encode($gccache_arr['choose_gcid']));
-        $_GET['search_verify'] = 1;
+
+        if (!isset($_GET['search_verify']))
+            $_GET['search_verify'] = 1;
 
         /**
          * 查询条件

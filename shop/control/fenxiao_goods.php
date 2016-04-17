@@ -213,7 +213,8 @@ class fenxiao_goodsControl extends BaseHomeControl {
 
         // 得到自定义导航信息
         $nav_id = intval($_GET['nav_id']) ? intval($_GET['nav_id']) : 0;
-        Tpl::output('index_sign', $nav_id);
+//        Tpl::output('index_sign', $nav_id);
+        Tpl::output('index_sign', 'fenxiao');
 
         // 地区
         $province_array = Model('area')->getTopLevelAreas();
@@ -418,12 +419,17 @@ class fenxiao_goodsControl extends BaseHomeControl {
             $member_info = $model_member->getMemberInfoByID($member_id);
             if ($member_info['fenxiao_status'] == 2)
                 $status = 1;
-            else
+            else{
+                $apply_msg = "您尚未成为分销员，无法申请分销，点击<a href='".urlShop('member_fenxiao_joinin','index')."' style='color:blue;' target='_blank'>这里</a>申请";
                 $status = 0;
+            }
         }
-        else
+        else{
             $status = 0;
+            $apply_msg = "您尚未登录商城，无法申请分销，点击<a href='".urlShop('login','index')."' style='color:blue' target='_blank'>这里</a>登录";
+        }
 
+        Tpl::output('apply_msg', $apply_msg);
         Tpl::output('status', $status);
         Tpl::output('goods_id', $_GET['id']);
         Tpl::showpage('fenxiao_goods.goods_apply', 'null_layout');

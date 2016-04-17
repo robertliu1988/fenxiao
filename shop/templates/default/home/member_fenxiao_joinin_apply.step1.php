@@ -10,7 +10,8 @@
     以下内容请认真填写。</div>
 
   <form id="form_company_info" action="index.php?act=member_fenxiao_joinin&op=step2" method="post" enctype="multipart/form-data" >
-    
+
+
     <table border="0" cellpadding="0" cellspacing="0" class="all">
       <tbody>
 	  <tr>
@@ -23,21 +24,13 @@
           <td><input name="business_licence_number" type="text" class="w200" />
             <span></span></td>
         </tr>
-		<tr>
-          <th><i>*</i>联系方式：</th>
-          <td><input name="member_mobile" type="text" class="w100" />
-            <span></span></td>
-        </tr>
- 		<tr>
-          <th><i>*</i>支付宝账号：</th>
-          <td><input name="alipay_num" type="text" class="w200" />
-            <span></span></td>
-        </tr>
-		<tr>
-          <th><i>*</i>微信支付账号：</th>
-          <td><input name="weixin_num" type="text" class="w200" />
-            <span></span></td>
-        </tr>
+          <tr>
+              <th><i>*</i>手执身份证照片：</th>
+              <td><input name="business_licence_number_electronic" type="file" class="w200" />
+                  <img border="0" alt="手执身份证照范例" src="<?php echo SHOP_TEMPLATES_URL;?>/images/example.jpg" style="width:300px;height:210px">
+                  <span class="block">请确保图片清晰，身份证上文字可辨（清晰照片也可使用）。</span></td>
+          </tr>
+
        <tr>
           <th><i>*</i>申请理由：</th>
           <td><textarea name="apply_reason" rows="3" class="w400"></textarea>
@@ -66,7 +59,7 @@
 
 <div class="bottom">
   <?php if($output['btn_next']) { ?>
-  <a id="" href="<?php echo $output['btn_next'];?>" class="btn">下一步</a>
+  <a id="" href="<?php echo $output['btn_next'];?>" class="btn"><?php echo $output['btn_msg']; ?></a>
   <?php } ?>
 </div>
 
@@ -80,11 +73,29 @@ $(document).ready(function(){
         rules : {
             apply_reason: {
                 required: true
+            },
+            business_licence_number: {
+                required: true,
+                maxlength: 20
+            },
+            business_licence_number_electronic: {
+                required: true
+            },
+            member_truename: {
+                required: true,
+                maxlength: 20
             }
         },
         messages : {
             apply_reason: {
                 required: '请输入申请理由'
+            },
+            business_licence_number: {
+                required: '请输入身份证号',
+                maxlength: jQuery.validator.format("最多{0}个字")
+            },
+            business_licence_number_electronic: {
+                required: '请选择上传手执身份证照'
             },
         }
     });

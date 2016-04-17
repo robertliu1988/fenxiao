@@ -35,6 +35,11 @@ ALTER TABLE `33hao_goods` ADD `fenxiao_v1` FLOAT NOT NULL , ADD `fenxiao_v2` FLO
 
 新增 33hao_fenxiao_fanli
 
+ALTER TABLE `33hao_fenxiao_member_joinin` ADD `business_licence_number_electronic` VARCHAR(50) NOT NULL ;
+ALTER TABLE `33hao_fenxiao_member_joinin` ADD `joinin_message` VARCHAR(200) NOT NULL ;
+
+创建目录 \data\upload\shop\member_fenxiao_joinin
+
 
 
 

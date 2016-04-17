@@ -1,5 +1,5 @@
 <?php defined('InShopNC') or exit('Access Invalid!');?>
-<link href="<?php echo SHOP_TEMPLATES_URL;?>/css/seller_center.css" rel="stylesheet" type="text/css">
+<link href="<?php echo SHOP_TEMPLATES_URL;?>/css/fenxiao_center.css" rel="stylesheet" type="text/css">
 
  <!--好商城V3-B11-->
 <div class="wrap">

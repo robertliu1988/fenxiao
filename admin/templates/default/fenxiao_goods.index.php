@@ -3,6 +3,20 @@
 <!--[if IE 7]>
   <link rel="stylesheet" href="<?php echo ADMIN_TEMPLATES_URL;?>/css/font/font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#btn_end').on('click', function() {
+
+            if(confirm('确认终止分销？')) {
+                $('#verify_type').val('fail');
+                $('#form_store_verify').submit();
+            }
+        });
+
+    });
+</script>
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
@@ -162,7 +176,14 @@
           <td class="align-center"><?php echo $output['storage_array'][$v['goods_commonid']]['sum']?></td>
           <td class="align-center"><?php echo $output['state'][$v['goods_state']];?></td>
           <td class="align-center"><?php echo $output['verify'][$v['is_fenxiao']];?></td>
-          <td class="align-center"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$v['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $lang['nc_view'];?></a>&nbsp;</td>
+          <td class="align-center">
+
+              <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$v['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $lang['nc_view'];?></a>&nbsp;|
+
+              <a href="javascript:if(confirm('确认终止分销吗？'))window.location = 'index.php?act=fenxiao_goods&op=goods_end&commonids=<?php echo $v['goods_commonid'];?>';">终止</a>
+            </td>
+
+
         </tr>
         <tr style="display:none;">
           <td colspan="20"><div class="ncsc-goods-sku ps-container"></div></td>

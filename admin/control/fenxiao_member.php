@@ -227,6 +227,7 @@ class fenxiao_memberControl extends SystemControl{
             $member_info = $model_member->getMemberInfoByID($member['member_id']);
             $member_info['apply_reason'] = $member['apply_reason'];
             $member_info['status'] = $member['status'];
+            $member_info['member_truename'] = $member['member_truename'];
             $member_result[] = $member_info;
         }
         Tpl::output('member_list', $member_result);
@@ -287,8 +288,7 @@ class fenxiao_memberControl extends SystemControl{
     private function fenxiao_joinin_verify_pass($joinin_detail) {
         $param = array();
         $param['status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
-//        $param['joinin_message'] = $_POST['joinin_message'];
-
+        $param['joinin_message'] = $_POST['joinin_message'];
 
         $model_fenxiao_joinin = Model('fenxiao_member_joinin');
         $model_fenxiao_joinin->modify($param, array('member_id'=>$_POST['member_id']));
@@ -299,10 +299,10 @@ class fenxiao_memberControl extends SystemControl{
         $model_member	= Model('member');
         $param['fenxiao_status'] = $_POST['verify_type'] === 'pass' ? FENXIAO_JOIN_STATE_VERIFY_SUCCESS : FENXIAO_JOIN_STATE_VERIFY_FAIL;
         $param['member_truename'] = $joinin_detail['member_truename'];
-        $param['member_mobile'] = $joinin_detail['member_mobile'];
+//        $param['member_mobile'] = $joinin_detail['member_mobile'];
         $param['business_licence_number'] = $joinin_detail['business_licence_number'];
-        $param['alipay_num'] = $joinin_detail['alipay_num'];
-        $param['weixin_num'] = $joinin_detail['weixin_num'];
+//        $param['alipay_num'] = $joinin_detail['alipay_num'];
+//        $param['weixin_num'] = $joinin_detail['weixin_num'];
 
         $model_member->editMember( array('member_id'=>$_POST['member_id']),$param);
         showMessage('分销审核完毕','index.php?act=fenxiao_member&op=fenxiao_joinin');

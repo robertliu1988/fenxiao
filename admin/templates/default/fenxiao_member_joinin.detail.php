@@ -71,40 +71,39 @@
       </thead>
       <tbody>
         <tr>
-          <th class="w150">真实姓名</th>
+          <th class="w150">真实姓名：</th>
           <td><?php echo $output['joinin_detail']['member_truename'];?></td>
         </tr>
-		
 		<tr>
-          <th class="w150">联系方式</th>
-          <td><?php echo $output['joinin_detail']['member_mobile'];?></td>
-        </tr>
-		
-		<tr>
-          <th class="w150">身份证</th>
+          <th class="w150">身份证：</th>
           <td><?php echo $output['joinin_detail']['business_licence_number'];?></td>
         </tr>
 		
 		<tr>
-          <th class="w150">支付宝账号</th>
-          <td><?php echo $output['joinin_detail']['alipay_num'];?></td>
+          <th class="w150">身份证照片：</th>
+            <td><a nctype="nyroModal"  href="<?php echo getMemberFenxiaoJoininImageUrl($output['joinin_detail']['business_licence_number_electronic']);?>"> <img src="<?php echo getMemberFenxiaoJoininImageUrl($output['joinin_detail']['business_licence_number_electronic']);?>" alt="" /> </a></td>
         </tr>
-		<tr>
-          <th class="w150">微信账号</th>
-          <td><?php echo $output['joinin_detail']['weixin_num'];?></td>
-        </tr>
-
           <tr>
-          <th class="w150">申请理由</th>
+          <th class="w150">申请理由：</th>
           <td><?php echo $output['joinin_detail']['apply_reason'];?></td>
         </tr>
+
+
 
    <?php if(in_array(intval($output['joinin_detail']['status']), array(FENXIAO_JOIN_STATE_VERIFY))) { ?>
     <tr>
         <th>审核意见：</th>
         <td colspan="2"><textarea id="joinin_message" name="joinin_message"></textarea></td>
     </tr>
-    <?php } ?>
+    <?php } else {?>
+
+       <tr>
+           <th>审核意见：</th>
+           <td colspan="2"><?php echo $output['joinin_detail']['joinin_message'];?></td>
+       </tr>
+
+
+   <?php }  ?>
     </tbody>
     </table>
    <?php if(in_array(intval($output['joinin_detail']['status']), array(FENXIAO_JOIN_STATE_VERIFY))) { ?>

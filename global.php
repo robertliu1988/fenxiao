@@ -62,6 +62,7 @@ define('ATTACH_LIVE_GROUPBUY',ATTACH_PATH.'/livegroupbuy');
 define('ATTACH_SLIDE',ATTACH_PATH.'/store/slide');
 define('ATTACH_VOUCHER',ATTACH_PATH.'/voucher');
 define('ATTACH_STORE_JOININ',ATTACH_PATH.'/store_joinin');
+define('ATTACH_MEMBER_FENXIAO_JOININ',ATTACH_PATH.'/member_fenxiao_joinin');
 define('ATTACH_REC_POSITION',ATTACH_PATH.'/rec_position');
 define('ATTACH_MOBILE','mobile');
 define('ATTACH_CIRCLE','circle');

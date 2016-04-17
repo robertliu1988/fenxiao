@@ -1168,6 +1168,13 @@ function getStoreJoininImageUrl($image_name='') {
 }
 
 /**
+ * 获取分销员申请图片
+ */
+function getMemberFenxiaoJoininImageUrl($image_name='') {
+    return UPLOAD_SITE_URL.DS.ATTACH_MEMBER_FENXIAO_JOININ.DS.$image_name;
+}
+
+/**
  * 获取开店装修图片地址
  */
 function getStoreDecorationImageUrl($image_name = '', $store_id = null) {

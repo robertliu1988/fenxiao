@@ -151,7 +151,8 @@ class fenxiao_memberControl extends BaseHomeControl {
 
         // 得到自定义导航信息
         $nav_id = intval($_GET['nav_id']) ? intval($_GET['nav_id']) : 0;
-        Tpl::output('index_sign', $nav_id);
+//        Tpl::output('index_sign', $nav_id);
+        Tpl::output('index_sign', 'fenxiao');
 
         // 地区
         $province_array = Model('area')->getTopLevelAreas();

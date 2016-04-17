@@ -92,7 +92,7 @@ class fenxiao_storeControl extends BaseHomeControl {
 		
 		Tpl::output('show_page',$model->showpage(2));
 		// 页面输出
-		Tpl::output('index_sign','store_list');
+        Tpl::output('index_sign', 'fenxiao');
 		//当前位置
 		if (intval($_GET['cate_id']) > 0){
 			$nav_link[1]['link'] = 'index.php?act=shop_search';
@@ -174,7 +174,7 @@ class fenxiao_storeControl extends BaseHomeControl {
 
         Tpl::output('show_page',$model->showpage(2));
         // 页面输出
-        Tpl::output('index_sign','store_list');
+        Tpl::output('index_sign', 'fenxiao');
         //当前位置
         if (intval($_GET['cate_id']) > 0){
             $nav_link[1]['link'] = 'index.php?act=shop_search';

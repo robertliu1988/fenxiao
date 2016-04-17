@@ -56,12 +56,12 @@ class member_fenxiao_joininControl extends BaseHomeControl {
                     break;
                 case FENXIAO_JOIN_STATE_VERIFY_SUCCESS:
                     if(!in_array($_GET['op'], array('step1', 'step2'))) {
-                        $this->show_join_message('审核成功:', SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin');
+                        $this->show_join_message('审核成功');
                     }
                     break;
                 case FENXIAO_JOIN_STATE_VERIFY_FAIL:
                     if(!in_array($_GET['op'], array('step1', 'step2'))) {
-                        $this->show_join_message('审核失败:', SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1');
+                        $this->show_join_message('审核失败，审核意见：'.$joinin_detail['joinin_message'], SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1','2','重新申请');
                     }
                     break;
                 case STORE_JOIN_STATE_FINAL:
@@ -101,11 +101,14 @@ class member_fenxiao_joininControl extends BaseHomeControl {
             $param = array();
             $param['member_id'] = $_SESSION['member_id'];
             $param['member_truename'] = $_POST['member_truename'];
-            $param['member_mobile'] = $_POST['member_mobile'];
             $param['business_licence_number'] = $_POST['business_licence_number'];
-            $param['alipay_num'] = $_POST['alipay_num'];
-            $param['weixin_num'] = $_POST['weixin_num'];
             $param['apply_reason'] = $_POST['apply_reason'];
+            $param['business_licence_number_electronic'] = $this->upload_image('business_licence_number_electronic');
+
+            //暂时废弃
+            $param['member_mobile'] = 0;
+            $param['alipay_num'] = '';
+            $param['weixin_num'] = '';
 
             $fenxiao_config = Model('fenxiao_config');
             $fenxiao_member = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_member'));
@@ -136,6 +139,22 @@ class member_fenxiao_joininControl extends BaseHomeControl {
         @header('location: index.php?act=member_fenxiao_joinin');
     }
 
+    private function upload_image($file) {
+        $pic_name = '';
+        $upload = new UploadFile();
+        $uploaddir = ATTACH_PATH.DS.'member_fenxiao_joinin'.DS;
+        $upload->set('default_dir',$uploaddir);
+        $upload->set('allow_type',array('jpg','jpeg','gif','png'));
+        if (!empty($_FILES[$file]['name'])){
+            $result = $upload->upfile($file);
+            if ($result){
+                $pic_name = $upload->file_name;
+                $upload->file_name = '';
+            }
+        }
+        return $pic_name;
+    }
+
     private function step2_save_valid($param) {
         $obj_validate = new Validate();
         $obj_validate->validateparam = array(
@@ -162,12 +181,14 @@ class member_fenxiao_joininControl extends BaseHomeControl {
     }
 
 
-    private function show_join_message($message, $btn_next = FALSE, $step = '2') {
+    private function show_join_message($message, $btn_next = FALSE, $step = '2',$btn_msg = '下一步') {
         Tpl::output('joinin_message', $message);
         Tpl::output('btn_next', $btn_next);
+        Tpl::output('btn_msg', $btn_msg);
+        Tpl::output('joinin_detail', $this->joinin_detail);
         Tpl::output('step', $step);
         Tpl::output('sub_step', 'step1');
-        Tpl::showpage('fenxiao_joinin_apply');
+        Tpl::showpage('member_fenxiao_joinin_apply');
         exit;
     }
 

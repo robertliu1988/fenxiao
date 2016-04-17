@@ -44,7 +44,7 @@ a:active.btn span { color: #63C7ED; background-position: 100% -356px;}
 		<?php if ($output["status"] ==1) {?>
           <td colspan="2" class="required"><label>确认申请</label></td>
 		  		<?php } else {?>
-          <td colspan="2" class="required"><label>无分销资格</label></td>
+          <td colspan="2" class="required"><label><?php echo $output["apply_msg"]; ?></label></td>
 
 		  		  		<?php } ?>
 

@@ -29,6 +29,20 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
         $where = array();
         $where['store_id'] = $_SESSION['store_id'];
 
+        if (isset($_GET['goods_commonid'])){
+
+            $condition = array();
+            $condition['goods_commonid'] = $_GET['goods_commonid'];
+            $goods_list = $model_goods->getGoodsList($condition,'goods_id');
+
+            $goods_arr = array();
+            foreach ($goods_list as $goods) {
+                $goods_arr[] = $goods['goods_id'];
+            }
+
+            $where['goods_id'] = array('in',$goods_arr);
+        }
+
 //        if (intval($_GET['stc_id']) > 0) {
 //            $where['goods_stcids'] = array('like', '%,' . intval($_GET['stc_id']) . ',%');
 //        }
@@ -45,6 +59,10 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
 //                    break;
 //            }
 //        }
+
+//        var_dump($where);
+//        exit;
+
         $apply_list = $model_fenxiao_goods_member->getList($where);
 //        var_dump($apply_list);
 //        exit;

@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+/* ======================================== */
+/* 分销中心相关样式表单						*/
+/* ======================================== */
+
+/* 内容部分通用表格样式 */
+.ncsc-default-table { line-height:20px; width: 100%; border-collapse: collapse; clear: both;}
+.ncsc-default-table thead th { line-height: 20px; color: #999; background-color: #FFF; text-align:center; height: 20px; padding: 8px 0; border-bottom: solid 1px #DDD; }
+.ncsc-default-table thead td,
+.ncsc-default-table tfoot th { background-color: #FFF; height: 22px; padding: 5px 0; border-bottom: solid 1px #E6E6E6;}
+.ncsc-default-table tfoot th { border-top: solid 1px #E6E6E6;}
+.ncsc-default-table thead td label, .ncsc-default-table tfoot th label { color: #555; display: inline; float: left; margin-right: 10px; cursor: pointer; }
+.ncsc-default-table tbody th { background-color: #FAFAFA; border: solid #E6E6E6; border-width: 1px 0; padding: 4px 0;}
+.ncsc-default-table tbody th span { display: inline-block; vertical-align: middle; margin-right: 30px;}
+.ncsc-default-table tbody th span.goods-name { text-overflow: ellipsis; white-space: nowrap; width: 240px; height: 20px; overflow: hidden;}
+.ncsc-default-table tbody td { color: #999; background-color: #FFF; text-align: center; padding: 10px 0;}
+.ncsc-default-table tbody td strong { color: #666;}
+.ncsc-default-table tfoot td { background-color: #FFF; text-align: center; padding: 10px 0;}
+.ncsc-default-table td .pic-thumb { line-height: 0; background-color: #FFF; text-align: center; vertical-align: middle; display: table-cell; *display: block; width: 32px; height: 32px; border: solid 1px #F5F5F5; overflow: hidden;}
+.ncsc-default-table td .pic-thumb img { max-width: 32px; max-height: 32px; margin-top:expression(32-this.height/2); *margin-top:expression(16-this.height/2)/*IE6,7*/;}
+.ncsc-default-table td .goods-name { border: none;}
+.ncsc-default-table td .goods-name dt { font-size: 12px; color: #333; text-overflow: ellipsis; display: block; text-align: left; max-width: 320px!important; max-height: 32px; padding-bottom: 4px; overflow: hidden;}
+.ncsc-default-table td .goods-name dt span { line-height: 16px; color: #FFF; background-color: #999; display: inline-block; *display: inline/*IE7*/; height: 16px; padding: 1px 4px; margin-right: 2px; *zoom: 1; box-shadow: inset 1px 1px 0 rgba(255,255,255,0.25); cursor: default;}
+.ncsc-default-table td .goods-name dt span.type-virtual { background-color: #3598DC;}
+.ncsc-default-table td .goods-name dt span.type-fcode { background-color: #9C59B8;}
+.ncsc-default-table td .goods-name dt span.type-presell { background-color: #1ABC9D;}
+.ncsc-default-table td .goods-name dt span.type-appoint { background-color:;}
+.ncsc-default-table td .goods-name dt a { color: #005EA6;}
+.ncsc-default-table td .goods-name dt a:hover { color: #DA542E;}
+.ncsc-default-table td .goods-name dd { line-height: 16px; display: block; height: 16px;}
+.ncsc-default-table td .goods-name .sale-type { background-color: #DA542E; padding: 1px 4px;color:#FFFFFF}
+.ncsc-default-table td .goods-name dd.serve { height: 18px; padding-top: 2px;}
+.ncsc-default-table td .goods-name dd.serve span { color: #555; vertical-align: middle; display: inline-block; *display: inline/*IE7*/; margin-right: 6px; position: relative; z-index: 1; *zoom: 1; cursor: default;}
+.ncsc-default-table td .goods-name dd.serve i { font-size: 18px; line-height: 20px;}
+.ncsc-default-table td .goods-name dd.serve i.commend { font-size: 12px; background-color: #CCC; color: #FFF !important; line-height: 16px; text-align: center; display: block; width: 16px; height: 16px; border-radius: 2px; }
+.ncsc-default-table td .goods-name dd.serve .open i { color: #3598DC;}
+.ncsc-default-table td .goods-name dd.serve .open i.commend { background-color: #E84C3D;}
+.ncsc-default-table td .goods-name dd.serve span .QRcode { background: #F5F5F5; display: none; width: 160px; padding: 5px; border: solid 1px #CCC; position: absolute; z-index: 99; top: -90px; right: -170px; box-shadow: 0 0 5px rgba(0,0,0,0.15);}
+.ncsc-default-table td .goods-name dd.serve span .QRcode a { line-height: 20px; display: block; text-align: right;}
+.ncsc-default-table td .goods-name dd.serve span .QRcode p { line-height: 0; background-color: #FFF; text-align: center; vertical-align: middle; display: table-cell; *display: block; width: 160px; height: 160px; overflow: hidden;}
+.ncsc-default-table td .goods-name dd.serve span .QRcode img { max-width: 160px; max-height: 160px; margin-top:expression(160-this.height/2);}
+.ncsc-default-table td .goods-name dd.serve span:hover .QRcode { display: block;}
+/*订单赠品*/
+.ncsc-goods-gift {}
+.ncsc-goods-gift ul { font-size: 0; *word-spacing:-1px/*IE6、7*/; display: inline-block; vertical-align: middle;}
+.ncsc-goods-gift li { vertical-align: top; letter-spacing: normal; word-spacing: normal; display: inline-block; *display: inline/*IE7*/; margin-right: 4px; *zoom: 1; }
+.ncsc-goods-gift li a {line-height: 0; background-color: #FFF; text-align: center; vertical-align: middle; display: table-cell; *display: block; width: 30px; height: 30px; overflow: hidden;}
+.ncsc-goods-gift li a img { max-width: 30px; max-height: 30px; margin-top:expression(30-this.height/2);}

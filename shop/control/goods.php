@@ -82,9 +82,32 @@ class goodsControl extends BaseGoodsControl {
         }
 
         Tpl::output('goods', $goods_info);
-		
-		
-		//v3-b11 抢购商品是否开始
+
+        $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+        $model_store	= Model('store');
+
+        $condition = array();
+        $condition['goods_id'] = $goods_info['goods_id'];
+        $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+        $info = $model_fenxiao_goods_member->getOne($condition);
+
+        $condition = array();
+        $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+        $store_info = $model_store->getStoreInfo($condition);
+
+        if ($store_info['store_id'] == $goods_info['store_id'])
+            $fenxiao_status = -1;//无法分销
+        else if (!empty($info)){
+            if ($info['status'] == 1)
+                $fenxiao_status = 2;//已分销
+            else
+                $fenxiao_status = 1;//分销审核中
+        }
+        else
+            $fenxiao_status = 0;//未分销
+        Tpl::output('fenxiao_status', $fenxiao_status);
+
+        //v3-b11 抢购商品是否开始
 		$IsHaveBuy=0;
 		if(!empty($_SESSION['member_id']))
 		{

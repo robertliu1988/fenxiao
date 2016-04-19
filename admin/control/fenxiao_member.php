@@ -12,6 +12,7 @@ class fenxiao_memberControl extends SystemControl{
 	const EXPORT_SIZE = 1000;
 	public function __construct(){
 		parent::__construct();
+        Language::read('fenxiao_member');
 		Language::read('member');
         Language::read('store');
 	}

@@ -19,7 +19,7 @@ class fenxiao_goods_memberModel extends Model{
 	 * @param array $condition
 	 *
 	 */
-	public function getList($condition,$page='',$order='',$field='*'){
+	public function getList($condition,$page='',$order='apply_time desc',$field='*'){
         $result = $this->table('fenxiao_goods_member')->field($field)->where($condition)->page($page)->order($order)->select();
         return $result;
 	}

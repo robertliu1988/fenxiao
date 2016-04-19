@@ -45,6 +45,38 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('show_page', $model_goods->showpage());
         Tpl::output('goods_list', $goods_list);
 
+        //获取分销状态
+        //根据分销总开关首先进行判断
+        $store_info = $this->store_info;
+        $model_class = Model('store_class');
+        $class_info = $model_class->getStoreClassInfo(array('sc_id'=>intval($store_info['sc_id'])));
+
+        $fenxiao_config = Model('fenxiao_config');
+        $fenxiao_all = $fenxiao_config->getFenxiaoConfigInfo(array('config_key'=>'fenxiao_all'));
+
+        if ($fenxiao_all['config_value'] == 0)
+            $store_fenxiao_status = 0;
+        else if ($store_info['is_own_shop'] == 1)
+            $store_fenxiao_status = 1;
+        else if ($class_info['sc_fenxiao'] == 1){
+            $fenxiao_status = intval($store_info['fenxiao_status']);
+
+            if ($fenxiao_status == -1 || $fenxiao_status == 3){
+                $store_fenxiao_status = 0;
+            }
+            else if ($fenxiao_status == 2){
+                $store_fenxiao_status = 1;
+            }
+            else{
+                $store_fenxiao_status = 0;
+            }
+        }
+        else
+            $store_fenxiao_status = 0;
+
+
+        Tpl::output('store_fenxiao_status', $store_fenxiao_status);
+
         // 计算库存
         $storage_array = $model_goods->calculateStorage($goods_list);
         Tpl::output('storage_array', $storage_array);

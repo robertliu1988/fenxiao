@@ -50,10 +50,11 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3>分销员</h3>
+      <h3><?php echo $lang['fenxiao_member'];?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=fenxiao_member&op=member"><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="index.php?act=fenxiao_member&op=fenxiao_joinin" ><span>分销审核</span></a></li>
+        <li><a href="index.php?act=fenxiao_member&op=fenxiao_joinin" ><span><?php echo $lang['verify'];?></span></a></li>
+          <li><a href="index.php?act=fenxiao_member&op=grade"><span><?php echo $lang['level'];?></span></a></li>
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $output['joinin_detail_title'];?></span></a></li>
       </ul>
     </div>

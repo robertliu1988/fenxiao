@@ -70,8 +70,8 @@
               <label for="is_appoint_0">否</label>
             </li>
           </ul>
-          <p class="hint">分销商提交了产品分销后，不可再进行任何更改、终止操作。若有特殊情况，可对该产品提请申述，提交申述理由至后台。</p>
-        </dd>
+          <p class="hint">分销商提交产品分销后不可进行任何更改、终止操作，直至分销时效结束。设置分销返利及分销时效时请谨慎。</p>
+            <p class="hint">本类商品分销最高返利比例为<span style="color:red;font-weight: bold;"><?php echo $output['fenxiao_rate']; ?>%</span>，返利比例模式为：0<普通<铜牌<银牌<金牌<系统设置，精确至小数点后一位</p>        </dd>
       </dl>
 
         <dl>
@@ -102,7 +102,15 @@
         <dl>
             <dt>分销时效：</dt>
             <dd>
-                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_day']; ?>" name="fenxiao_day">天
+                <select name="fenxiao_day">
+                    <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
+                    <?php if(!empty($output['fenxiao_day']) && is_array($output['fenxiao_day'])){ ?>
+                        <?php foreach($output['fenxiao_day'] as $k){ ?>
+                            <option value="<?php echo $k;?>" <?php if($output['goods']['fenxiao_day'] == $k){?>selected<?php }?>><?php echo $k;?></option>
+                        <?php } ?>
+                    <?php } ?>
+                </select>
+                天
             </dd>
         </dl>
  

@@ -240,7 +240,16 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
             $goodscommon_info['is_verify'] = 1;
         }
 
+        $model_goods = Model('goods');
+        $goodscommon_info = $model_goods->getGoodeCommonInfoByID($common_id);
+        $model_class = Model('goods_class');
+        $class_array = $model_class->getGoodsClassInfoById($goodscommon_info['gc_id']);
+
+        $fenxiao_day = array(1,3,5,7,15,30);
+
+        Tpl::output('fenxiao_rate', $class_array['fenxiao_rate']);
         Tpl::output('goods', $goodscommon_info);
+        Tpl::output('fenxiao_day', $fenxiao_day);
 
 //        $this->profile_menu('edit_detail','edit_detail', $menu_promotion);
         Tpl::output('edit_goods_sign', true);
@@ -280,6 +289,9 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
         $goodscommon_info = $model_goods->getGoodeCommonInfoByID($common_id);
         $model_class = Model('goods_class');
         $class_array = $model_class->getGoodsClassInfoById($goodscommon_info['gc_id']);
+
+        if ($fenxiao_v1 <= 0 || $fenxiao_v2 <= 0 && $fenxiao_v3 <= 0 && $fenxiao_v4 <= 0)
+            showDialog(L('store_goods_index_goods_edit_fail'), urlShop('store_goods_online', 'index'));
 
         if ($class_array['fenxiao_rate'] >= $fenxiao_v4 & $fenxiao_v4 >= $fenxiao_v3 && $fenxiao_v3 >= $fenxiao_v2 && $fenxiao_v2 >= $fenxiao_v1){
             $update_common['fenxiao_v1']         = $fenxiao_v1;

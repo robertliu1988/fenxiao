@@ -48,7 +48,7 @@ class memberModel extends Model {
      * @param string $order
      */
     public function getMemberList($condition = array(), $field = '*', $page = 0, $order = 'member_id desc', $limit = '') {
-       return $this->table('member')->where($condition)->page($page)->order($order)->limit($limit)->select();
+       return $this->table('member')->field($field)->where($condition)->page($page)->order($order)->limit($limit)->select();
     }
 
     /**

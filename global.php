@@ -106,6 +106,8 @@ define('FENXIAO_JOIN_STATE_VERIFY', 1);
 define('FENXIAO_JOIN_STATE_VERIFY_SUCCESS', 2);
 //审核失败
 define('FENXIAO_JOIN_STATE_VERIFY_FAIL', 3);
+//封禁
+define('FENXIAO_JOIN_STATE_FORBIDDEN', 4);
 
 //默认颜色规格id(前台显示图片的规格)
 define('DEFAULT_SPEC_COLOR_ID', 1);

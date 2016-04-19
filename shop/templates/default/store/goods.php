@@ -321,10 +321,14 @@
           <?php } ?>
 
 		            <!-- 我要分销--> 
-            <?php if ($output['goods']['is_fenxiao']=="1") {?>
-                <a href="javascript:void(0);" nctype="buynow_submit" class="buynow" title="" id="fenxiao">我要分销</a>
-            <?php } ?>
+            <?php if ($output['fenxiao_status']== 0) {?>
+                <a href="javascript:void(0);" nctype="verify_batch" class="fenxiaonow" title="" id="fenxiao" data-param="{goods_id:<?php echo $output['goods']['goods_id'];?>}">我要分销</a>
+            <?php } else if ($output['fenxiao_status'] == 1) { ?>
           <!-- v3-b10 end-->
+            <a href="javascript:void(0);" class="fenxiaonow" title="" id="fenxiao">分销审核中</a>
+            <?php } else if ($output['fenxiao_status'] == 2) { ?>
+            <a href="javascript:void(0);" class="fenxiaonow" title="" id="fenxiao">分销中</a>
+            <?php }  ?>
 
             
           
@@ -1088,4 +1092,27 @@ $(document).ready(function(){
 	<?php } ?>
 });
 <?php }?>
+
+$(document).ready(function(){
+
+    // 分销申请处理
+    $('a[nctype="verify_batch"]').click(function(){
+        <?php if ($_SESSION['is_login'] !== '1'){?>
+        login_dialog();
+        <?php }else{?>
+
+        eval('var data_str = ' + $(this).attr('data-param'));
+        str = data_str.goods_id;
+        if (str) {
+            goods_verify(str);
+        }
+        <?php } ?>
+    });
+});
+
+function goods_verify(ids) {
+    _uri = "<?php echo SHOP_SITE_URL;?>/index.php?act=fenxiao_goods&op=goods_apply&id=" + ids;
+    CUR_DIALOG = ajax_form('goods_verify', '分销申请', _uri, 350);
+}
+
 </script> 

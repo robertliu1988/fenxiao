@@ -25,12 +25,15 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
         $model_goods = Model('goods');
         $model_member = Model('member');
         $model_fenxiao_goods_member = Model('fenxiao_goods_member');
+        $model_fenxiao_member_grade = Model('fenxiao_member_grade');
+
+        //获取等级信息
+        $grade_list = $model_fenxiao_member_grade->getGradeList();
 
         $where = array();
         $where['store_id'] = $_SESSION['store_id'];
 
         if (isset($_GET['goods_commonid'])){
-
             $condition = array();
             $condition['goods_commonid'] = $_GET['goods_commonid'];
             $goods_list = $model_goods->getGoodsList($condition,'goods_id');
@@ -43,29 +46,44 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
             $where['goods_id'] = array('in',$goods_arr);
         }
 
-//        if (intval($_GET['stc_id']) > 0) {
-//            $where['goods_stcids'] = array('like', '%,' . intval($_GET['stc_id']) . ',%');
-//        }
-//        if (trim($_GET['keyword']) != '') {
-//            switch ($_GET['search_type']) {
-//                case 0:
-//                    $where['goods_name'] = array('like', '%' . trim($_GET['keyword']) . '%');
-//                    break;
-//                case 1:
-//                    $where['goods_serial'] = array('like', '%' . trim($_GET['keyword']) . '%');
-//                    break;
-//                case 2:
-//                    $where['goods_commonid'] = intval($_GET['keyword']);
-//                    break;
-//            }
-//        }
+        if (isset($_GET['member_name']) && !empty($_GET['member_name'])){
+            $condition = array();
+            $condition['member_name'] = array('like','%'.$_GET['member_name'].'%');
+            $member_list = $model_member->getMemberList($condition,'member_id');
 
-//        var_dump($where);
-//        exit;
+            $member_arr = array();
+            foreach ($member_list as $member) {
+                $member_arr[] = $member['member_id'];
+            }
+            $where['member_id'] = array('in',$member_arr);
+        }
+
+        if (isset($_GET['member_truename']) && !empty($_GET['member_truename'])){
+            $condition = array();
+            $condition['member_truename'] = array('like','%'.$_GET['member_truename'].'%');
+            $member_list = $model_member->getMemberList($condition,'member_id');
+
+            $member_arr = array();
+            foreach ($member_list as $member) {
+                $member_arr[] = $member['member_id'];
+            }
+            $where['member_id'] = array('in',$member_arr);
+        }
+
+        switch ($_GET['type']) {
+            // 等待审核或审核失败的商品
+            case 'member_pass':
+                $where['status']  = 1;
+                $this->profile_menu('member_pass');
+                break;
+            // 仓库中的商品
+            default:
+                $where['status']  = 0;
+                $this->profile_menu('member_verify');
+                break;
+        }
 
         $apply_list = $model_fenxiao_goods_member->getList($where);
-//        var_dump($apply_list);
-//        exit;
 
         $final_list = array();
         foreach ($apply_list as $apply) {
@@ -82,11 +100,19 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
             $model_grade = Model('fenxiao_member_grade');
             $grade_list = $model_grade->getGradeList();
             $fenxiao_points = $member_info['fenxiao_points'];
+            $grade_id = 0;
             foreach ($grade_list as $grade) {
-                if (intval($fenxiao_points) >= $grade['fmg_points'])
+                if (intval($fenxiao_points) >= $grade['fmg_points']){
                     $level = $grade['fmg_name'];
+                    $grade_id = $grade['fmg_id'];
+                }
             }
             $apply['member_level'] = $level;
+
+            if (isset($_GET['grade']) &&  !empty($_GET['grade'])){
+                if ($grade_id != $_GET['grade'])
+                    continue;
+            }
 
             if ($apply['status'] == 1)
                 $apply['status'] = '通过';
@@ -100,10 +126,9 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
             $final_list[] = $apply;
         }
 
+        Tpl::output('grade_list', $grade_list);
         Tpl::output('show_page', $model_fenxiao_goods_member->showpage());
         Tpl::output('apply_list', $final_list);
-
-        $this->profile_menu('goods_list', 'goods_list');
 
         Tpl::showpage('store_goods_fenxiao_member');
     }
@@ -162,40 +187,20 @@ class store_goods_fenxiao_memberControl extends BaseSellerControl {
         }
     }
 
+
     /**
      * 用户中心右边，小导航
      *
-     * @param string $menu_type 导航类型
      * @param string $menu_key 当前导航的menu_key
-     * @param boolean $allow_promotion
      * @return
      */
-    private function profile_menu($menu_type,$menu_key, $allow_promotion = array()) {
-        $menu_array = array();
-        switch ($menu_type) {
-            case 'goods_list':
-                $menu_array = array(
-                   array('menu_key' => 'goods_list',    'menu_name' => '分销员申请', 'menu_url' => urlShop('store_goods_online', 'index'))
-                );
-                break;
-            case 'edit_detail':
-                if ($allow_promotion['lock'] === false) {
-                    $menu_array = array(
-                        array('menu_key' => 'edit_detail',  'menu_name' => '编辑商品', 'menu_url' => urlShop('store_goods_online', 'edit_goods', array('commonid' => $_GET['commonid'], 'ref_url' => $_GET['ref_url']))),
-                        array('menu_key' => 'edit_image',   'menu_name' => '编辑图片', 'menu_url' => urlShop('store_goods_online', 'edit_image', array('commonid' => $_GET['commonid'], 'ref_url' => ($_GET['ref_url'] ? $_GET['ref_url'] : getReferer())))),
-                    );
-                }
-                if ($allow_promotion['gift']) {
-                    $menu_array[] = array('menu_key' => 'add_gift', 'menu_name' => '赠送赠品', 'menu_url' => urlShop('store_goods_online', 'add_gift', array('commonid' => $_GET['commonid'], 'ref_url' => ($_GET['ref_url'] ? $_GET['ref_url'] : getReferer()))));
-                }
-                if ($allow_promotion['combo']) {
-                    $menu_array[] = array('menu_key' => 'add_combo', 'menu_name' => '推荐组合', 'menu_url' => urlShop('store_goods_online', 'add_combo', array('commonid' => $_GET['commonid'], 'ref_url' => ($_GET['ref_url'] ? $_GET['ref_url'] : getReferer()))));
-                }
-                break;
-        }
+    private function profile_menu($menu_key = '') {
+        $menu_array = array(
+            array('menu_key' => 'member_verify',     'menu_name' => '分销员申请',    'menu_url' => urlShop('store_goods_fenxiao_member', 'index', array())),
+            array('menu_key' => 'member_pass',     'menu_name' => '已审核分销员',     'menu_url' => urlShop('store_goods_fenxiao_member', 'index', array('type' => 'member_pass')))
+        );
         Tpl::output ( 'member_menu', $menu_array );
         Tpl::output ( 'menu_key', $menu_key );
     }
-
 
 }

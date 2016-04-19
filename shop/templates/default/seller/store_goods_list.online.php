@@ -105,7 +105,9 @@
         <p><?php echo $lang['nc_del'];?></p>
         </a></span>
 
-            <?php  if ($val['is_fenxiao'] == 0 || $val['is_fenxiao'] == 3) { ?>
+            <?php  if ($output['store_fenxiao_status'] == 0 ) { ?>
+
+                <?php }  else if ($val['is_fenxiao'] == 0 || $val['is_fenxiao'] == 3) { ?>
                 <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
                       <p>分销申请</p>
                   </a></span>

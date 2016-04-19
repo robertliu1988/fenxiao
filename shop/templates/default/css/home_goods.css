@@ -267,6 +267,13 @@ zoom: 1; }
 .ncs-goods-summary .ncs-btn a:hover.addcart { background-color: #F22D00; }
 .ncs-goods-summary .ncs-btn a.no-buynow, .ncs-goods-summary .ncs-btn a.no-addcart, .ncs-goods-summary .ncs-btn a:hover.no-buynow, .ncs-goods-summary .ncs-btn a:hover.no-addcart { background-color: #AAA; cursor: not-allowed; }
 .ncs-goods-summary .ncs-btn a i { font-size: 17px; margin-right: 6px; }
+
+/* 详情页我要分销按钮 */
+.ncs-goods-summary .ncs-btn a.fenxiaonow { font: bold 16px/32px "Microsoft Yahei"; color: #FFF; text-align: center; display: inline-block; height: 32px; padding: 5px 12px; margin-right: 5px; border-radius: 2px; position: relative; overflow: hidden; }
+.ncs-goods-summary .ncs-btn a.fenxiaonow:hover { text-decoration: none; }
+.ncs-goods-summary .ncs-btn a.fenxiaonow { background-color: #00B0F0; }
+.ncs-goods-summary .ncs-btn a:hover.fenxiaonow { background-color: #00A1DA; }
+
 /* 加入购物车弹出提示框 */
 .ncs-cart-popup { background-color: #F5F5F5; display: none; width: 320px; height: 120px; border: solid 1px #E6E6E6; box-shadow: 0 0 3px rgba(153,153,153,0.25); position: absolute; z-index: 1; top: 72px; left: -1px; }
 .ncs-cart-popup dl { display: block; }

@@ -45,27 +45,26 @@ class member_fenxiao_joininControl extends BaseHomeControl {
 	}
 
     private function check_joinin_state() {
+        $model_member = Model('member');
+        $joinin_info = $model_member->getMemberInfoByID($_SESSION['member_id']);
+
         $model_fenxiao_joinin = Model('fenxiao_member_joinin');
         $joinin_detail = $model_fenxiao_joinin->getOne(array('member_id'=>$_SESSION['member_id']));
 
-        if(!empty($joinin_detail)) {
-            $this->joinin_detail = $joinin_detail;
-            switch (intval($joinin_detail['status'])) {
+        if(!empty($joinin_info)) {
+            $this->joinin_detail = $joinin_info;
+            switch (intval($joinin_info['fenxiao_status'])) {
                 case FENXIAO_JOIN_STATE_VERIFY:
                     $this->show_join_message('分销申请已经提交，请等待管理员审核', FALSE, '1');
                     break;
                 case FENXIAO_JOIN_STATE_VERIFY_SUCCESS:
-                    if(!in_array($_GET['op'], array('step1', 'step2'))) {
-                        $this->show_join_message('审核成功');
-                    }
+                    $this->show_join_message('审核成功', FALSE, 2);
                     break;
                 case FENXIAO_JOIN_STATE_VERIFY_FAIL:
-                    if(!in_array($_GET['op'], array('step1', 'step2'))) {
-                        $this->show_join_message('审核失败，审核意见：'.$joinin_detail['joinin_message'], SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1','2','重新申请');
-                    }
+                    $this->show_join_message('审核失败，审核意见：'.$joinin_detail['joinin_message'], SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1','2','重新申请');
                     break;
-                case STORE_JOIN_STATE_FINAL:
-                    @header('location: index.php?act=seller_login');
+                case FENXIAO_JOIN_STATE_FORBIDDEN:
+                    $this->show_join_message('已封禁');
                     break;
             }
         }
@@ -86,7 +85,7 @@ class member_fenxiao_joininControl extends BaseHomeControl {
     }
 
     public function step1Op() {
-        $model_store_joinin = Model('store_joinin');
+        $model_store_joinin = Model('fenxiao_member_joinin');
         $joinin_detail = $model_store_joinin->getOne(array('member_id'=>$_SESSION['member_id']));
         Tpl::output('joinin_detail', $joinin_detail);
 
@@ -118,6 +117,7 @@ class member_fenxiao_joininControl extends BaseHomeControl {
             else
                 $param['status'] = FENXIAO_JOIN_STATE_VERIFY;
 
+            $fenxiao_status = $param['status'];
             $this->step2_save_valid($param);
 			
             $model_member_fenxiao_joinin = Model('fenxiao_member_joinin');
@@ -131,8 +131,8 @@ class member_fenxiao_joininControl extends BaseHomeControl {
 
             $param = array();
             $model_member	= Model('member');
-            $param['fenxiao_status'] = FENXIAO_JOIN_STATE_VERIFY_SUCCESS;
-            $model_member->editMember($param, array('member_id'=>$_SESSION['member_id']));
+            $param['fenxiao_status'] = $fenxiao_status;
+            $model_member->editMember(array('member_id'=>$_SESSION['member_id']),$param);
 
         }
 

@@ -10,7 +10,7 @@ class fenxiao_merchantControl extends SystemControl{
 	const EXPORT_SIZE = 1000;
 	public function __construct(){
 		parent::__construct();
-		Language::read('store,store_grade');
+		Language::read('fenxiao_merchant,store,store_grade');
 	}
 
 	/**

@@ -3,11 +3,11 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3>分销商</h3>
+      <h3><?php echo $lang['fenxiao_merchant'];?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=fenxiao_merchant&op=store" ><span><?php echo $lang['nc_manage']?></span></a></li>
-        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin" ><span>分销商申请</span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span>分销员等级</span></a></li>
+        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin" ><span><?php echo $lang['verify'];?></span></a></li>
+        <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['level'];?></span></a></li>
       </ul>
     </div>
   </div>

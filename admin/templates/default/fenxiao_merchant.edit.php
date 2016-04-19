@@ -8,11 +8,12 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3><?php echo $lang['store'];?></h3>
+      <h3><?php echo $lang['fenxiao_merchant'];?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=fenxiao_merchant&op=store"><span><?php echo $lang['manage'];?></span></a></li>
-        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin"><span>分销申请</span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_edit'];?></span></a></li>
+        <li><a href="index.php?act=fenxiao_merchant&op=fenxiao_joinin"><span><?php echo $lang['verify'];?></span></a></li>
+          <li><a href="index.php?act=fenxiao_merchant&op=grade"><span><?php echo $lang['level'];?></span></a></li>
+          <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_edit'];?></span></a></li>
       </ul>
     </div>
   </div>

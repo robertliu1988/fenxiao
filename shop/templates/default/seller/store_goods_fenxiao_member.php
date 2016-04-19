@@ -7,32 +7,25 @@
   <a href="<?php echo urlShop('store_goods_add');?>" style="display:none;" class="ncsc-btn ncsc-btn-green" title="<?php echo $lang['store_goods_index_add_goods'];?>"> <?php echo $lang['store_goods_index_add_goods'];?></a></div>
 <form method="get" action="index.php">
   <table class="search-form">
-    <input type="hidden" name="act" value="store_goods_online" />
+    <input type="hidden" name="act" value="store_goods_fenxiao_member" />
     <input type="hidden" name="op" value="index" />
     <tr>
       <td>&nbsp;</td>
-      <th><?php echo $lang['store_goods_index_store_goods_class'];?></th>
-      <td class="w160"><select name="stc_id" class="w150">
+      <th>等级</th>
+      <td class="w160"><select name="grade" class="w150">
           <option value="0"><?php echo $lang['nc_please_choose'];?></option>
-          <?php if(is_array($output['store_goods_class']) && !empty($output['store_goods_class'])){?>
-          <?php foreach ($output['store_goods_class'] as $val) {?>
-          <option value="<?php echo $val['stc_id']; ?>" <?php if ($_GET['stc_id'] == $val['stc_id']){ echo 'selected=selected';}?>><?php echo $val['stc_name']; ?></option>
-          <?php if (is_array($val['child']) && count($val['child'])>0){?>
-          <?php foreach ($val['child'] as $child_val){?>
-          <option value="<?php echo $child_val['stc_id']; ?>" <?php if ($_GET['stc_id'] == $child_val['stc_id']){ echo 'selected=selected';}?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $child_val['stc_name']; ?></option>
-          <?php }?>
-          <?php }?>
+          <?php if(is_array($output['grade_list']) && !empty($output['grade_list'])){?>
+          <?php foreach ($output['grade_list'] as $val) {?>
+          <option value="<?php echo $val['fmg_id']; ?>" <?php if ($_GET['grade'] == $val['fmg_id']){ echo 'selected=selected';}?>><?php echo $val['fmg_name']; ?></option>
           <?php }?>
           <?php }?>
         </select></td>
-      <th> <select name="search_type">
-          <option value="0" <?php if ($_GET['type'] == 0) {?>selected="selected"<?php }?>><?php echo $lang['store_goods_index_goods_name'];?></option>
-          <option value="1" <?php if ($_GET['type'] == 1) {?>selected="selected"<?php }?>><?php echo $lang['store_goods_index_goods_no'];?></option>
-          <option value="2" <?php if ($_GET['type'] == 2) {?>selected="selected"<?php }?>>平台货号</option>
-        </select>
-      </th>
-      <td class="w160"><input type="text" class="text w150" name="keyword" value="<?php echo $_GET['keyword']; ?>"/></td>
-      <td class="tc w70"><label class="submit-border">
+        <th>会员名</th>
+        <td class="w160"><input type="text" class="text w150" name="member_name" value="<?php echo $_GET['member_name']; ?>"/></td>
+        <th>真实姓名</th>
+        <td class="w160"><input type="text" class="text w150" name="member_truename" value="<?php echo $_GET['member_truename']; ?>"/></td>
+
+        <td class="tc w70"><label class="submit-border">
           <input type="submit" class="submit" value="<?php echo $lang['nc_search'];?>" />
         </label></td>
     </tr>

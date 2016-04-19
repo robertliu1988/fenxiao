@@ -118,13 +118,18 @@
       	//初始化对比按钮
     	initCompare();
 
-        // 审核批量处理
+        // 分销申请处理
         $('a[nctype="verify_batch"]').click(function(){
+            <?php if ($_SESSION['is_login'] !== '1'){?>
+            login_dialog();
+            <?php }else{?>
+
             eval('var data_str = ' + $(this).attr('data-param'));
             str = data_str.goods_id;
             if (str) {
                 goods_verify(str);
             }
+            <?php } ?>
         });
     });
 

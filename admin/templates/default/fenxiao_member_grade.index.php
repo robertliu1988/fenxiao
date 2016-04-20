@@ -22,6 +22,7 @@
           <th><?php echo $lang['store_grade_name'];?></th>
           <th class="align-center">可分销商品数</th>
           <th class="align-center">积分要求</th>
+          <th class="align-center">图标</th>
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -34,6 +35,7 @@
           <td><?php echo $v['fmg_name'];?></td>
           <td class="align-center"><?php echo $v['fmg_goods_limit'];?></td>
           <td class="align-center"><?php echo $v['fmg_points'];?></td>
+         <td class="align-center"><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$v['fmg_icon'];?>"></td>
           <td class="w270"><a href="index.php?act=fenxiao_member&op=grade_edit&fmg_id=<?php echo $v['fmg_id'];?>"><?php echo $lang['nc_edit'];?></a></td>
         </tr>
         <?php } ?>

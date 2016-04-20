@@ -48,13 +48,13 @@
 
           <div class="fenxiao-fanli">
               <div>
-                <span>返利：<?php echo $value['fenxiao_v1']; ?>%</span>
-              <span>返利：<?php echo $value['fenxiao_v2']; ?>%</span>
+                <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][0]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v1']; ?>%</span>
+              <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][1]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v2']; ?>%</span>
               </div>
 
               <div>
-                  <span>返利：<?php echo $value['fenxiao_v3']; ?>%</span>
-                  <span>返利：<?php echo $value['fenxiao_v4']; ?>%</span>
+                  <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][2]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v3']; ?>%</span>
+                  <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][3]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v4']; ?>%</span>
               </div>
               <div>
                   已申请：

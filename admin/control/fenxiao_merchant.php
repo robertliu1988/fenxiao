@@ -604,6 +604,17 @@ class fenxiao_merchantControl extends SystemControl{
             $update_array['fmg_member_limit'] = trim($_POST['fmg_member_limit']);
             $update_array['fmg_points'] = trim($_POST['fmg_points']);
 
+            $upload		= new UploadFile();
+
+            if($_FILES['adv_pic']['name'] != ''){
+                $upload->set('default_dir',ATTACH_ADV);
+                $result = $upload->upfile('adv_pic');
+                if (!$result){
+                    showMessage($upload->error,'','','error');
+                }
+                $update_array['fmg_icon'] = $upload->file_name;
+            }
+
             $result = $model_grade->update($update_array);
             if ($result){
                 dkcache('fenxiao_merchant_grade');

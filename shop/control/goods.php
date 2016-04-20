@@ -107,6 +107,11 @@ class goodsControl extends BaseGoodsControl {
             $fenxiao_status = 0;//未分销
         Tpl::output('fenxiao_status', $fenxiao_status);
 
+        //分销图标
+        $model_grade = Model('fenxiao_member_grade');
+        $grade_list = $model_grade->getGradeList();
+        Tpl::output('grade_list', $grade_list );
+
         //v3-b11 抢购商品是否开始
 		$IsHaveBuy=0;
 		if(!empty($_SESSION['member_id']))

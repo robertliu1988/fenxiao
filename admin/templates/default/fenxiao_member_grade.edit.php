@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="fixed-empty"></div>
-  <form id="grade_form" method="post">
+  <form id="grade_form" enctype="multipart/form-data" method="post">
     <input type="hidden" name="form_submit" value="ok" />
     <input type="hidden" name="fmg_id" value="<?php echo $output['grade_array']['fmg_id'];?>" />
     <table class="table tb-type2 nobdb">
@@ -46,6 +46,22 @@
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['fmg_points'];?>" id="fmg_points" name="fmg_points" class="txt"></td>
 		</tr>
+		
+				<tr id="adv_pic" >
+          <input type="hidden" name="mark" value="0">
+          <td colspan="2" class="required"><label for="file_adv_pic">图标:</label></td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform">
+		  <span class="type-file-show"><img class="show_image" src="<?php echo ADMIN_TEMPLATES_URL;?>/images/preview.png">
+<div class="type-file-preview"><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_array']['fmg_icon'];?>"></div>
+            </span>
+		  <span class="type-file-box">
+            <input type="file" class="type-file-file" id="file_adv_pic" name="adv_pic" size="30" />
+            </span>
+            <input type="hidden" name="pic_ori" value="<?php echo $output['grade_array']['fmg_icon'];?>"></td>
+          <td class="vatop tips">支持gif,jpg,jpeg,png </td>
+        </tr>
         
       </tbody>
       <tfoot>
@@ -132,6 +148,20 @@ $(document).ready(function(){
                 remote   : '<?php echo $lang['add_gradesortexist']; //级别已经存在?>'
             }
         }
+    });
+});
+
+$(function(){
+	var textButton="<input type='text' name='textfield' id='textfield1' class='type-file-text' /><input type='button' name='button' id='button1' value='' class='type-file-button' />"
+    $(textButton).insertBefore("#file_adv_pic");
+    $("#file_adv_pic").change(function(){
+	$("#textfield1").val($("#file_adv_pic").val());
+    });
+
+	var textButton="<input type='text' name='textfield' id='textfield3' class='type-file-text' /><input type='button' name='button' id='button3' value='' class='type-file-button' />"
+    $(textButton).insertBefore("#file_flash_swf");
+    $("#file_flash_swf").change(function(){
+	$("#textfield3").val($("#file_flash_swf").val());
     });
 });
 </script>

@@ -346,10 +346,10 @@
 		
 		<div class="ncs-fenxiao" style="display: none;"><i></i>
                 <!-- S 库存 -->
-                <div>一级返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v1']; ?></strong>%</div>
-                <div>二级返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v2']; ?></strong>%</div>
-                <div>三级返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v3']; ?></strong>%</div>
-                <div>四级返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v4']; ?></strong>%</div>
+                <div><?php echo $output['grade_list'][0]['fmg_name']; ?>返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v1']; ?></strong>%</div>
+                <div><?php echo $output['grade_list'][1]['fmg_name']; ?>返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v2']; ?></strong>%</div>
+                <div><?php echo $output['grade_list'][2]['fmg_name']; ?>返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v3']; ?></strong>%</div>
+                <div><?php echo $output['grade_list'][3]['fmg_name']; ?>返利：<strong nctype="goods_stock"><?php echo $output['goods']['fenxiao_v4']; ?></strong>%</div>
             </div>
 		
       </div>

@@ -207,6 +207,11 @@ class fenxiao_goodsControl extends BaseHomeControl {
             Tpl::output('html_title', (empty($_GET['keyword']) ? '' : $_GET['keyword'] . ' - ') . C('site_name') . L('nc_common_search'));
         }
 
+        //分销图标
+        $model_grade = Model('fenxiao_member_grade');
+        $grade_list = $model_grade->getGradeList();
+        Tpl::output('grade_list', $grade_list );
+
         // 当前位置导航
         $nav_link_list = $model_goods_class->getGoodsClassNav(intval($_GET['cate_id']));
         Tpl::output('nav_link_list', $nav_link_list );

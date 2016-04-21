@@ -40,6 +40,15 @@
           <td><input type="text" value="<?php echo $output['search']['search_commonid']?>" name="search_commonid" id="search_commonid" class="txt" /></td>
           <th><label><?php echo $lang['goods_index_class_name'];?></label></th>
           <td id="searchgc_td"></td><input type="hidden" id="choose_gcid" name="choose_gcid" value="0"/>
+		  
+		  <th><label>排序方式</label></th>
+          <td><select name="search_order">
+              <option value=""  ><?php echo $lang['nc_please_choose'];?>...</option>
+              <?php foreach ($output['order'] as $key => $val){?>
+              <option value="<?php echo $key;?>" <?php if($output['search']['search_order'] != '' && $output['search']['search_order'] == $key){?>selected<?php }?>><?php echo $val;?></option>
+              <?php }?>
+            </select></td>
+			
         </tr>
         <tr>
           <th><label for="search_store_name"><?php echo $lang['goods_index_store_name'];?></label></th>
@@ -142,8 +151,9 @@
           <th class="w24"></th>
           <th class="w60 align-center">平台货号</th>
           <th colspan="2"><?php echo $lang['goods_index_name'];?></th>
-          <th><?php echo $lang['goods_index_brand'];?>&<?php echo $lang['goods_index_class_name'];?></th>
-          <th class="w72 align-center">价格(元)</th>
+           <th class="w72 align-center">各级返利（百分比）</th>
+            <th class="w72 align-center">分销时效/到期日</th>
+         <th class="w72 align-center">价格(元)</th>
           <th class="w72 align-center">库存</th>
           <th class="w72 align-center">商品状态</th>
           <th class="w72 align-center">分销状态</th>
@@ -168,10 +178,12 @@
             </dd>
             <dd class="goods-store"><?php echo $output['ownShopIds'][$v['store_id']] ? '平台' : '三方'; ?>店铺：<?php echo $v['store_name'];?></dd></dl>
             </td>
-          <td>
-            <p><?php echo $v['gc_name'];?></p>
-            <p class="goods-brand">品牌：<?php echo $v['brand_name'];?></p>
+            <td class="align-center"><?php echo $v['fenxiao_fanli']?></td>
+
+            <td class="align-center"><p><?php echo $v['fenxiao_day']?>天</p>
+                <p><?php echo $v['fenxiao_endtime']?></p>
             </td>
+
           <td class="align-center"><?php echo $v['goods_price']?></td>
           <td class="align-center"><?php echo $output['storage_array'][$v['goods_commonid']]['sum']?></td>
           <td class="align-center"><?php echo $output['state'][$v['goods_state']];?></td>

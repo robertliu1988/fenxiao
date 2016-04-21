@@ -78,6 +78,11 @@ class fenxiao_goodsControl extends SystemControl{
             $where['is_fenxiao'] = $_GET['search_verify'];
         }
 
+        if ($_GET['search_order'] == 1)
+            $order = 'fenxiao_time desc';
+        else
+            $order = 'fenxiao_time asc';
+
         switch ($_GET['type']) {
             // 等待审核
             case 'waitverify':
@@ -86,7 +91,7 @@ class fenxiao_goodsControl extends SystemControl{
                 break;
             // 全部商品
             default:
-                $goods_list = $model_goods->getGoodsCommonList($where);
+                $goods_list = $model_goods->getGoodsCommonList($where,'*',10,$order);
                 break;
         }
 
@@ -113,6 +118,8 @@ class fenxiao_goodsControl extends SystemControl{
         Tpl::output('state', array('1' => '出售中', '0' => '仓库中', '10' => '违规下架'));
 
         Tpl::output('verify', array('0' => '未申请', '1' => '通过', '2' => '审核中', '3' => '未通过'));
+
+        Tpl::output('order', array('0' => '到期时间升序', '1' => '到期时间降序'));
 
         Tpl::output('ownShopIds', array_fill_keys(Model('store')->getOwnShopIds(), true));
 

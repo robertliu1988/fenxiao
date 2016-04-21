@@ -105,7 +105,6 @@
           <th class="w24"></th>
           <th class="w60">平台货号</th>
           <th colspan="2"><?php echo $lang['goods_index_name'];?></th>
-          <th><?php echo $lang['goods_index_brand'];?>&<?php echo $lang['goods_index_class_name'];?></th>
           <th class="w72 align-center">各级返利（百分比）</th>
             <th class="w72 align-center">分销时效/到期日</th>
             <th class="w72 align-center">价格（元）</th>
@@ -140,8 +139,6 @@
                 <i class="icon-tablet <?php if ($v['mobile_body'] != '') {?>open<?php }?>" title="手机端商品详情"></i> </dd>
               <dd class="goods-store"><?php echo $output['ownShopIds'][$v['store_id']] ? '平台' : '三方'; ?>店铺：<?php echo $v['store_name'];?></dd>
             </dl></td>
-          <td class><p><?php echo $v['gc_name'];?></p>
-            <p class="goods-brand">品牌：<?php echo $v['brand_name'];?></p></td>
             <td class="align-center"><?php echo $v['fenxiao_fanli']?></td>
 
             <td class="align-center"><p><?php echo $v['fenxiao_day']?>天</p>

@@ -61,7 +61,8 @@ class member_fenxiao_joininControl extends BaseHomeControl {
                     $this->show_join_message('审核成功', FALSE, 2);
                     break;
                 case FENXIAO_JOIN_STATE_VERIFY_FAIL:
-                    $this->show_join_message('审核失败，审核意见：'.$joinin_detail['joinin_message'], SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1','2','重新申请');
+                    if (!in_array($_GET['op'],array('step1','step2')))
+                        $this->show_join_message('审核失败，审核意见：'.$joinin_detail['joinin_message'], SHOP_SITE_URL.DS.'index.php?act=member_fenxiao_joinin&op=step1','2','重新申请');
                     break;
                 case FENXIAO_JOIN_STATE_FORBIDDEN:
                     $this->show_join_message('已封禁');
@@ -85,8 +86,9 @@ class member_fenxiao_joininControl extends BaseHomeControl {
     }
 
     public function step1Op() {
-        $model_store_joinin = Model('fenxiao_member_joinin');
-        $joinin_detail = $model_store_joinin->getOne(array('member_id'=>$_SESSION['member_id']));
+//        $model_store_joinin = Model('fenxiao_member_joinin');
+//        $joinin_detail = $model_store_joinin->getOne(array('member_id'=>$_SESSION['member_id']));
+        $joinin_detail = array();
         Tpl::output('joinin_detail', $joinin_detail);
 
         Tpl::output('step', '1');

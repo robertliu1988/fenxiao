@@ -105,9 +105,16 @@ class fenxiao_memberControl extends BaseHomeControl {
                 $condition['goods_price'] = array('between',array(intval($_GET['priceMin']),intval($_GET['priceMax'])));
             }
 	    //v3-b13 end
+            if (intval($_GET['member_id']) > 0) {
+                $condition['member_id'] = intval($_GET['member_id']);
+            }
+
             $condition['fenxiao_status'] = 2;
             $member_list = $model_member->getMemberList($condition, $fields, $order, self::PAGESIZE);
         }
+
+        $model_grade = Model('fenxiao_member_grade');
+        $grade_list = $model_grade->getGradeList();
 
         $member_result = array();
         foreach ($member_list as $member) {
@@ -115,12 +122,29 @@ class fenxiao_memberControl extends BaseHomeControl {
             if (is_null($member['member_avatar']))
                 $member['member_avatar'] = UPLOAD_SITE_URL."/shop/common/default_user_portrait.gif";
             $member['member_time'] = date('Y-m-d',$member['member_time']);
+
+            $fenxiao_points = $member['fenxiao_points'];
+            foreach ($grade_list as $grade) {
+                if (intval($fenxiao_points) >= $grade['fmg_points']){
+                    $level_icon = $grade['fmg_icon'];
+                    $level_name = $grade['fmg_name'];
+                }
+            }
+            $member['level_icon'] = $level_icon;
+            $member['level_name'] = $level_name;
+
+            $model = Model();
+            $goods_sale_array = $model->table('fenxiao_fanli')->field('sum(goods_num) as num_sum,sum(goods_price) as price_sum,sum(fanli_money) as money_sum')->where(array('member_id'=>$member['member_id']))->select();
+
+            $member['price_sum'] = intval($goods_sale_array[0]['price_sum']);
+            $member['money_sum'] = intval($goods_sale_array[0]['money_sum']);
+            $member['num_sum'] = intval($goods_sale_array[0]['num_sum']);
+
             $member_result[] = $member;
         }
 
         Tpl::output('show_page1', $model_member->showpage(4));
         Tpl::output('show_page', $model_member->showpage(5));
-
 
         Tpl::output('member_list', $member_result);
         if ($_GET['keyword'] != ''){

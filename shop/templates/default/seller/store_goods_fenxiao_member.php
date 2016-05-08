@@ -50,7 +50,7 @@
     <?php foreach ($output['apply_list'] as $val) { ?>
     
     <tr>
-	      <td><span><?php echo $val['member_name']; ?></span></td>
+	      <td><span><a href="<?php echo urlShop('fenxiao_member', 'index', array('member_id' => $val['member_id']));?>" target="_blank"><?php echo $val['member_name']; ?></a></span></td>
 
       <td><div class="pic-thumb"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $val['goods_id']));?>" target="_blank"><img src="<?php echo thumb($val, 60);?>"/></a></div></td>
       <td class="tl"><dl class="goods-name">
@@ -85,12 +85,13 @@
       <td class="goods-time"><?php echo @date('Y-m-d H:i:s',$val['apply_time']);?></td>
       <td><span><?php echo $val['status']; ?></span></td>
       <td class="nscs-table-handle" style="width:220px;">
-        
+
+          <?php if ($_GET['type'] != 'member_pass'){ ?>
 		
-		<span><a href="javascript:void(0);" onclick="ajax_get_confirm('确定通过审核', '<?php echo urlShop('store_goods_fenxiao_member', 'verify', array('goods_id' => $val['goods_id'],'member_id' => $val['member_id']));?>');" class="btn-blue"><i class="icon-trash"></i>
+		<span><a href="javascript:void(0);" onclick="ajax_get_confirm('确定通过审核', '<?php echo urlShop('store_goods_fenxiao_member', 'verify', array('goods_id' => $val['goods_id'],'member_id' => $val['member_id']));?>');" class="btn-blue"><i class="icon-flag"></i>
         <p>通过</p>
         </a></span>
-		
+		<?php } ?>
 		
 		<span><a href="javascript:void(0);" onclick="ajax_get_confirm('<?php echo $lang['nc_ensure_del'];?>', '<?php echo urlShop('store_goods_fenxiao_member', 'delete', array('goods_id' => $val['goods_id'],'member_id' => $val['member_id']));?>');" class="btn-red"><i class="icon-trash"></i>
         <p><?php echo $lang['nc_del'];?></p>

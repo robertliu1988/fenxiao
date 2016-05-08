@@ -113,6 +113,7 @@ class buyControl extends BaseBuyControl {
             $inviter_arr = json_decode(base64_decode(cookie('inviter')),true);
 
         $fanli_arr = array();
+
         foreach ($result['data']['goods_list'] as $goods) {
 
             if ($inviter_arr[$goods['goods_id']]){
@@ -124,8 +125,6 @@ class buyControl extends BaseBuyControl {
                 $condition['goods_id'] = $goods['goods_id'];
                 $condition['status'] = 1;
                 $info_list = $model_fenxiao_goods_member->getList($condition);
-                var_dump($info_list);
-
 
                 if (count($info_list) == 1){
                     $model_goods = Model('goods');
@@ -158,6 +157,10 @@ class buyControl extends BaseBuyControl {
                     $single_fanli['member_id'] = $member_id;
                     $single_fanli['goods_id'] = $goods['goods_id'];
                     $single_fanli['goods_price'] = $goods['goods_price'];
+                    $single_fanli['goods_num'] = $goods['goods_num'];
+                    $single_fanli['store_id'] = $goods['store_id'];
+                    $single_fanli['add_time'] = time();
+                    $single_fanli['buyer_id'] = $_SESSION['member_id'];
                     $single_fanli['fanli_money'] = $fanli_money;
                     $single_fanli['pay_sn'] = $pay_sn;
                     $single_fanli['status'] = 0; //待确认

@@ -72,7 +72,8 @@ class fenxiao_storeControl extends BaseHomeControl {
         $model_store = Model('store');
         $store_list = $model_store->where($condition)->order($order)->page(10)->select();
         //获取店铺商品数，推荐商品列表等信息
-        $store_list = $model_store->getStoreSearchList($store_list);
+        $store_list = $model_store->getStoreSearchListForFenxiao($store_list);
+
         //print_r($store_list);exit();
         //信用度排序
         if($_GET['key'] == 'store_credit') {
@@ -91,6 +92,7 @@ class fenxiao_storeControl extends BaseHomeControl {
 		Tpl::output('store_list',$store_list);
 		
 		Tpl::output('show_page',$model->showpage(2));
+
 		// 页面输出
         Tpl::output('index_sign', 'fenxiao');
 		//当前位置
@@ -168,7 +170,31 @@ class fenxiao_storeControl extends BaseHomeControl {
                 $store_list = sortClass::sortArrayAsc($store_list, 'num_sales_jq');
             }
         }
-        Tpl::output('goods_list',$store_list[0]['search_list_goods']);
+
+        //分销图标
+        $model_grade = Model('fenxiao_member_grade');
+        $grade_list = $model_grade->getGradeList();
+        Tpl::output('grade_list', $grade_list );
+
+        $goods_list = $store_list[0]['search_list_goods'];
+        $goods_id_arr = array();
+        $final_goods_list = array();
+        foreach ($goods_list as $goods) {
+            $goods_id_arr[] = $goods['goods_id'];
+            $goods['num_sales'] = 0;
+            $goods['money_sales'] = 0;
+            $final_goods_list[$goods['goods_id']] = $goods;
+        }
+        $model = Model();
+        $goods_sale_array = $model->table('fenxiao_fanli')->field('goods_id,sum(goods_num) as order_count,sum(fanli_money) as money_sum')->where(array('goods_id'=>array('in',implode(',',$goods_id_arr))))->group('goods_id')->select();
+
+        foreach ((array)$goods_sale_array as $value) {
+            $final_goods_list[$value['goods_id']]['num_sales'] = $value['order_count'];
+            $final_goods_list[$value['goods_id']]['money_sales'] = intval($value['money_sum']);
+        }
+
+
+        Tpl::output('goods_list',$final_goods_list);
 
         Tpl::output('store_list',$store_list);
 

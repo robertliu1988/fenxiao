@@ -51,6 +51,8 @@
         </dl>
         <ul>
           <li><a href="index.php?act=store_goods_online&op=index"><?php echo $lang['store_goods_selling'];?> <strong id="nc_online"></strong></a></li>
+            <li><a href="index.php?act=store_goods_fenxiao&op=index">分销中 <strong id="nc_online"></strong></a></li>
+            <li><a href="index.php?act=store_goods_fenxiao_member&op=index">分销员审核 <strong id="nc_online"></strong></a></li>
           <?php if (C('goods_verify')) {?>
           <li><a href="index.php?act=store_goods_offline&op=index&type=wait_verify&verify=10" title="<?php echo $lang['store_inform30'];?>">发布待平台审核 <strong id="nc_waitverify"></strong></a></li>
           <li><a href="index.php?act=store_goods_offline&op=index&type=wait_verify&verify=0" title="<?php echo $lang['store_inform30'];?>">平台审核失败 <strong id="nc_verifyfail"></strong></a></li>

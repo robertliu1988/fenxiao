@@ -92,7 +92,7 @@ function query(name, value){
 <?php foreach($output['store_list'] as $skey => $store){?>
     <li class="item">
       <dl class="shop-info">
-        <dt class="shop-name"><a href="<?php echo urlShop('show_store','', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a></dt>
+        <dt class="shop-name"><a href="<?php echo urlShop('show_store','', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a>&nbsp;&nbsp;<img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$store['fmg_icon']; ?>" title="<?php echo $store['fmg_name']; ?>"></dt>
         <dd class="shop-pic"><a href="<?php echo urlShop('show_store','', array('store_id'=>$store['store_id']),$store['store_domain']);?>" title="" target="_blank"><span class="size72"><img src="<?php echo getStoreLogo($store['store_avatar']);?>"  alt="<?php echo $store['store_name'];?>" title="<?php echo $store['store_name'];?>" class="size72" /></span></a></dd>
         <dd class="main-runs" title="<?php echo $store['store_zy']?>"><?php echo $lang['store_class_index_store_zy'].$lang['nc_colon'];?><?php echo $store['store_zy']?></dd>
         <dd class="shopkeeper"><?php echo $lang['store_class_index_owner'].$lang['nc_colon'];?><?php echo $store['member_name'];?><a target="_blank" class="message" href="index.php?act=member_message&op=sendmsg&member_id=<?php echo $store['member_id'];?>"></a><span>
@@ -104,11 +104,9 @@ function query(name, value){
         <?php }?></span></dd>
       </dl>
       <dl class="w200">
-        <dd><?php echo ($tmp = $store['goods_count']) ? $lang['store_class_index_goods_amount'].$tmp.$lang['piece'] : $lang['nc_common_goods_null'];?></dd>
-        <dd><?php echo ($tmp = $store['num_sales_jq']) ? $lang['store_class_index_deal'].$tmp.$lang['store_class_index_jian'] : $lang['nc_common_sell_null'];?></dd>
-        <?php if (!empty($store['search_list_goods'])){?>
-        <dd class="more-on" attr='morep' nc_type='<?php echo $skey;?>'><span><?php echo $lang['store_class_index_goods_hiden'];?></span><i></i></dd>
-        <?php }?>
+          <dd><?php echo ($tmp = $store['goods_count']) ? "分销产品：".$tmp."&nbsp;&nbsp;".$lang['piece'] : $lang['nc_common_goods_null'];?></dd>
+          <dd><?php echo ($tmp = $store['num_sales_jq']) ? "最近成交：".$tmp."&nbsp;&nbsp;".$lang['piece'] : $lang['nc_common_sell_null'];?></dd>
+          <dd><?php echo ($tmp = $store['money_sales_jq']) ? "最近返利：<font color='red' font-weight='bold'>".$tmp."</font>&nbsp;&nbsp;元" : "暂无返利";?></dd>
       </dl>
       <dl class="w150">
       	<!-- 店铺信用度 -->
@@ -152,11 +150,12 @@ function query(name, value){
     <tr nc_type="table_header">
       <th class="w30">&nbsp;</th>
       <th class="w50">&nbsp;</th>
-      <th coltype="editable" column="goods_name" checker="check_required" inputwidth="230px"><?php echo $lang['store_goods_index_goods_name'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_price'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_stock'];?></th>
-      <th class="w100"><?php echo $lang['store_goods_index_add_time'];?></th>
-      <th class="w120"><?php echo $lang['nc_handle'];?></th>
+      <th coltype="editable" column="goods_name" checker="check_required" inputwidth="200px"><?php echo $lang['store_goods_index_goods_name'];?></th>
+        <th class="w100">返利比例</th>
+        <th class="w100">分销数量</th>
+        <th class="w100"><?php echo $lang['store_goods_index_price'];?></th>
+      <th class="w100">分销时效</th>
+      <th class="w100">已返利</th>
     </tr>
     
   </thead>
@@ -166,8 +165,8 @@ function query(name, value){
 
     <tr>
       <td class="trigger"></td>
-      <td><div class="pic-thumb"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id']));?>" target="_blank"><img src="<?php echo thumb($val, 60);?>"/></a></div></td>
-      <td class="tl"><dl class="goods-name">
+        <td><div class="pic-thumb"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $val['goods_id']));?>" target="_blank"><img src="<?php echo thumb($val, 60);?>"/></a></div></td>
+          <td class="tl"><dl class="goods-name">
           <dt style="max-width: 350px !important;">
             <?php if ($val['is_virtual'] ==1) {?>
             <span class="type-virtual" title="虚拟兑换商品">虚拟</span>
@@ -181,46 +180,21 @@ function query(name, value){
             <?php if ($val['is_appoint'] ==1) {?>
             <span class="type-appoint" title="预约销售提示商品">预约</span>
             <?php }?>
-            <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $val['goods_name']; ?></a></dt>
+            <a href="<?php echo urlShop('goods', 'index', array('goods_id' => $val['goods_id']));?>" target="_blank"><?php echo $val['goods_name']; ?></a></dt>
           <dd><?php echo $lang['store_goods_index_goods_no'].$lang['nc_colon'];?><?php echo $val['goods_serial'];?></dd>
-          <dd class="serve"> <span class="<?php if ($val['goods_commend'] == 1) { echo 'open';}?>" title="店铺推荐商品"><i class="commend">荐</i></span> 
-		  <span class="<?php if ($val['is_fenxiao'] == 1) { echo 'open';}?>" title="店铺分销商品"><i class="commend">分</i></span>
-		  <span class="<?php if ($val['mobile_body'] != '') { echo 'open';}?>" title="手机端商品详情"><i class="icon-tablet"></i></span> <span class="" title="商品页面二维码"><i class="icon-qrcode"></i>
-            <div class="QRcode"><a target="_blank" href="<?php echo goodsQRCode(array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id'], 'store_id' => $_SESSION['store_id']));?>">下载标签</a>
-              <p><img src="<?php echo goodsQRCode(array('goods_id' => $output['storage_array'][$val['goods_commonid']]['goods_id'], 'store_id' => $_SESSION['store_id']));?>"/></p>
-            </div>
-            </span>
-            <?php if ($val['is_fcode'] ==1) {?>
-            <span><a class="ncsc-btn-mini ncsc-btn-red" href="<?php echo urlShop('store_goods_online', 'download_f_code_excel', array('commonid' => $val['goods_commonid']));?>">下载F码</a></span>
-            <?php }?>
-          </dd>
+
         </dl></td>
-      <td><span><?php echo $lang['currency'].$val['goods_price']; ?></span></td>
-      <td><span <?php if ($output['storage_array'][$val['goods_commonid']]['alarm']) { echo 'style="color:red;"';}?>><?php echo $output['storage_array'][$val['goods_commonid']]['sum'].$lang['piece']; ?></span></td>
-      <td class="goods-time"><?php echo @date('Y-m-d',$val['goods_addtime']);?></td>
-      <td class="nscs-table-handle" style="width:220px;"><?php if ($val['goods_lock'] == 0) {?>
+        <td><div><?php echo $output['grade_list'][0]['fmg_name']."：".$val['fenxiao_v1']."%"; ?></div>
+            <div><?php echo $output['grade_list'][1]['fmg_name']."：".$val['fenxiao_v2']."%"; ?></div>
+            <div><?php echo $output['grade_list'][2]['fmg_name']."：".$val['fenxiao_v3']."%"; ?></div>
+            <div><?php echo $output['grade_list'][3]['fmg_name']."：".$val['fenxiao_v4']."%"; ?></div>
+        </td>
+        <td><span><?php echo $val['num_sales']."件"; ?></span></td>
 
+        <td><span><?php echo $lang['currency'].$val['goods_price']; ?></span></td>
+      <td class="goods-time"><?php echo @date('Y-m-d',$val['fenxiao_time']);?></td>
+        <td><span><?php echo $val['money_sales']."元"; ?></span></td>
 
-            <?php  if ($val['is_fenxiao'] == 0 || $val['is_fenxiao'] == 3) { ?>
-                <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-                      <p>分销申请</p>
-                  </a></span>
-              <?php } else if ($val['is_fenxiao'] == 2){?>
-			  <span><a href="<?php echo urlShop('store_goods_fenxiao', 'edit_fenxiao', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
-                      <p>分销审核中</p>
-                  </a></span>
-              <?php } else {?>
-                  <span><a href="#" class="btn-blue"><i class="icon-edit"></i>
-                          <p>分销中</p>
-                      </a></span>
-				                <?php } ?>
-
-
-        <?php } else {?>
-        <span class="tip" title="该商品参加抢购活动期间不能进行编辑及删除等操作,可以编辑赠品和推荐组合"><a href="<?php if ($val['is_virtual'] ==1 ) {echo 'javascript:void(0);';} else {echo urlShop('store_goods_online', 'add_gift', array('commonid' => $val['goods_commonid']));}?>" class="btn-orange-current"><i class="icon-lock"></i>
-        <p>锁定</p>
-        </a></span>
-        <?php }?></td>
     </tr>
     <tr style="display:none;">
       <td colspan="20"><div class="ncsc-goods-sku ps-container"></div></td>

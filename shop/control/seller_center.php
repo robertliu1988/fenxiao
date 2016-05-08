@@ -42,8 +42,19 @@ class seller_centerControl extends BaseSellerControl {
         //根据分销总开关首先进行判断
         if ($fenxiao_all['config_value'] == 0)
             $store_info['fenxiao_level'] = '暂未开启';
-        else if ($store_info['is_own_shop'] == 1)
-            $store_info['fenxiao_level'] = '开启';
+        else if ($store_info['is_own_shop'] == 1){
+            $model_grade = Model('fenxiao_merchant_grade');
+            $grade_list = $model_grade->getGradeList();
+            $level = '未定义';
+            $fenxiao_points = $store_info['fenxiao_points'];
+            foreach ($grade_list as $grade) {
+                if (intval($fenxiao_points) >= $grade['fmg_points'])
+                    $level = $grade['fmg_name'];
+            }
+
+            $href = SHOP_SITE_URL."/index.php?act=article&op=show&article_id=42";
+            $store_info['fenxiao_level'] = "<a href='$href' target='_blank'>$level</a>";
+        }
         else if ($class_info['sc_fenxiao'] == 1){
             $fenxiao_status = intval($store_info['fenxiao_status']);
 

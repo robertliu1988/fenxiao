@@ -32,7 +32,7 @@ class BaseCronControl {
                 $content .= end($log);
             }
         }
-        Log::record('queue\\'.$content,Log::RUN);
+        Log::record('queue\\'.$content);
     }
 
     /**

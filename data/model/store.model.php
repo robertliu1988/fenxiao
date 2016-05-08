@@ -325,6 +325,38 @@ class storeModel extends Model {
     	return $store_array_new;
     }
 
+    public function getStoreSearchListForFenxiao($store_array) {
+        $store_array_new = array();
+        if(!empty($store_array)){
+            $model = Model();
+            $no_cache_store = array();
+            foreach ($store_array as $value) {
+                //$store_search_info = rcache($value['store_id'],'store_search_info');
+                //print_r($store_array);exit();
+                //if($store_search_info !== FALSE) {
+                //	$store_array_new[$value['store_id']] = $store_search_info;
+                //} else {
+                //	$no_cache_store[$value['store_id']] = $value;
+                //}
+                $no_cache_store[$value['store_id']] = $value;
+            }
+            if(!empty($no_cache_store)) {
+                //获取店铺商品数
+                $no_cache_store = $this->getStoreInfoBasicForFenxiao($no_cache_store);
+                //获取店铺近期销量
+                $no_cache_store = $this->getGoodsCountJqForFenxiao($no_cache_store);
+                //获取店铺等级
+                $no_cache_store = $this->getGradeForFenxiao($no_cache_store);
+                //写入缓存
+//                foreach ($no_cache_store as $value) {
+//                    wcache($value['store_id'],$value,'store_search_info');
+//                }
+                $store_array_new = array_merge($store_array_new,$no_cache_store);
+            }
+        }
+        return $store_array_new;
+    }
+
     /**
      * 获取店铺分销商品
      *
@@ -346,15 +378,17 @@ class storeModel extends Model {
             }
             if(!empty($no_cache_store)) {
                 //获取店铺商品数
-                $no_cache_store = $this->getStoreInfoBasic($no_cache_store);
+                $no_cache_store = $this->getStoreInfoBasicForFenxiao($no_cache_store);
                 //获取店铺近期销量
-                $no_cache_store = $this->getGoodsCountJq($no_cache_store);
+                $no_cache_store = $this->getGoodsCountJqForFenxiao($no_cache_store);
                 //获取店铺推荐商品
-                $no_cache_store = $this->getGoodsListByFenxiao($no_cache_store);
+                $no_cache_store = $this->getGoodsListForFenxiao($no_cache_store);
+                //获取店铺等级
+                $no_cache_store = $this->getGradeForFenxiao($no_cache_store);
                 //写入缓存
-                foreach ($no_cache_store as $value) {
-                    wcache($value['store_id'],$value,'store_search_info');
-                }
+//                foreach ($no_cache_store as $value) {
+//                    wcache($value['store_id'],$value,'store_search_info');
+//                }
                 $store_array_new = array_merge($store_array_new,$no_cache_store);
             }
         }
@@ -405,6 +439,52 @@ class storeModel extends Model {
     	}
     	return $list_new;
     }
+
+    /**
+     * 获得店铺标志、信用、商品数量、店铺评分等信息
+     *
+     * @param	array $param 店铺数组
+     * @return	array 数组格式的返回结果
+     */
+    public function getStoreInfoBasicForFenxiao($list,$day = 0){
+        $list_new = array();
+        if (!empty($list) && is_array($list)){
+            foreach ($list as $key=>$value) {
+                if(!empty($value)) {
+                    $value['store_logo'] = getStoreLogo($value['store_logo']);
+                    //店铺评价
+                    $model_evaluate_store = Model('evaluate_store');
+                    $store_evaluate_info = $model_evaluate_store->getEvaluateStoreInfoByStoreID($value['store_id'], $value['sc_id']);
+                    $value = array_merge($value, $store_evaluate_info);
+
+                    if(!empty($value['store_presales'])) $value['store_presales'] = unserialize($value['store_presales']);
+                    if(!empty($value['store_aftersales'])) $value['store_aftersales'] = unserialize($value['store_aftersales']);
+                    $list_new[$value['store_id']] = $value;
+                    $list_new[$value['store_id']]['goods_count'] = 0;
+                }
+            }
+            //全部商品数直接读取缓存
+            if($day > 0) {
+                $store_id_string = implode(',',array_keys($list_new));
+                //指定天数直接查询数据库
+                $condition = array();
+                $condition['goods_show'] = '1';
+                $condition['store_id'] = array('in',$store_id_string);
+                $condition['goods_add_time'] = array('gt',strtotime("-{$day} day"));
+                $model = Model();
+                $goods_count_array = $model->table('goods')->field('store_id,count(*) as goods_count')->where($condition)->group('store_id')->select();
+
+                if (!empty($goods_count_array)){
+                    foreach ($goods_count_array as $value){
+                        $list_new[$value['store_id']]['goods_count'] = $value['goods_count'];
+                    }
+                }
+            } else {
+                $list_new = $this->getGoodsCountByStoreArrayForFenxiao($list_new);
+            }
+        }
+        return $list_new;
+    }
     
     /**
      * 获取店铺商品数
@@ -448,15 +528,88 @@ class storeModel extends Model {
     	}
     	return $store_array_new;
     }
-    
+
+    public function getGoodsCountByStoreArrayForFenxiao($store_array) {
+        $store_array_new = array();
+        $model = Model();
+        $no_cache_store = '';
+
+        foreach ($store_array as $value) {
+            $goods_count = rcache($value['store_id'],'store_goods_fenxiao_count');
+
+            if(!empty($goods_count)&&$goods_count !== FALSE) {
+                //有缓存的直接赋值
+                $value['goods_count'] = $goods_count;
+            } else {
+                //没有缓存记录store_id，统计从数据库读取
+                $no_cache_store .= $value['store_id'].',';
+                $value['goods_count'] = '0';
+            }
+            $store_array_new[$value['store_id']] = $value;
+        }
+
+        if(!empty($no_cache_store)) {
+
+            //从数据库读取店铺商品数赋值并缓存
+            $no_cache_store = rtrim($no_cache_store,',');
+            $condition = array();
+            $condition['goods_state'] = '1';
+            $condition['is_fenxiao'] = '1';
+            $condition['store_id'] = array('in',$no_cache_store);
+            $goods_count_array = $model->table('goods')->field('store_id,count(*) as goods_count')->where($condition)->group('store_id')->select();
+            if (!empty($goods_count_array)){
+                foreach ($goods_count_array as $value){
+                    $store_array_new[$value['store_id']]['goods_count'] = $value['goods_count'];
+                    wcache($value['store_id'],$value['goods_count'],'store_goods_fenxiao_count');
+                }
+            }
+        }
+        return $store_array_new;
+    }
+
     //获取近期销量
     private function getGoodsCountJq($store_array) {
-    	$model = Model();
-    	$order_count_array = $model->table('order')->field('store_id,count(*) as order_count')->where(array('store_id'=>array('in',implode(',',array_keys($store_array))),'add_time'=>array('gt',TIMESTAMP-3600*24*90)))->group('store_id')->select();
-    	foreach ((array)$order_count_array as $value) {
-    		$store_array[$value['store_id']]['num_sales_jq'] = $value['order_count'];
-    	}
-    	return $store_array;
+        $model = Model();
+        $order_count_array = $model->table('order')->field('store_id,count(*) as order_count')->where(array('store_id'=>array('in',implode(',',array_keys($store_array))),'add_time'=>array('gt',TIMESTAMP-3600*24*90)))->group('store_id')->select();
+        foreach ((array)$order_count_array as $value) {
+            $store_array[$value['store_id']]['num_sales_jq'] = $value['order_count'];
+        }
+        return $store_array;
+    }
+
+    //获取近期销量
+    private function getGoodsCountJqForFenxiao($store_array) {
+        $model = Model();
+//        $order_count_array = $model->table('fenxiao_fanli')->field('store_id,sum(goods_num) as order_count,sum(fanli_money) as money_sum')->where(array('store_id'=>array('in',implode(',',array_keys($store_array))),'add_time'=>array('gt',TIMESTAMP-3600*24*90)))->group('store_id')->select();
+        $order_count_array = $model->table('fenxiao_fanli')->field('store_id,sum(goods_num) as order_count,sum(fanli_money) as money_sum')->where(array('store_id'=>array('in',implode(',',array_keys($store_array)))))->group('store_id')->select();
+        foreach ((array)$order_count_array as $value) {
+            $store_array[$value['store_id']]['num_sales_jq'] = $value['order_count'];
+            $store_array[$value['store_id']]['money_sales_jq'] = intval($value['money_sum']);
+        }
+        return $store_array;
+    }
+
+    private function getGradeForFenxiao($store_array) {
+        $model = Model();
+        $fenxiao_points_array = $model->table('store')->field('store_id,fenxiao_points')->where(array('store_id'=>array('in',implode(',',array_keys($store_array)))))->select();
+
+        $model_grade = Model('fenxiao_merchant_grade');
+        $grade_list = $model_grade->getGradeList();
+
+        foreach ((array)$fenxiao_points_array as $value) {
+            $fenxiao_points = $value['fenxiao_points'];
+
+            foreach ($grade_list as $grade) {
+                if (intval($fenxiao_points) >= $grade['fmg_points']){
+                    $fmg_icon = $grade['fmg_icon'];
+                    $fmg_name = $grade['fmg_name'];
+                }
+            }
+
+            $store_array[$value['store_id']]['fmg_icon'] = $fmg_icon;
+            $store_array[$value['store_id']]['fmg_name'] = $fmg_name;
+        }
+        return $store_array;
     }
     
     //获取店铺8个销量最高商品
@@ -470,12 +623,16 @@ class storeModel extends Model {
     }
 
     //获取店铺分销商品
-    private function getGoodsListByFenxiao($store_array) {
+    private function getGoodsListForFenxiao($store_array) {
         $model = Model();
         $field = '*';
         foreach ($store_array as $value) {
-            $store_array[$value['store_id']]['search_list_goods'] = $model->table('goods')->field($field)->where(array('store_id'=>$value['store_id'],'is_fenxiao'=>1))->order('goods_salenum desc')->select();
+            $store_array[$value['store_id']]['search_list_goods'] = $model->table('goods')->field($field)->where(array('store_id'=>$value['store_id'],'is_fenxiao'=>1))->order('goods_salenum desc')->page(10)->select();
         }
+
+//        var_dump($store_array[$value['store_id']]['search_list_goods']);
+//        exit;
+
         return $store_array;
     }
 }

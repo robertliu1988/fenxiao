@@ -85,6 +85,7 @@ class goodsControl extends BaseGoodsControl {
 
         $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
         $model_store	= Model('store');
+        $model_member	= Model('member');
 
         $condition = array();
         $condition['goods_id'] = $goods_info['goods_id'];
@@ -95,7 +96,11 @@ class goodsControl extends BaseGoodsControl {
         $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
         $store_info = $model_store->getStoreInfo($condition);
 
-        if ($store_info['store_id'] == $goods_info['store_id'])
+        $condition = array();
+        $member_id = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+        $member_info = $model_member->getMemberInfoByID($member_id);
+
+        if ($member_info['fenxiao_status'] != 2 || $goods_info['is_fenxiao'] != 1 || $store_info['store_id'] == $goods_info['store_id'])
             $fenxiao_status = -1;//无法分销
         else if (!empty($info)){
             if ($info['status'] == 1)

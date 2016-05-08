@@ -34,7 +34,7 @@ class memberModel extends Model {
     public function getMemberInfoByID($member_id, $fields = '*') {
         $member_info = rcache($member_id, 'member', $fields);
         if (empty($member_info)) {
-            $member_info = $this->getMemberInfo(array('member_id'=>$member_id),'*',true);
+            $member_info = $this->getMemberInfo(array('member_id'=>$member_id),$fields,true);
             wcache($member_id, $member_info, 'member');
         }
         return $member_info;

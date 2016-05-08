@@ -437,7 +437,7 @@ class goodsModel extends Model{
     public function editGoodsCommon($update, $condition) {
         $common_list = $this->getGoodsCommonList($condition, 'goods_commonid', 0);
         if (empty($common_list)) {
-            return false;
+            return true;
         }
         $commonid_array = array();
         foreach ($common_list as $val) {
@@ -707,7 +707,7 @@ class goodsModel extends Model{
     public function getGoodeCommonInfoByID($goods_commonid, $fields = '*') {
         $common_info = $this->_rGoodsCommonCache($goods_commonid, $fields);
         if (empty($common_info)) {
-            $common_info = $this->getGoodeCommonInfo(array('goods_commonid'=>$goods_commonid));
+            $common_info = $this->getGoodeCommonInfo(array('goods_commonid'=>$goods_commonid),$fields);
             $this->_wGoodsCommonCache($goods_commonid, $common_info);
         }
         return $common_info;

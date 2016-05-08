@@ -675,7 +675,7 @@ form label.validate_right { padding-left:20px; background:transparent url(../ima
 
 
 .squares .goods-content-fenxiao-goods {
-    line-height: 18px; background-color: #FFF; width: 230px; height: 490px; margin: 3px; border: solid 1px #F0F0F0; border-radius: 2px; position:relative; z-index: 11; overflow: hidden; box-shadow: 0 0 3px rgba(153,153,153,0.1); transition: border-color 0.4s ease-in-out 0s;
+    line-height: 18px; background-color: #FFF; width: 230px; height: 500px; margin: 3px; border: solid 1px #F0F0F0; border-radius: 2px; position:relative; z-index: 11; overflow: hidden; box-shadow: 0 0 3px rgba(153,153,153,0.1); transition: border-color 0.4s ease-in-out 0s;
 }
 
 .squares .list_pic .item-fenxiao{
@@ -685,7 +685,10 @@ form label.validate_right { padding-left:20px; background:transparent url(../ima
     word-spacing: normal;
     display: inline-block;
     width: 238px;
-    height: 490px;
+    height: 500px;
     margin: 12px 0 0 12px;
 }
+
+.squares .goods-info-fenxiao { width: 230px; margin: 0; position: absolute; z-index: 1; left: 0; top: 230px;}
+
 

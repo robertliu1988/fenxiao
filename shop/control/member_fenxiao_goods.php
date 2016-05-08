@@ -30,15 +30,22 @@ class member_fenxiao_goodsControl extends BaseMemberControl {
         $goods_list = array();
         $model_goods = Model('goods');
 
-        foreach ($info_list as $info) {
-            $goods_info = array();
-            $goods_info = $model_goods->getGoodsInfo(array('goods_id'=>$info['goods_id']));
+        $model_member = Model('member');
+        $condition = array();
+        $member_id = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
+        $member_info = $model_member->getMemberInfoByID($member_id,'fenxiao_status');
 
-            $goods_info['fenxiao_fanli'] = $goods_info['fenxiao_v1']."/".$goods_info['fenxiao_v2']."/".$goods_info['fenxiao_v3']."/".$goods_info['fenxiao_v4'];
-            $goods_info['goods_url'] = urlShop('goods','index',array('goods_id'=>$info['goods_id']));
+        if ($member_info['fenxiao_status'] == 2){
+            foreach ($info_list as $info) {
+                $goods_info = array();
+                $goods_info = $model_goods->getGoodsInfo(array('goods_id'=>$info['goods_id']));
+
+                $goods_info['fenxiao_fanli'] = $goods_info['fenxiao_v1']."/".$goods_info['fenxiao_v2']."/".$goods_info['fenxiao_v3']."/".$goods_info['fenxiao_v4'];
+                $goods_info['goods_url'] = urlShop('goods','index',array('goods_id'=>$info['goods_id']));
 
 
-            $goods_list[] = $goods_info;
+                $goods_list[] = $goods_info;
+            }
         }
 
         Tpl::output('goods_list',$goods_list);

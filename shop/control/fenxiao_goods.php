@@ -159,6 +159,7 @@ class fenxiao_goodsControl extends BaseHomeControl {
         $final_goods = array();
         $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
         $model_store	= Model('store');
+        $model_fenxiao_fanli	= Model('fenxiao_fanli');
 
         foreach ($goods_list as $goods) {
             $condition = array();
@@ -180,6 +181,32 @@ class fenxiao_goodsControl extends BaseHomeControl {
             }
             else
                 $goods['member_fenxiao'] = 0;//未分销
+
+
+            $common_info = $model_goods->getGoodeCommonInfoByID($goods['goods_commonid'],'fenxiao_time');
+            $left_seconds = $common_info['fenxiao_time']-time();
+            $left_day = intval($left_seconds/(24*3600));
+            $left_hour = intval(($left_seconds%(24*3600))/3600);
+            $left_minute = intval((($left_seconds%(24*3600))%3600)/60);
+            $left_time = $left_day."天".$left_hour."小时".$left_minute."分";
+            $goods['left_time'] = $left_time;
+
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $goods['fenxiao_apply_num'] = $model_fenxiao_goods_member->getFenxiaoGoodsMemberCount($condition);
+
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $fanli_list = $model_fenxiao_fanli->getList($condition);
+
+            $fenxiao_num = 0;
+            $fenxiao_money = 0;
+            foreach ($fanli_list as $fanli) {
+                $fenxiao_num += $fanli['goods_num'];
+                $fenxiao_money += $fanli['fanli_money'];
+            }
+            $goods['fenxiao_num'] = $fenxiao_num;
+            $goods['fenxiao_money'] = $fenxiao_money;
 
             $final_goods[] = $goods;
         }

@@ -31,7 +31,7 @@
         <?php } elseif (C('promotion_allow') && $value['goods_promotion_type'] == 2)  {?>
         <div class="goods-promotion"><span>限时折扣</span></div>
         <?php }?>
-        <div class="goods-info">
+        <div class="goods-info-fenxiao">
           <div class="goods-pic-scroll-show">
             <ul>
             <?php if(!empty($value['image'])) {?>
@@ -57,20 +57,20 @@
                   <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][3]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v4']; ?>%</span>
               </div>
               <div>
-                  已申请：
+                  已申请：<label style="color:#00B0F0;font-weight:bold;"><?php echo $value['fenxiao_apply_num']; ?></label>&nbsp;&nbsp;人
               </div>
               <div>
-                  已分销：
+                  已分销：<label style="color:#FF9933;font-weight:bold;"><?php echo $value['fenxiao_num']; ?></label>&nbsp;&nbsp;件
               </div>
               <div>
-                  已返利：
+                  已返利：<label style="color:red;font-weight:bold;"><?php echo $value['fenxiao_money']; ?></label>&nbsp;&nbsp;元
               </div>
               <div>
-                  时&nbsp;&nbsp;&nbsp;&nbsp;效：
+                  时&nbsp;&nbsp;&nbsp;&nbsp;效：<?php echo $value['left_time']; ?>
               </div>
           </div>
 
-          <div class="store" style="height:25px;"><a href="<?php echo urlShop('show_store','index',array('store_id'=>$value['store_id']), $value['store_domain']);?>" title="<?php echo $value['store_name'];?>" class="name"><?php echo $value['store_name'];?></a></div>
+          <div class="store" style="height:20px;"><a href="<?php echo urlShop('show_store','index',array('store_id'=>$value['store_id']), $value['store_domain']);?>" title="<?php echo $value['store_name'];?>" class="name"><?php echo $value['store_name'];?></a></div>
           <div class="add-cart">
               <?php if ($value['member_fenxiao'] == 2){  ?>
                   <a href="javascript:void(0);" class="btn">分销中</a>

@@ -38,6 +38,16 @@ $(function(){
             $(this).find(".goods-info").stop(true,false).animate({"top": "230px"}, 400, "swing");
         }
     );
+
+    $(".item").hover(
+        function() {
+            $(this).find(".goods-info-fenxiao").animate({"top": "195px"}, 400, "swing");
+        },function() {
+            $(this).find(".goods-info-fenxiao").stop(true,false).animate({"top": "230px"}, 400, "swing");
+        }
+    );
+
+
     // 加入购物车
     $('a[nctype="add_cart"]').click(function() {
         var _parent = $(this).parent(), thisTop = _parent.offset().top, thisLeft = _parent.offset().left;

@@ -131,7 +131,7 @@ function query(name, value){
 <?php foreach($output['store_list'] as $skey => $store){?>
     <li class="item">
       <dl class="shop-info">
-        <dt class="shop-name"><a href="<?php echo urlShop('fenxiao_store','goods', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a></dt>
+        <dt class="shop-name"><a href="<?php echo urlShop('fenxiao_store','goods', array('store_id'=>$store['store_id']),$store['store_domain']);?>" target="_blank"><?php echo $store['store_name'];?></a>&nbsp;&nbsp;<img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$store['fmg_icon']; ?>" title="<?php echo $store['fmg_name']; ?>"></dt>
         <dd class="shop-pic"><a href="<?php echo urlShop('fenxiao_store','goods', array('store_id'=>$store['store_id']),$store['store_domain']);?>" title="" target="_blank"><span class="size72"><img src="<?php echo getStoreLogo($store['store_avatar']);?>"  alt="<?php echo $store['store_name'];?>" title="<?php echo $store['store_name'];?>" class="size72" /></span></a></dd>
         <dd class="main-runs" title="<?php echo $store['store_zy']?>"><?php echo $lang['store_class_index_store_zy'].$lang['nc_colon'];?><?php echo $store['store_zy']?></dd>
         <dd class="shopkeeper"><?php echo $lang['store_class_index_owner'].$lang['nc_colon'];?><?php echo $store['member_name'];?><a target="_blank" class="message" href="index.php?act=member_message&op=sendmsg&member_id=<?php echo $store['member_id'];?>"></a><span>
@@ -143,11 +143,9 @@ function query(name, value){
         <?php }?></span></dd>
       </dl>
       <dl class="w200">
-        <dd><?php echo ($tmp = $store['goods_count']) ? $lang['store_class_index_goods_amount'].$tmp.$lang['piece'] : $lang['nc_common_goods_null'];?></dd>
-        <dd><?php echo ($tmp = $store['num_sales_jq']) ? $lang['store_class_index_deal'].$tmp.$lang['store_class_index_jian'] : $lang['nc_common_sell_null'];?></dd>
-        <?php if (!empty($store['search_list_goods'])){?>
-        <dd class="more-on" attr='morep' nc_type='<?php echo $skey;?>'><span><?php echo $lang['store_class_index_goods_hiden'];?></span><i></i></dd>
-        <?php }?>
+        <dd><?php echo ($tmp = $store['goods_count']) ? "分销产品：".$tmp."&nbsp;&nbsp;".$lang['piece'] : $lang['nc_common_goods_null'];?></dd>
+        <dd><?php echo ($tmp = $store['num_sales_jq']) ? "成交数量：".$tmp."&nbsp;&nbsp;".$lang['piece'] : $lang['nc_common_sell_null'];?></dd>
+        <dd><?php echo ($tmp = $store['money_sales_jq']) ? "返利总额：<font color='red' font-weight='bold'>".$tmp."</font>&nbsp;&nbsp;元" : "暂无返利";?></dd>
       </dl>
       <dl class="w150">
       	<!-- 店铺信用度 -->

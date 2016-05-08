@@ -40,9 +40,22 @@ class dateControl extends BaseCronControl {
     const ARRIVAL_NOTICE_NUM = 100;
 
     /**
+     * 分销返利计入用户账户时间
+     * @var int
+     */
+    const FENXIAO_FANLI_DAY = 0;
+
+    /**
      * 默认方法
      */
     public function indexOp() {
+        //关闭分销到期的商品
+//        $this->_goods_fenxiao_expire();
+
+        //返利计入用户余额
+        $this->_fenxiao_fanli_complete();
+        exit;
+
 
         //更新订单商品佣金值
         $this->_order_commis_rate_update();
@@ -928,4 +941,83 @@ class dateControl extends BaseCronControl {
             $model->table('stat_member')->insertAll($insert_arr);
         }
     }
+
+    /**
+     * 分销商品到期检测
+     */
+    private function _goods_fenxiao_expire() {
+        $model_goods = Model('goods');
+        $condition = array();
+        $condition['is_fenxiao'] = 1; //分销状态为0
+        $condition['fenxiao_time'] = array('lt',TIMESTAMP);
+
+        $update = array();
+        $update['is_fenxiao'] = 0;
+        $update = $model_goods->editGoodsCommon($update,$condition);
+        if (!$update) {
+            $this->log('更新分销商品common状态失败');
+        }
+
+        $condition = array();
+        $condition['is_fenxiao'] = 1; //分销状态为0
+        $condition['fenxiao_time'] = array('lt',TIMESTAMP);
+
+        $update = array();
+        $update['is_fenxiao'] = 0;
+        $update = $model_goods->editGoods($update,$condition);
+        if (!$update) {
+            $this->log('更新分销商品goods状态失败');
+        }
+    }
+
+    /**
+     * 分销返利计入用户账户
+     */
+    private function _fenxiao_fanli_complete() {
+        $model_fenxiao_fanli = Model('fenxiao_fanli');
+        $condition = array();
+        $condition['status'] = 0; //分销状态为0
+        $condition['add_time'] = array('lt',TIMESTAMP-FENXIAO_FANLI_DAY*24*3600); //7天前的返利
+
+        $fanli_list = $model_fenxiao_fanli->getList($condition,10000);
+
+        $model_order = Model('order');
+        foreach ($fanli_list as $fanli) {
+            $condition = array();
+            $condition['pay_sn'] = $fanli['pay_sn'];
+            $orderpay_info = $model_order->getOrderPayInfo($condition);
+            if ($orderpay_info['api_pay_state'] == 1){
+                $update = array();
+                $update['status'] = 1;
+                $update = $model_fenxiao_fanli->modify($update,$condition);
+                if (!$update) {
+                    $this->log('更新分销返利状态失败');
+                }
+                else{
+                    $model_member = Model('member');
+                    $member_info = $model_member->getMemberInfoByID($fanli['member_id']);
+
+                    $model_pd = Model('predeposit');
+                    $order_sn = $model_pd->makeSn();
+                    $log_msg = "分销返利系统操作会员【".$member_info['member_name']."】预存款，金额为".$fanli['fanli_money'].",编号为".$order_sn;
+                    $admin_act="fenxiao_add_money";
+
+                    $model_pd->beginTransaction();
+                    $data = array();
+                    $data['member_id'] = $member_info['member_id'];
+                    $data['member_name'] = $member_info['member_name'];
+                    $data['amount'] = $fanli['fanli_money'];
+                    $data['order_sn'] = $order_sn;
+                    $data['admin_name'] = 'fanli';
+                    $data['pdr_sn'] = $order_sn;
+                    $data['lg_desc'] = ' 返利到账';
+
+                    $model_pd->changePd($admin_act,$data);
+                    $model_pd->commit();
+                    $this->log($log_msg,1);
+                }
+            }
+        }
+    }
+
 }

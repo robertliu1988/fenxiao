@@ -405,6 +405,16 @@ class predepositModel extends Model {
                 $data_msg['freeze_amount'] = -$data['amount'];
                 $data_msg['desc'] = $data_log['lg_desc'];
                 break;
+                case 'fenxiao_add_money':
+                    $data_log['lg_av_amount'] = $data['amount'];
+                    $data_log['lg_desc'] = '分销系统返利预存款【增加】，充值单号: '.$data['pdr_sn'];
+                    $data_log['lg_admin_name'] = $data['admin_name'];
+                    $data_pd['available_predeposit'] = array('exp','available_predeposit+'.$data['amount']);
+
+                    $data_msg['av_amount'] = $data['amount'];
+                    $data_msg['freeze_amount'] = 0;
+                    $data_msg['desc'] = $data_log['lg_desc'];
+                    break;
 	    	//end
 
             default:

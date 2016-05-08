@@ -68,20 +68,18 @@
         </ul>
       </dd>
     </dl>
-    <dl class="operation">
+    <dl class="system">
       <dt>
         <div class="ico"><i></i></div>
-        <h3><?php echo $lang['nc_operation'];?></h3>
-        <h5><?php echo $lang['dashboard_wel_stat_des'];?></h5>
+        <h3>分销</h3>
+        <h5>分销系统设置管理审核</h5>
       </dt>
       <dd>
         <ul>
-          <li class="w15pre none"><a href="index.php?act=groupbuy&op=groupbuy_verify_list"><?php echo $lang['dashboard_wel_groupbuy'];?><sub><em id="statistics_groupbuy_verify_list">0</em></sub></a></li>
-          <li class="w17pre none"><a href="index.php?act=pointorder&op=pointorder_list&porderstate=waitship"><?php echo $lang['dashboard_wel_point_order'];?><sub><em id="statistics_points_order">0</em></sub></a></li>
-          <li class="w17pre none"><a href="index.php?act=bill&op=show_statis&os_month=&query_store=&bill_state=2"><?php echo $lang['dashboard_wel_check_billno'];?><sub><em id="statistics_check_billno">0</em></sub></a></li>
-          <li class="w17pre none"><a href="index.php?act=bill&op=show_statis&os_month=&query_store=&bill_state=3"><?php echo $lang['dashboard_wel_pay_billno'];?><sub><em id="statistics_pay_billno">0</em></sub></a></li>
-          <li class="w17pre none"><a href="<?php echo urlAdmin('mall_consult', 'index');?>">平台客服<sub><em id="statistics_mall_consult">0</em></sub></a></li>
-          <li class="w17pre none"><a href="<?php echo urlAdmin('delivery', 'index', array('sign' => 'verify'));?>">服务站<sub><em id="statistics_delivery_point">0</em></sub></a></li>
+          <li class="w25pre none"><a href="index.php?act=fenxiao_merchant&op=store">本周新增<sub><em id="statistics_groupbuy_verify_list">0</em></sub></a></li>
+          <li class="w25pre none"><a href="index.php?act=fenxiao_merchant&op=store">分销商管理<sub><em id="statistics_points_order">0</em></sub></a></li>
+          <li class="w25pre none"><a href="index.php?act=fenxiao_goods&op=goods">分销商品管理<sub><em id="statistics_check_billno">0</em></sub></a></li>
+          <li class="w25pre none"><a href="index.php?act=fenxiao_member&op=member">分销员管理<sub><em id="statistics_pay_billno">0</em></sub></a></li>
         </ul>
       </dd>
     </dl>
@@ -134,28 +132,27 @@
       </dd>
     </dl>
     <?php }?>
-    <dl class="system">
-      <dt>
-        <div class="ico"><i></i></div>
-        <h3><?php echo $lang['dashboard_welcome_sys_info'];?></h3>
-        <div id="system-info">
-          <ul>
-            <li>好商城V4 <?php echo $lang['dashboard_welcome_version'];?><span>20160221</span></li>
-            <li><?php echo $lang['dashboard_welcome_install_date'];?><span><?php echo $output['statistics']['setup_date'];?></span></li>
-            <li><?php echo $lang['dashboard_welcome_server_os'];?><span><?php echo $output['statistics']['os'];?></span></li>
-            <li>WEB <?php echo $lang['dashboard_welcome_server'];?><span><?php echo $output['statistics']['web_server'];?></span></li>
-            <li>PHP <?php echo $lang['dashboard_welcome_version'];?><span><?php echo $output['statistics']['php_version'];?></span></li>
-            <li>MYSQL <?php echo $lang['dashboard_welcome_version'];?><span><?php echo $output['statistics']['sql_version'];?></span></li>
-          </ul>
-        </div>
-      </dt>
-      <dd>
-        <ul>
-          <li class="w50pre none"><a href="http://www.33hao.com" target="_blank">官方网站<sub></sub></a></li>
-          <li class="w50pre none"><a href="http://bbs.33hao.com" target="_blank">官方论坛<sub></sub></a></li>
-        </ul>
-      </dd>
-    </dl>
+
+      <dl class="operation">
+          <dt>
+          <div class="ico"><i></i></div>
+          <h3><?php echo $lang['nc_operation'];?></h3>
+          <h5><?php echo $lang['dashboard_wel_stat_des'];?></h5>
+          </dt>
+          <dd>
+              <ul>
+                  <li class="w15pre none"><a href="index.php?act=groupbuy&op=groupbuy_verify_list"><?php echo $lang['dashboard_wel_groupbuy'];?><sub><em id="statistics_groupbuy_verify_list">0</em></sub></a></li>
+                  <li class="w17pre none"><a href="index.php?act=pointorder&op=pointorder_list&porderstate=waitship"><?php echo $lang['dashboard_wel_point_order'];?><sub><em id="statistics_points_order">0</em></sub></a></li>
+                  <li class="w17pre none"><a href="index.php?act=bill&op=show_statis&os_month=&query_store=&bill_state=2"><?php echo $lang['dashboard_wel_check_billno'];?><sub><em id="statistics_check_billno">0</em></sub></a></li>
+                  <li class="w17pre none"><a href="index.php?act=bill&op=show_statis&os_month=&query_store=&bill_state=3"><?php echo $lang['dashboard_wel_pay_billno'];?><sub><em id="statistics_pay_billno">0</em></sub></a></li>
+                  <li class="w17pre none"><a href="<?php echo urlAdmin('mall_consult', 'index');?>">平台客服<sub><em id="statistics_mall_consult">0</em></sub></a></li>
+                  <li class="w17pre none"><a href="<?php echo urlAdmin('delivery', 'index', array('sign' => 'verify'));?>">服务站<sub><em id="statistics_delivery_point">0</em></sub></a></li>
+              </ul>
+          </dd>
+      </dl>
+
+
+
     <div class="clear"></div>
     <div class="system-info"></div>
   </div>

@@ -25,15 +25,15 @@
     <?php foreach($output['member_list'] as $value){?>
     <li class="item">
       <div class="goods-content-fenxiao" nctype_goods=" <?php echo $value['goods_id'];?>" nctype_store="<?php echo $value['store_id'];?>">
-        <div class="goods-fenxiao-pic"><a href="<?php echo urlShop('goods','index',array('goods_id'=>$value['goods_id']));?>" target="_blank" title="<?php echo $value['goods_name'];?>"><img src="<?php echo UPLOAD_SITE_URL;?>/shop/common/loading.gif" rel="lazy" data-url="<?php echo $value['member_avatar'];?>" title="<?php echo $value['goods_name'];?>" alt="<?php echo $value['goods_name'];?>" /></a></div>
+        <div class="goods-fenxiao-pic"><a href="#"><img src="<?php echo UPLOAD_SITE_URL;?>/shop/common/loading.gif" rel="lazy" data-url="<?php echo $value['member_avatar'];?>" title="<?php echo $value['goods_name'];?>" alt="<?php echo $value['goods_name'];?>" /></a></div>
         
         <div class="goods-info2">
           
-          <div class="goods-fenxiao-name" ><a href="<?php echo urlShop('goods','index',array('goods_id'=>$value['goods_id']));?>" target="_blank" title="<?php echo $value['goods_jingle'];?>">用户名：<?php echo $value['goods_name_highlight'];?><em><?php echo $value['member_name'];?></em></a></div>
-          <div class="goods-normal"> 分销等级：</div>
-          <div class="goods-normal"> 已&nbsp;&nbsp;分&nbsp;&nbsp;销：</div>
-          <div class="goods-normal"> 分销总额：</div>
-          <div class="goods-normal"> 返利总额：</div>
+          <div class="goods-fenxiao-name" ><a href="#" title="<?php echo $value['goods_jingle'];?>">用户名：<?php echo $value['goods_name_highlight'];?><em><?php echo $value['member_name'];?></em></a></div>
+          <div class="goods-normal"> 分销等级：<img src="<?php echo UPLOAD_SITE_URL.'/'.ATTACH_ADV.'/'.$value['level_icon']; ?>" title="<?php echo $value['level_name']; ?>"></div>
+          <div class="goods-normal"> 已&nbsp;&nbsp;分&nbsp;&nbsp;销：<?php echo $value['num_sum'];?>&nbsp;&nbsp;件</div>
+          <div class="goods-normal"> 分销总额：<?php echo $value['price_sum'];?>&nbsp;&nbsp;元</div>
+          <div class="goods-normal"> 返利总额：<?php echo $value['money_sum'];?>&nbsp;&nbsp;元</div>
           <div class="goods-normal"> 注册时间：<?php echo $value['member_time'];?></div>
 
           

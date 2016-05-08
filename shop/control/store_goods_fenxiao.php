@@ -291,7 +291,7 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
         $class_array = $model_class->getGoodsClassInfoById($goodscommon_info['gc_id']);
 
         if ($fenxiao_v1 <= 0 || $fenxiao_v2 <= 0 && $fenxiao_v3 <= 0 && $fenxiao_v4 <= 0)
-            showDialog(L('store_goods_index_goods_edit_fail'), urlShop('store_goods_online', 'index'));
+            showDialog('分销申请失败，返利比例必须大于0', urlShop('store_goods_online', 'index'));
 
         if ($class_array['fenxiao_rate'] >= $fenxiao_v4 & $fenxiao_v4 >= $fenxiao_v3 && $fenxiao_v3 >= $fenxiao_v2 && $fenxiao_v2 >= $fenxiao_v1){
             $update_common['fenxiao_v1']         = $fenxiao_v1;
@@ -300,7 +300,7 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
             $update_common['fenxiao_v4']         = $fenxiao_v4;
         }
         else
-            showDialog(L('store_goods_index_goods_edit_fail'), urlShop('store_goods_online', 'index'));
+            showDialog('分销申请失败，返利比例符合 0<普通<铜牌<银牌<金牌<系统设置', urlShop('store_goods_online', 'index'));
 
 
         $return = $model_goods->editGoodsCommon($update_common, array('goods_commonid' => $common_id, 'store_id' => $_SESSION['store_id']));
@@ -311,6 +311,7 @@ class store_goods_fenxiaoControl extends BaseSellerControl {
         $update_goods['fenxiao_v2']         = $update_common['fenxiao_v2'];
         $update_goods['fenxiao_v3']         = $update_common['fenxiao_v3'];
         $update_goods['fenxiao_v4']         = $update_common['fenxiao_v4'];
+        $update_goods['fenxiao_time']         = $update_common['fenxiao_time'];
 
         $return = $model_goods->editGoods($update_goods,array('goods_commonid'=>$common_id));
 

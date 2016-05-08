@@ -45,4 +45,10 @@ ALTER TABLE `33hao_fenxiao_merchant_grade` ADD `fmg_icon` VARCHAR(50) NOT NULL ;
 INSERT INTO `33hao`.`33hao_fenxiao_merchant_grade` (`fmg_id`, `fmg_name`, `fmg_goods_limit`, `fmg_member_limit`, `fmg_points`, `fmg_icon`) VALUES ('4', '金牌', '400', '400', '4000', '');
 
 
+ALTER TABLE `33hao_fenxiao_fanli` ADD `goods_num` INT(10) NOT NULL ;
+ALTER TABLE `33hao_fenxiao_fanli` ADD `store_id` INT(10) NOT NULL ;
+ALTER TABLE `33hao_fenxiao_fanli` ADD `add_time` INT(10) NOT NULL ;
+ALTER TABLE `33hao_fenxiao_fanli` ADD `buyer_id` INT(10) NOT NULL ;
+
+ALTER TABLE `33hao_goods` ADD `fenxiao_time` INT(11) NOT NULL ;
 

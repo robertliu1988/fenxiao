@@ -24,6 +24,7 @@
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['goods_index_all_goods'];?></span></a></li>
         <li><a href="<?php echo urlAdmin('fenxiao_goods', 'goods', array('type' => 'waitverify'));?>"><span>等待审核</span></a></li>
+          <li><a href="<?php echo urlAdmin('fenxiao_goods', 'goods', array('type' => 'cancelverify'));?>"><span>终止分销审核</span></a></li>
       </ul>
     </div>
   </div>

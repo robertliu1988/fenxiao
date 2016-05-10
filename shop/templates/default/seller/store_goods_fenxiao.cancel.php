@@ -22,33 +22,8 @@
 #fixedNavBar li a:hover { color: #FFF; text-decoration: none; background-color: #27a9e3;}
 </style>
 
-
-<?php if ($output['edit_goods_sign']) {?>
-<div class="tabmenu">
-  <?php include template('layout/submenu');?>
-</div>
-<?php } else {?>
-<ul class="add-goods-step">
-  <li><i class="icon icon-list-alt"></i>
-    <h6>STEP.1</h6>
-    <h2>选择商品分类</h2>
-    <i class="arrow icon-angle-right"></i> </li>
-  <li class="current"><i class="icon icon-edit"></i>
-    <h6>STEP.2</h6>
-    <h2>填写商品详情</h2>
-    <i class="arrow icon-angle-right"></i> </li>
-  <li><i class="icon icon-camera-retro "></i>
-    <h6>STEP.3</h6>
-    <h2>上传商品图片</h2>
-    <i class="arrow icon-angle-right"></i> </li>
-  <li><i class="icon icon-ok-circle"></i>
-    <h6>STEP.4</h6>
-    <h2>商品发布成功</h2>
-  </li>
-</ul>
-<?php }?>
 <div class="item-publish">
-  <form method="post" id="goods_form" action="<?php if ($output['edit_goods_sign']) { echo urlShop('store_goods_fenxiao', 'edit_save_goods');} else { echo urlShop('store_goods_add', 'save_goods');}?>">
+  <form method="post" id="goods_form" action="<?php if ($output['edit_goods_sign']) { echo urlShop('store_goods_fenxiao', 'cancel_save_goods');} else { echo urlShop('store_goods_add', 'save_goods');}?>">
     <input type="hidden" name="form_submit" value="ok" />
     <input type="hidden" name="commonid" value="<?php echo $output['goods']['goods_commonid'];?>" />
     <input type="hidden" name="type_id" value="<?php echo $output['goods_class']['type_id'];?>" />
@@ -60,47 +35,16 @@
 	<dl>
         <dd>
 <div class="alert">
-          <p class="hint">分销商提交产品分销后不可进行任何更改、终止操作，直至分销时效结束。设置分销返利及分销时效时请谨慎。</p>
-            <p class="hint">本类商品分销最高返利比例为<span style="color:red;font-weight: bold;"><?php echo $output['fenxiao_rate']; ?>%</span>，返利比例模式为：0<普通<铜牌<银牌<金牌<系统设置，精确至小数点后一位</p>  </div>      </dd>
+          <p class="hint">原则上分销商提交了产品分销后，不可再进行任何更改、终止操作。</p>
+            <p class="hint">若有特殊情况，可对该产品提请申述，提交申述理由至后台。</p>
+
+</div>      </dd>
       </dl>
 
         <dl>
-            <dt>分销返利（普通）：</dt>
+            <dt>终止理由：</dt>
             <dd>
-                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v1']; ?>" name="fenxiao_v1">%
-                <p class="hint">高一级返利必须大于低一级返利。</p>
-            </dd>
-        </dl>
-        <dl>
-            <dt>分销返利（铜牌）：</dt>
-            <dd>
-                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v2']; ?>" name="fenxiao_v2">%
-            </dd>
-        </dl>
-        <dl>
-            <dt>分销返利（银牌）：</dt>
-            <dd>
-                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v3']; ?>" name="fenxiao_v3">%
-            </dd>
-        </dl>
-        <dl>
-            <dt>分销返利（金牌）：</dt>
-            <dd>
-                <input class="text" type="text" value="<?php echo $output['goods']['fenxiao_v4']; ?>" name="fenxiao_v4">%
-            </dd>
-        </dl>
-        <dl>
-            <dt>分销时效：</dt>
-            <dd>
-                <select name="fenxiao_day">
-                    <option value=""><?php echo $lang['nc_please_choose'];?>...</option>
-                    <?php if(!empty($output['fenxiao_day']) && is_array($output['fenxiao_day'])){ ?>
-                        <?php foreach($output['fenxiao_day'] as $k){ ?>
-                            <option value="<?php echo $k;?>" <?php if($output['goods']['fenxiao_day'] == $k){?>selected<?php }?>><?php echo $k;?></option>
-                        <?php } ?>
-                    <?php } ?>
-                </select>
-                天
+                <textarea name="cancel_reason" class="textarea h60 w400" ><?php echo $output['goods']['cancel_reason'];?></textarea>
             </dd>
         </dl>
  

@@ -238,7 +238,7 @@ label.error i { margin-right: 4px;}
 .ncsc-head-layout .sitemap-menu .title-bar .close { font: lighter 16px/18px Verdana; color: #999; vertical-align: middle; text-align: center; width: 18px; height: 18px; position: absolute ; z-index: 1; top: -5px; right: -5px; cursor: pointer;}
 .ncsc-head-layout .sitemap-menu .title-bar .close:hover { color: #28B779; }
 .ncsc-head-layout .sitemap-menu .content { font-size: 0; *word-spacing:-1px/*IE6、7*/; overflow: hidden;}
-.ncsc-head-layout .sitemap-menu dl { color: #555; vertical-align: top; letter-spacing: normal; word-spacing: normal; display: inline-block; *display: inline/*IE6,7*/; width: 144px; height: 220px; padding: 0 10px; margin: -1px 0 0 -1px; border-style: dotted; border-color: #E6E6E6; border-width: 1px 0 0 1px; zoom: 1;}
+.ncsc-head-layout .sitemap-menu dl { color: #555; vertical-align: top; letter-spacing: normal; word-spacing: normal; display: inline-block; *display: inline/*IE6,7*/; width: 144px; height: 260px; padding: 0 10px; margin: -1px 0 0 -1px; border-style: dotted; border-color: #E6E6E6; border-width: 1px 0 0 1px; zoom: 1;}
 .ncsc-head-layout .sitemap-menu dl dt { font: lighter 16px/32px "microsoft yahei"; color: #28B779;}
 .ncsc-head-layout .sitemap-menu dl dd { display: block; height: 20px; padding: 2px 8px;}
 .ncsc-head-layout .sitemap-menu dl dd a { font: 12px/20px "microsoft yahei"; color: #555; display: inline-block; *display: inline/*IE7*/; zoom: 1;}

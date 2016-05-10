@@ -89,6 +89,11 @@ class fenxiao_goodsControl extends SystemControl{
                 $where['is_fenxiao'] = 2;
                 $goods_list = $model_goods->getGoodsCommonList($where);
                 break;
+            // 终止审核
+            case 'cancelverify':
+                $where['cancel_status'] = 1;
+                $goods_list = $model_goods->getGoodsCommonList($where);
+                break;
             // 全部商品
             default:
                 $goods_list = $model_goods->getGoodsCommonList($where,'*',10,$order);
@@ -127,6 +132,10 @@ class fenxiao_goodsControl extends SystemControl{
             // 等待审核
             case 'waitverify':
                 Tpl::showpage('fenxiao_goods.verify');
+                break;
+            // 终止审核
+            case 'cancelverify':
+                Tpl::showpage('fenxiao_goods.cancel');
                 break;
             // 全部商品
             default:
@@ -203,6 +212,37 @@ class fenxiao_goodsControl extends SystemControl{
         }
         Tpl::output('commonids', $_GET['id']);
         Tpl::showpage('fenxiao_goods.verify_remark', 'null_layout');
+    }
+
+    public function cancel_verifyOp(){
+
+        if (chksubmit()) {
+
+            $commonids = $_POST['commonids'];
+            $commonid_array = explode(',', $commonids);
+            foreach ($commonid_array as $value) {
+                if (!is_numeric($value)) {
+                    showDialog(L('nc_common_op_fail'), 'reload');
+                }
+            }
+
+            $update1 = array();
+            $update1['cancel_status'] = 0;
+            $update1['is_fenxiao'] = intval($_POST['verify_state']);
+
+            $update2 = array();
+            $update2['is_fenxiao'] = intval($_POST['verify_state']);
+
+            $where = array();
+            $where['goods_commonid'] = array('in', $commonid_array);
+
+            $model_goods = Model('goods');
+            $model_goods->editProduces($where, $update1,$update2);
+
+            showDialog(L('nc_common_op_succ'), 'reload', 'succ');
+        }
+        Tpl::output('commonids', $_GET['id']);
+        Tpl::showpage('fenxiao_goods.cancel_remark', 'null_layout');
     }
 
     /**

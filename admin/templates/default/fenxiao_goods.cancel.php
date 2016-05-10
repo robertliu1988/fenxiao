@@ -9,8 +9,8 @@
       <h3><?php echo $lang['goods_index_goods'];?></h3>
       <ul class="tab-base">
         <li><a href="<?php echo urlAdmin('fenxiao_goods', 'goods');?>" ><span><?php echo $lang['goods_index_all_goods'];?></span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span>等待审核</span></a></li>
-        <li><a href="<?php echo urlAdmin('fenxiao_goods', 'goods', array('type' => 'cancelverify'));?>"><span>终止分销审核</span></a></li>
+          <li><a href="<?php echo urlAdmin('fenxiao_goods', 'goods', array('type' => 'waitverify'));?>"><span>等待审核</span></a></li>
+          <li><a href="JavaScript:void(0);" class="current"><span>终止分销审核</span></a></li>
       </ul>
     </div>
   </div>
@@ -108,9 +108,7 @@
           <th colspan="2"><?php echo $lang['goods_index_name'];?></th>
           <th class="w72 align-center">各级返利（百分比）</th>
             <th class="w72 align-center">分销时效/到期日</th>
-            <th class="w72 align-center">价格（元）</th>
-          <th class="w72 align-center">库存</th>
-          <th class="w72 align-center">审核状态</th>
+          <th class="w96 align-center">申请理由</th>
           <th class="w96 align-center"><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -148,9 +146,7 @@
 
 
 
-            <td class="align-center"><?php echo $lang['currency'].$v['goods_price']?></td>
-          <td class="align-center"><?php echo $output['storage_array'][$v['goods_commonid']]['sum']?></td>
-          <td class="align-center"><p><?php echo $output['verify'][$v['is_fenxiao']];?></p>
+          <td class="align-center"><p><?php echo $v['cancel_reason'];?></p>
            </td>
           <td class="w48 align-center"><a href="<?php echo urlShop('goods', 'index', array('goods_id' => $output['storage_array'][$v['goods_commonid']]['goods_id']));?>" target="_blank"><?php echo $lang['nc_view'];?></a>&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="goods_verify(<?php echo $v['goods_commonid'];?>);">审核</a></td>
         </tr>
@@ -249,7 +245,7 @@ function getId() {
 
 // 分销
 function goods_verify(ids) {
-    _uri = "<?php echo ADMIN_SITE_URL;?>/index.php?act=fenxiao_goods&op=goods_verify&id=" + ids;
-    CUR_DIALOG = ajax_form('goods_verify', '审核商品', _uri, 350);
+    _uri = "<?php echo ADMIN_SITE_URL;?>/index.php?act=fenxiao_goods&op=cancel_verify&id=" + ids;
+    CUR_DIALOG = ajax_form('cancel_verify', '终止分销审核', _uri, 350);
 }
 </script>

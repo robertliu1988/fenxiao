@@ -76,8 +76,11 @@ function initInviteForm() {
 </script>
 <?php
 $member_id = base64_encode(intval($_SESSION['member_id'])*1);
-$invite_url = urlShop('goods','index',array('goods_id'=>$_GET['goods_id']))."&inviter=".$member_id;
+//$invite_url = urlShop('goods','index',array('goods_id'=>$_GET['goods_id']))."&inviter=".$member_id;
 
+$invite_url = SHOP_SITE_URL."/index.php?act=goods&op=index&goods_id=".$_GET['goods_id']."&inviter=".$member_id;
+
+    http://localhost/shop/index.php?act=goods&op=index&goods_id=233&inviter=MQ==
 ?>
 </head><body>
 <div class="container-bg">

@@ -52,3 +52,6 @@ ALTER TABLE `33hao_fenxiao_fanli` ADD `buyer_id` INT(10) NOT NULL ;
 
 ALTER TABLE `33hao_goods` ADD `fenxiao_time` INT(11) NOT NULL ;
 
+ALTER TABLE `33hao_goods_common` ADD `cancel_status` TINYINT(1) NOT NULL , ADD `cancel_reason` VARCHAR(1024) NOT NULL ;
+
+

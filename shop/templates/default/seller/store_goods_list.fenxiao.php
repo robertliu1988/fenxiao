@@ -92,8 +92,19 @@
       <td class="nscs-table-handle" style="width:220px;">
         <span><a href="<?php echo urlShop('store_goods_fenxiao_member', 'index', array('goods_commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
         <p>查看分销申请</p>
-        </a></span> 
-        </td>
+        </a></span>
+
+          <?php if ($val['cancel_status'] == 0){ ?>
+       <span><a href="<?php echo urlShop('store_goods_fenxiao', 'cancel', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
+              <p>终止分销</p>
+          </a></span>
+            <?php } else {   ?>
+          <span><a href="<?php echo urlShop('store_goods_fenxiao', 'cancel', array('commonid' => $val['goods_commonid']));?>" class="btn-blue"><i class="icon-edit"></i>
+                  <p>终止审核中</p>
+              </a></span>
+<?php } ?>
+
+      </td>
     </tr>
     <tr style="display:none;">
       <td colspan="20"><div class="ncsc-goods-sku ps-container"></div></td>

@@ -99,6 +99,27 @@ class goodsControl extends BaseGoodsControl {
         $condition = array();
         $member_id = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
         $member_info = $model_member->getMemberInfoByID($member_id);
+        if ($member_id == -1)
+            $member_info['fenxiao_status'] = 2;
+
+        $condition = array();
+        $condition['store_id'] = $goods_info['store_id'];
+        $goods_store_info = $model_store->getStoreInfo($condition);
+        $model_grade = Model('fenxiao_merchant_grade');
+        $grade_list = $model_grade->getGradeList();
+        $level = '未定义';
+        $fenxiao_points = $goods_store_info['fenxiao_points'];
+        foreach ($grade_list as $grade) {
+            if (intval($fenxiao_points) >= $grade['fmg_points'])
+                $fmg_member_limit = $grade['fmg_member_limit'];
+        }
+
+        $condition = array();
+        $condition['goods_id'] = $goods_info['goods_id'];
+        $goods['fenxiao_apply_num'] = $model_fenxiao_goods_member->getFenxiaoGoodsMemberCount($condition);
+        $goods['fenxiao_apply_num_left'] = $fmg_member_limit - $goods['fenxiao_apply_num'];
+        if ($goods['fenxiao_apply_num_left'] <= 0)
+            $goods['fenxiao_apply_num_left'] = 0;
 
         if ($member_info['fenxiao_status'] != 2 || $goods_info['is_fenxiao'] != 1 || $store_info['store_id'] == $goods_info['store_id'])
             $fenxiao_status = -1;//无法分销
@@ -108,8 +129,11 @@ class goodsControl extends BaseGoodsControl {
             else
                 $fenxiao_status = 1;//分销审核中
         }
+        else if ( $goods['fenxiao_apply_num_left'] == 0)
+            $fenxiao_status = -2;//分销已满
         else
             $fenxiao_status = 0;//未分销
+        
         Tpl::output('fenxiao_status', $fenxiao_status);
 
         //分销图标

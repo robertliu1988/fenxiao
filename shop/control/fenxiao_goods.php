@@ -171,17 +171,19 @@ class fenxiao_goodsControl extends BaseHomeControl {
             $condition['member_id'] = is_null($_SESSION['member_id'])?-1:$_SESSION['member_id'];
             $store_info = $model_store->getStoreInfo($condition);
 
-            if ($store_info['store_id'] == $goods['store_id'])
-                $goods['member_fenxiao'] = -1;//无法分销
-            else if (!empty($info)){
-                if ($info['status'] == 1)
-                    $goods['member_fenxiao'] = 2;//已分销
-                else
-                    $goods['member_fenxiao'] = 1;//分销审核中
-            }
-            else
-                $goods['member_fenxiao'] = 0;//未分销
 
+            $condition = array();
+            $condition['store_id'] = $goods['store_id'];
+            $goods_store_info = $model_store->getStoreInfo($condition);
+
+            $model_grade = Model('fenxiao_merchant_grade');
+            $grade_list = $model_grade->getGradeList();
+            $level = '未定义';
+            $fenxiao_points = $goods_store_info['fenxiao_points'];
+            foreach ($grade_list as $grade) {
+                if (intval($fenxiao_points) >= $grade['fmg_points'])
+                    $fmg_member_limit = $grade['fmg_member_limit'];
+            }
 
             $common_info = $model_goods->getGoodeCommonInfoByID($goods['goods_commonid'],'fenxiao_time');
             $left_seconds = $common_info['fenxiao_time']-time();
@@ -194,6 +196,9 @@ class fenxiao_goodsControl extends BaseHomeControl {
             $condition = array();
             $condition['goods_id'] = $goods['goods_id'];
             $goods['fenxiao_apply_num'] = $model_fenxiao_goods_member->getFenxiaoGoodsMemberCount($condition);
+            $goods['fenxiao_apply_num_left'] = $fmg_member_limit - $goods['fenxiao_apply_num'];
+            if ($goods['fenxiao_apply_num_left'] <= 0)
+                $goods['fenxiao_apply_num_left'] = 0;
 
             $condition = array();
             $condition['goods_id'] = $goods['goods_id'];
@@ -207,6 +212,20 @@ class fenxiao_goodsControl extends BaseHomeControl {
             }
             $goods['fenxiao_num'] = $fenxiao_num;
             $goods['fenxiao_money'] = $fenxiao_money;
+
+            if ($store_info['store_id'] == $goods['store_id'])
+                $goods['member_fenxiao'] = -1;//无法分销
+            else if (!empty($info)){
+                if ($info['status'] == 1)
+                    $goods['member_fenxiao'] = 2;//已分销
+                else
+                    $goods['member_fenxiao'] = 1;//分销审核中
+            }
+            else if ( $goods['fenxiao_apply_num_left'] == 0)
+                $goods['member_fenxiao'] = -2;//分销已满
+            else
+                $goods['member_fenxiao'] = 0;//未分销
+
 
             $final_goods[] = $goods;
         }

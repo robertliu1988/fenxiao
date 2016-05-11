@@ -324,7 +324,6 @@
             <?php if ($output['fenxiao_status']== 0) {?>
                 <a href="javascript:void(0);" nctype="verify_batch" class="fenxiaonow" title="" id="fenxiao" data-param="{goods_id:<?php echo $output['goods']['goods_id'];?>}">我要分销</a>
             <?php } else if ($output['fenxiao_status'] == 1) { ?>
-          <!-- v3-b10 end-->
             <a href="javascript:void(0);" class="fenxiaonow" title="" id="fenxiao">分销审核中</a>
             <?php } else if ($output['fenxiao_status'] == 2) { ?>
             <a href="javascript:void(0);" class="fenxiaonow" title="" id="fenxiao">分销中</a>

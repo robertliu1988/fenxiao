@@ -57,7 +57,7 @@
                   <span><img src="<?php echo UPLOAD_SITE_URL."/".ATTACH_ADV."/".$output['grade_list'][3]['fmg_icon']; ?>">&nbsp;&nbsp;&nbsp;返利：<?php echo $value['fenxiao_v4']; ?>%</span>
               </div>
               <div>
-                  已申请：<label style="color:#00B0F0;font-weight:bold;"><?php echo $value['fenxiao_apply_num']; ?></label>&nbsp;&nbsp;人
+                  已申请：<label style="color:#00B0F0;font-weight:bold;"><?php echo $value['fenxiao_apply_num']; ?></label>&nbsp;&nbsp;人&nbsp;&nbsp;（剩余&nbsp;&nbsp;<label style="color:red;font-weight:bold;"><?php echo $value['fenxiao_apply_num_left']; ?></label>&nbsp;&nbsp;人）
               </div>
               <div>
                   已分销：<label style="color:#FF9933;font-weight:bold;"><?php echo $value['fenxiao_num']; ?></label>&nbsp;&nbsp;件
@@ -82,6 +82,10 @@
               <?php } else if ($value['member_fenxiao'] == -1){  ?>
 
                   <a href="javascript:void(0);" class="btn">无法分销自己店铺</a>
+
+              <?php } else if ($value['member_fenxiao'] == -2){  ?>
+
+                  <a href="javascript:void(0);" class="btn">分销已满</a>
 
               <?php } else if ($value['member_fenxiao'] == 0){  ?>
 

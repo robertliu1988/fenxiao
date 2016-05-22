@@ -138,7 +138,218 @@ class goodsControl extends mobileHomeControl{
         }
         $page_count = $model_goods->gettotalpage();
         //处理商品列表(团购、限时折扣、商品图片)
-        $goods_list = $this->_goods_list_extend($goods_list);
+
+        $member_id = $this->getMemberIdIfExists();
+        $inviter = base64_encode($member_id);
+
+        $final_goods = array();
+        foreach ($goods_list as $single_goods) {
+            $single_goods['inviter'] = $inviter;
+            $final_goods[] = $single_goods;
+        }
+
+        $goods_list = $this->_goods_list_extend($final_goods);
+        output_data(array('goods_list' => $goods_list), mobile_page($page_count));
+    }
+
+    /**
+     * 商品列表
+     */
+    public function fenxiao_listOp() {
+        $model_goods = Model('goods');
+        $model_search = Model('search');
+        $_GET['is_book'] = 0;
+
+        //查询条件
+        $condition = array();
+        // ==== 暂时不显示定金预售商品，手机端未做。  ====
+        //$condition['is_book'] = 0;
+        if(!empty($_GET['gc_id']) && intval($_GET['gc_id']) > 0) {
+            $condition['gc_id'] = $_GET['gc_id'];
+        } elseif (!empty($_GET['keyword'])) {
+            $condition['goods_name|goods_jingle'] = array('like', '%' . $_GET['keyword'] . '%');
+            if ($_COOKIE['hisSearch'] == '') {
+                $his_sh_list = array();
+            } else {
+                $his_sh_list = explode('~', $_COOKIE['hisSearch']);
+            }
+            if (strlen($_GET['keyword']) <= 20 && !in_array($_GET['keyword'],$his_sh_list)) {
+                if (array_unshift($his_sh_list, $_GET['keyword']) > 8) {
+                    array_pop($his_sh_list);
+                }
+            }
+            setcookie('hisSearch', implode('~', $his_sh_list), time()+2592000, '/', SUBDOMAIN_SUFFIX ? SUBDOMAIN_SUFFIX : '', false);
+
+        } elseif (!empty($_GET['barcode'])) {
+            $condition['goods_barcode'] = $_GET['barcode'];
+        } elseif (!empty($_GET['b_id']) && intval($_GET['b_id'] > 0)) {
+            $condition['brand_id'] = intval($_GET['b_id']);
+        }
+        $price_from = preg_match('/^[\d.]{1,20}$/',$_GET['price_from']) ? $_GET['price_from'] : null;
+        $price_to = preg_match('/^[\d.]{1,20}$/',$_GET['price_to']) ? $_GET['price_to'] : null;
+
+        //所需字段
+        $fieldstr = "goods_id,goods_commonid,store_id,goods_name,goods_jingle,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_image,goods_salenum,evaluation_good_star,evaluation_count";
+
+        $fieldstr .= ',is_virtual,is_presell,is_fcode,have_gift,goods_jingle,store_id,store_name,is_own_shop,fenxiao_v1,fenxiao_v2,fenxiao_v3,fenxiao_v4';
+
+        //排序方式
+        $order = $this->_goods_list_order($_GET['key'], $_GET['order']);
+
+        //全文搜索搜索参数
+        $indexer_searcharr = $_GET;
+        //搜索消费者保障服务
+        $search_ci_arr = array();
+        $_GET['ci'] = trim($_GET['ci'],'_');
+        if ($_GET['ci'] && $_GET['ci'] != 0 && is_string($_GET['ci'])) {
+            //处理参数
+            $search_ci= $_GET['ci'];
+            $search_ci_arr = explode('_',$search_ci);
+            $indexer_searcharr['search_ci_arr'] = $search_ci_arr;
+        }
+        if ($_GET['own_shop'] == 1) {
+            $indexer_searcharr['type'] = 1;
+        }
+        $indexer_searcharr['price_from'] = $price_from;
+        $indexer_searcharr['price_to'] = $price_to;
+
+        //优先从全文索引库里查找
+        list($goods_list,$indexer_count) = $model_search->indexerSearch($indexer_searcharr,$this->page);
+        if (!is_null($goods_list)) {
+            $goods_list = array_values($goods_list);
+            pagecmd('setEachNum',$this->page);
+            pagecmd('setTotalNum',$indexer_count);
+        } else {
+            //查询消费者保障服务
+            $contract_item = array();
+            if (C('contract_allow') == 1) {
+                $contract_item = Model('contract')->getContractItemByCache();
+            }
+            //消费者保障服务
+            if ($contract_item && $search_ci_arr) {
+                foreach ($search_ci_arr as $ci_val) {
+                    $condition["contract_{$ci_val}"] = 1;
+                }
+            }
+
+            if ($price_from && $price_from) {
+                $condition['goods_promotion_price'] = array('between',"{$price_from},{$price_to}");
+            } elseif ($price_from) {
+                $condition['goods_promotion_price'] = array('egt',$price_from);
+            } elseif ($price_to) {
+                $condition['goods_promotion_price'] = array('elt',$price_to);
+            }
+            if ($_GET['gift'] == 1) {
+                $condition['have_gift'] = 1;
+            }
+            if ($_GET['own_shop'] == 1) {
+                $condition['store_id'] = 1;
+            }
+            if (intval($_GET['area_id']) > 0) {
+                $condition['areaid_1'] = intval($_GET['area_id']);
+            }
+
+            //团购和限时折扣搜索
+            $_tmp = array();
+            if ($_GET['groupbuy'] == 1) {
+                $_tmp[] = 1;
+            }
+            if ($_GET['xianshi'] == 1) {
+                $_tmp[] = 2;
+            }
+            if ($_tmp) {
+                $condition['goods_promotion_type'] = array('in',$_tmp);
+            }
+            unset($_tmp);
+
+            //虚拟商品
+            if ($_GET['virtual'] == 1) {
+                $condition['is_virtual'] = 1;
+            }
+            $condition['is_fenxiao'] = 1;
+
+            $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, $this->page);
+        }
+        $page_count = $model_goods->gettotalpage();
+
+        //获取分销信息
+        //判断每个商品的分销状态
+        $final_goods = array();
+        $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+        $model_store	= Model('store');
+        $model_fenxiao_fanli	= Model('fenxiao_fanli');
+        $member_id = $this->getMemberIdIfExists();
+        $inviter = base64_encode($member_id);
+
+        foreach ($goods_list as $goods) {
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $condition['member_id'] = $member_id;
+            $info = $model_fenxiao_goods_member->getOne($condition);
+
+            $condition = array();
+            $condition['member_id'] = $member_id;
+            $store_info = $model_store->getStoreInfo($condition);
+
+
+            $condition = array();
+            $condition['store_id'] = $goods['store_id'];
+            $goods_store_info = $model_store->getStoreInfo($condition);
+
+            $model_grade = Model('fenxiao_merchant_grade');
+            $grade_list = $model_grade->getGradeList();
+            $level = '未定义';
+            $fenxiao_points = $goods_store_info['fenxiao_points'];
+            foreach ($grade_list as $grade) {
+                if (intval($fenxiao_points) >= $grade['fmg_points'])
+                    $fmg_member_limit = $grade['fmg_member_limit'];
+            }
+
+            $common_info = $model_goods->getGoodeCommonInfoByID($goods['goods_commonid'],'fenxiao_time');
+            $left_seconds = $common_info['fenxiao_time']-time();
+            $left_day = intval($left_seconds/(24*3600));
+            $left_hour = intval(($left_seconds%(24*3600))/3600);
+            $left_minute = intval((($left_seconds%(24*3600))%3600)/60);
+            $left_time = $left_day."天".$left_hour."小时".$left_minute."分";
+            $goods['left_time'] = $left_time;
+
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $goods['fenxiao_apply_num'] = $model_fenxiao_goods_member->getFenxiaoGoodsMemberCount($condition);
+            $goods['fenxiao_apply_num_total'] = $fmg_member_limit;
+
+            $condition = array();
+            $condition['goods_id'] = $goods['goods_id'];
+            $fanli_list = $model_fenxiao_fanli->getList($condition);
+
+            $fenxiao_num = 0;
+            $fenxiao_money = 0;
+            foreach ($fanli_list as $fanli) {
+                $fenxiao_num += $fanli['goods_num'];
+                $fenxiao_money += $fanli['fanli_money'];
+            }
+            $goods['fenxiao_num'] = $fenxiao_num;
+            $goods['fenxiao_money'] = $fenxiao_money;
+
+            if ($store_info['store_id'] == $goods['store_id'])
+                $goods['member_fenxiao'] = -1;//无法分销
+            else if (!empty($info)){
+                if ($info['status'] == 1)
+                    $goods['member_fenxiao'] = 2;//已分销
+                else
+                    $goods['member_fenxiao'] = 1;//分销审核中
+            }
+            else if ( $goods['fenxiao_apply_num_left'] == 0)
+                $goods['member_fenxiao'] = -2;//分销已满
+            else
+                $goods['member_fenxiao'] = 0;//未分销
+
+            $goods['inviter'] = $inviter;
+            $final_goods[] = $goods;
+        }
+
+        //处理商品列表(团购、限时折扣、商品图片)
+        $goods_list = $this->_goods_list_extend($final_goods);
         output_data(array('goods_list' => $goods_list), mobile_page($page_count));
     }
 
@@ -166,6 +377,10 @@ class goodsControl extends mobileHomeControl{
                 //价格
                 case '3' :
                     $result = 'goods_price' . ' ' . $sequence;
+                    break;
+                //分销时效
+                case '4' :
+                    $result = 'fenxiao_time' . ' ' . $sequence;
                     break;
             }
         }
@@ -266,6 +481,25 @@ class goodsControl extends mobileHomeControl{
     public function goods_detailOp() {
         $goods_id = intval($_GET['goods_id']);
         $area_id = intval($_GET['area_id']);
+
+        $_GET['inviter'] = urldecode($_GET['inviter']);
+
+        //判断分销信息
+        if ($_GET['inviter']){
+            $inviter = base64_decode($_GET['inviter']);
+
+            $inviter_arr = array();
+
+            if (cookie('inviter'))
+                $inviter_arr = json_decode(base64_decode(cookie('inviter')),true);
+
+            $inviter_arr[$goods_id] = $inviter;
+
+            $inviter_str = base64_encode(json_encode($inviter_arr));
+
+            setNcCookie('inviter',$inviter_str);
+        }
+
         // 商品详细信息
         $model_goods = Model('goods');
         $goods_detail = $model_goods->getGoodsDetail($goods_id);
@@ -397,7 +631,84 @@ class goodsControl extends mobileHomeControl{
         $goods_detail['goods_evaluate_info'] = $goods_evaluate_info;
         
         //$goods_detail['goods_hair_info'] = $this->_calc($area_id, $goods_id);
-	$goods_detail['goods_hair_info'] = array('content'=>'免运费','if_store_cn'=>'有货','if_store'=>true,'area_name'=>'全国');
+	    $goods_detail['goods_hair_info'] = array('content'=>'免运费','if_store_cn'=>'有货','if_store'=>true,'area_name'=>'全国');
+
+        //分销相关信息
+        $goods_info = $goods_detail['goods_info'];
+        $model_fenxiao_goods_member	= Model('fenxiao_goods_member');
+        $model_store	= Model('store');
+        $model_member	= Model('member');
+        $model_fenxiao_fanli	= Model('fenxiao_fanli');
+
+        $condition = array();
+        $condition['goods_id'] = $goods_info['goods_id'];
+        $condition['member_id'] = $member_id;
+        $info = $model_fenxiao_goods_member->getOne($condition);
+
+        $condition = array();
+        $condition['member_id'] = $member_id;
+        $store_info = $model_store->getStoreInfo($condition);
+
+        $condition = array();
+        $member_info = $model_member->getMemberInfoByID($member_id);
+        if ($member_id == -1)
+            $member_info['fenxiao_status'] = 2;
+
+        $condition = array();
+        $condition['store_id'] = $goods_info['store_id'];
+        $goods_store_info = $model_store->getStoreInfo($condition);
+        $model_grade = Model('fenxiao_merchant_grade');
+        $grade_list = $model_grade->getGradeList();
+        $level = '未定义';
+        $fenxiao_points = $goods_store_info['fenxiao_points'];
+        foreach ($grade_list as $grade) {
+            if (intval($fenxiao_points) >= $grade['fmg_points'])
+                $fmg_member_limit = $grade['fmg_member_limit'];
+        }
+
+        $condition = array();
+        $condition['goods_id'] = $goods_info['goods_id'];
+        $goods['fenxiao_apply_num'] = $model_fenxiao_goods_member->getFenxiaoGoodsMemberCount($condition);
+        $goods['fenxiao_apply_num_left'] = $fmg_member_limit - $goods['fenxiao_apply_num'];
+        if ($goods['fenxiao_apply_num_left'] <= 0)
+            $goods['fenxiao_apply_num_left'] = 0;
+
+        if ($member_info['fenxiao_status'] != 2 || $goods_info['is_fenxiao'] != 1 || $store_info['store_id'] == $goods_info['store_id'])
+            $fenxiao_status = -1;//无法分销
+        else if (!empty($info)){
+            if ($info['status'] == 1)
+                $fenxiao_status = 2;//已分销
+            else
+                $fenxiao_status = 1;//分销审核中
+        }
+        else if ( $goods['fenxiao_apply_num_left'] == 0)
+            $fenxiao_status = -2;//分销已满
+        else
+            $fenxiao_status = 0;//未分销
+
+        $condition = array();
+        $condition['goods_id'] = $goods_info['goods_id'];
+        $fanli_list = $model_fenxiao_fanli->getList($condition);
+
+        $fenxiao_num = 0;
+        $fenxiao_money = 0;
+        foreach ($fanli_list as $fanli) {
+            $fenxiao_num += $fanli['goods_num'];
+            $fenxiao_money += $fanli['fanli_money'];
+        }
+
+        $goods_detail['goods_info']['fenxiao_status'] = $fenxiao_status;
+        $goods_detail['goods_info']['fenxiao_apply_num'] = $goods['fenxiao_apply_num'];
+        $goods_detail['goods_info']['fmg_member_limit'] = $fmg_member_limit;
+        $goods_detail['goods_info']['fenxiao_money'] = $fenxiao_money;
+
+        $left_seconds = $goods_info['fenxiao_time']-time();
+        $left_day = intval($left_seconds/(24*3600));
+        $left_hour = intval(($left_seconds%(24*3600))/3600);
+        $left_minute = intval((($left_seconds%(24*3600))%3600)/60);
+        $left_time = $left_day."天".$left_hour."小时".$left_minute."分";
+        $goods_detail['goods_info']['left_time'] = $left_time;
+
         output_data($goods_detail);
     }
 

@@ -24,6 +24,10 @@ $(function() {
                 $("#order_ul").html(e);
                 var e = '<li><a href="predepositlog_list.html"><i class="cc-06"></i><p>预存款</p></a></li>' + '<li><a href="rechargecardlog_list.html"><i class="cc-07"></i><p>充值卡</p></a></li>' + '<li><a href="voucher_list.html"><i class="cc-08"></i><p>代金券</p></a></li>' + '<li><a href="redpacket_list.html"><i class="cc-09"></i><p>红包</p></a></li>' + '<li><a href="pointslog_list.html"><i class="cc-10"></i><p>积分</p></a></li>';
                 $("#asset_ul").html(e);
+				
+				var e = '<li><a href="fenxiao_goods_list.html?data-state=state_verify">' + (a.datas.member_info.order_nopay_count > 0 ? "<em></em>": "") + '<i class="cc-01"></i><p>审核中</p></a></li>' + '<li><a href="fenxiao_goods_list.html?data-state=state_pass">' + (a.datas.member_info.order_noreceipt_count > 0 ? "<em></em>": "") + '<i class="cc-02"></i><p>分销中</p></a></li>' + '<li><a href="fenxiao_fanli_list.html">' + (a.datas.member_info.order_notakes_count > 0 ? "<em></em>": "") + '<i class="cc-03"></i><p>返利</p></a></li>';
+                $("#fenxiao_ul").html(e);
+				
                 return false
             }
         })

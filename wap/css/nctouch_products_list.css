@@ -61,6 +61,9 @@
 .list .goods-secrch-list .goods-pic img { width: 100%; height: 100%;}
 /*右侧商品介绍*/
 .list .goods-secrch-list .goods-info { display: block; height: 4.85rem; padding: 0.38rem 0.38rem 0 0; margin-left: 5.38rem; border-bottom: solid 0.05rem #EEE;}
+
+.list .goods-secrch-list .fenxiao-info { display: block;  padding: 0.38rem 0.38rem 0 0; margin-left: 5.38rem; border-bottom: solid 0.05rem #EEE;}
+
 /*商品名称*/
 .list .goods-secrch-list .goods-name { display: block; height: 2.4rem; overflow: hidden; }
 .list .goods-secrch-list .goods-name h4 { font-size: 0.65rem; line-height: 0.8rem; height: 1.6rem; overflow: hidden;}
@@ -80,6 +83,11 @@
 .list .goods-secrch-list .goods-store .mall { display: inline-block; padding: 0 0.1rem; font-size: 0.55rem; line-height: 0.7rem; color: #FFF; color: #EC5464;}
 .list .goods-secrch-list .goods-store a { color: #777; white-space: nowrap; overflow: hidden;}
 .list .goods-secrch-list .goods-store a i { background-image: url(../images/more_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 60%; vertical-align: top; display: inline-block; width: 1rem; height: 1rem; margin: 0 0 0 0.15rem; opacity: 0.4;}
+
+.list .goods-secrch-list .fanli-percent { font-size: 0.55rem; line-height: 1rem; color: #999; display: block; float: left; height: 1rem;}
+.list .goods-secrch-list .goods-fanli { display: block; height: 1rem; overflow: hidden;}
+.list .goods-secrch-list .fanli-apply { color: #EC5464; font-size: 0.6rem; line-height: 0.9rem; display: block; float: left;}
+
 
 .list .goods-secrch-list .sotre-creidt-layout { position: absolute; z-index: 2; top: 0; right: 0; left: 0; bottom: 0;}
 .list .goods-secrch-list .sotre-creidt-layout p { width: 5.38rem; height: 5.38rem; position: absolute; z-index: 1; left: 0; top: 0;}
@@ -112,7 +120,7 @@
 .fav-list .goods-name h4 { height: 1.8rem !important; text-overflow: clip !important; white-space: pre-wrap !important;}
 .grid .goods-secrch-list .goods-name h6 { display: none;}
 /*商品价格与促销*/
-.grid .goods-secrch-list .goods-sale { display: inline-block; height: 0.9rem; padding: 0.2rem 0; overflow: hidden;}
+.grid .goods-secrch-list .goods-sale { display: iblock; height: 0.9rem; padding: 0.2rem 0; overflow: hidden;}
 .grid .goods-secrch-list .goods-price { color: #EC5464; font-size: 0.55rem; line-height: 0.9rem; display: block; float: left;}
 .grid .goods-secrch-list .goods-price em { font-size: 0.8rem; line-height: 0.9rem; vertical-align: top; display: inline-block;}
 .grid .goods-secrch-list .goods-price .phone-sale { font-size: 0; vertical-align: top; display: inline-block; width: 0.6rem; height: 0.6rem; border: solid #EC5464 0.02rem; }
@@ -129,6 +137,12 @@
 .grid .goods-secrch-list .store-credit { display: none;}
 .grid .goods-secrch-list .sotre-creidt-layout { position: absolute; z-index: 2; top: 0; right: 0; left: 0; bottom: 0;}
 .grid .goods-secrch-list .sotre-creidt-layout dl { filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#F2EEEEEE', endColorstr='#F2EEEEEE');background:rgba(238,238,238,0.95); width: 90%; height: 4.2rem; padding: 5%; position: absolute; z-index: inherit; bottom: 0;}
+
+.grid .goods-secrch-list .fanli-percent { font-size: 0.55rem; line-height: 1rem; color: #999; display: block; float: left; height: 1rem;}
+.grid .goods-secrch-list .goods-fanli { display: block; height: 1rem; overflow: hidden;}
+.grid .goods-secrch-list .fanli-apply { color: #EC5464; font-size: 0.6rem; line-height: 0.9rem; display: block; float: left;}
+
+
 /*商品收藏列表删除*/
 .grid .goods-secrch-list .fav-del { position: absolute; z-index: 1; bottom: 0.2rem; right: 0.2rem; width: 1rem; height: 1rem; background-image: url(../images/del_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 65%;}
 

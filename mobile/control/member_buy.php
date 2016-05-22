@@ -195,6 +195,72 @@ class member_buyControl extends mobileMemberControl {
             output_error($result['msg']);
         }
         $order_info = current($result['data']['order_list']);
+
+        //计算返利金额
+        $pay_sn = $result['data']['pay_sn'];
+        if (cookie('inviter'))
+            $inviter_arr = json_decode(base64_decode(cookie('inviter')),true);
+
+        $fanli_arr = array();
+
+        foreach ($result['data']['goods_list'] as $goods) {
+
+            if ($inviter_arr[$goods['goods_id']]){
+                //计算返利金额
+                $member_id = $inviter_arr[$goods['goods_id']];
+                $model_fenxiao_goods_member = Model('fenxiao_goods_member');
+                $condition = array();
+                $condition['member_id'] = $member_id;
+                $condition['goods_id'] = $goods['goods_id'];
+                $condition['status'] = 1;
+                $info_list = $model_fenxiao_goods_member->getList($condition);
+
+                if (count($info_list) == 1){
+                    $model_goods = Model('goods');
+
+                    $condition = array();
+                    $condition['goods_id'] = $goods['goods_id'];
+                    $condition['is_fenxiao'] = 1; //是否为分销状态
+
+                    $goods_info = $model_goods->getGoodsInfo($condition);
+
+                    //获取用户等级
+                    $member_info = Model('member')->getMemberInfoByID($member_id);
+
+                    //是否是分销员
+                    if ($member_info['fenxiao_status'] != 2)
+                        continue;
+
+                    $model_grade = Model('fenxiao_member_grade');
+                    $grade_list = $model_grade->getGradeList();
+                    $fenxiao_points = $member_info['fenxiao_points'];
+                    foreach ($grade_list as $grade) {
+                        if (intval($fenxiao_points) >= $grade['fmg_points'])
+                            $level = $grade['fmg_id'];
+                    }
+
+                    $fanli_percent = $goods_info["fenxiao_v$level"];
+                    $fanli_money = $fanli_percent*$goods['goods_price']/100;
+
+                    $single_fanli = array();
+                    $single_fanli['member_id'] = $member_id;
+                    $single_fanli['goods_id'] = $goods['goods_id'];
+                    $single_fanli['goods_price'] = $goods['goods_price'];
+                    $single_fanli['goods_num'] = $goods['goods_num'];
+                    $single_fanli['store_id'] = $goods['store_id'];
+                    $single_fanli['add_time'] = time();
+                    $single_fanli['buyer_id'] = $_SESSION['member_id'];
+                    $single_fanli['fanli_money'] = $fanli_money;
+                    $single_fanli['pay_sn'] = $pay_sn;
+                    $single_fanli['status'] = 0; //待确认
+
+                    $model_fenxiao_fanli	= Model('fenxiao_fanli');
+                    $model_fenxiao_fanli->save($single_fanli);
+                }
+
+            }
+        }
+
         output_data(array('pay_sn' => $result['data']['pay_sn'],'payment_code'=>$order_info['payment_code']));
     }
 

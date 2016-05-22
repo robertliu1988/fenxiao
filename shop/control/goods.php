@@ -133,7 +133,7 @@ class goodsControl extends BaseGoodsControl {
             $fenxiao_status = -2;//分销已满
         else
             $fenxiao_status = 0;//未分销
-        
+
         Tpl::output('fenxiao_status', $fenxiao_status);
 
         //分销图标

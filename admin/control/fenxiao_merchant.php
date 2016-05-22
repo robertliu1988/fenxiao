@@ -226,7 +226,10 @@ class fenxiao_merchantControl extends SystemControl{
 	 * 店铺 待审核列表
 	 */
 	public function fenxiao_joininOp(){
-		//店铺列表
+        if (!isset($_GET['status']))
+            $_GET['status'] = 1;
+
+        //店铺列表
 		if(!empty($_GET['status']) && intval($_GET['status']) > 0) {
             $condition['status'] = $_GET['status'] ;
         } else {

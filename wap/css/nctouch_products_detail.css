@@ -47,6 +47,13 @@
 .goods-detail-price .activity { font-size: 0.45rem; line-height: 0.6rem; vertical-align: middle; display: inline-block; height: 0.6rem; padding-right: 0.1rem; margin-top: 0.05rem; border: solid #EC5464 0.05rem; color: #EC5464;}
 .goods-detail-price .activity i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../images/mobile_w.png) no-repeat 50% 50%; background-size: 80%;}
 
+
+.goods-detail-fenxiao { position: relative; z-index: 1; display: block; padding: 0 0.5rem; background-color: #FFF;}
+.goods-detail-fenxiao dl { display: inline-block;}
+.goods-detail-fenxiao dt { display: inline-block; font-size: 0.65rem; line-height: 1rem;}
+.goods-detail-fenxiao dt em { color:red;}
+.goods-detail-fenxiao .fanli { position: absolute; z-index: 1; top: 0.25rem; right: 0.75rem; display: block; font-size: 0.65rem; line-height: 1rem; height: 1rem;}
+
 /*商品详情项目*/
 .goods-detail-item { position: relative; z-index: 1; padding: 0.5rem; background: #FFF; border-bottom: solid 0.05rem #EEE;}
 .goods-detail-item .itme-name { position: absolute; z-index: 1; top: 0.5rem; left: 0.5rem; display: block; width: 1.6rem; height: 0.9rem; font-size: 0.6rem; color: #888; line-height: 0.9rem;}

@@ -211,12 +211,17 @@ i.cc-10 { background-image: url(../images/mcc_10_b.png); background-size: cover;
 .nctouch-order-item-con .goods-info .goods-name { overflow: hidden; height: 1.5rem; font-size: 0.6rem; line-height: 0.75rem; margin-bottom: 0.1rem; color: #333;}
 .nctouch-order-item-con .goods-info .goods-type { overflow: hidden; height: 1.2rem; font-size: 0.45rem; line-height: 0.6rem; color: #999;}
 
-.nctouch-order-item-con .goods-subtotal  { display: block; position: absolute; z-index: 1; top: 0.38rem; right: 0; width: 3.4rem; text-align: right; overflow: hidden;}
+.nctouch-order-item-con .goods-subtotal  { display: block; position: absolute; z-index: 1; top: 0.38rem; right: 0; width: 4rem; text-align: right; overflow: hidden;}
 .nctouch-order-item-con .goods-subtotal .goods-price { display: block; font-size: 0.55rem; line-height: 0.9rem; font-weight: 600;}
 .nctouch-order-item-con .goods-subtotal .goods-price em { font-size: 0.6rem; font-weight: 600;}
 .nctouch-order-item-con .goods-subtotal .goods-num { display: block; font-size: 0.55rem; line-height: 0.9rem; color: #999; font-weight: 600;}
 .nctouch-order-item-con .goods-return { position: absolute; z-index: 2; right: 0rem; bottom: 0.4rem; display: block; font-size: 0.6rem; line-height: 1.2rem; height: 1.2rem; padding: 0 0.4rem ; border: solid 0.05rem #EEE; border-radius: 0.2rem; color: #ED5564 !important; background-color: #FFF;}
 .nctouch-order-item-con .goods-refund { position: absolute; z-index: 2; right: 2.2rem; bottom: 0.4rem; display: block; font-size: 0.6rem; line-height: 1.2rem; height: 1.2rem; padding: 0 0.4rem ; border: solid 0.05rem #EEE; border-radius: 0.2rem; color: #ED5564 !important; background-color: #FFF;}
+
+.nctouch-order-item-con .goods-info .goods-price { display: block; font-size: 0.55rem; line-height: 0.9rem; font-weight: 600;color:red;}
+.nctouch-order-item-con .goods-info .goods-price em { font-size: 0.6rem; font-weight: 600;}
+.nctouch-order-item-con .goods-subtotal .goods-fenxiao-apply { display: block; font-size: 0.55rem; line-height: 0.9rem; font-weight: 600;padding-top: 1.6rem;}
+
 
 .nctouch-order-item-con .goods-gift { display: block; clear: both; padding : 0.2rem; margin: 0.4rem 0 0; border: dashed 1px #EEE; background-color: #FCFCFC;}
 .nctouch-order-item-con .goods-gift span { display: block; font-size: 0.55rem; line-height: 0.9rem; /* height: 0.9rem; */ border-bottom: solid 0.05rem #EEE; padding-bottom: 0.2rem; margin-bottom: 0.2rem; color: #888; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
@@ -256,6 +261,10 @@ i.cc-10 { background-image: url(../images/mcc_10_b.png); background-size: cover;
 .nctouch-order-item-footer .handle .del { position: absolute; z-index: 1; top: 0.4rem; left: 0; display: block; height: 1.2rem; font-size: 0.6rem; line-height: 1.2rem; color: #888;}
 .nctouch-order-item-footer .handle .del i { display: inline-block; vertical-align: top; width: 1.2rem; height: 1.2rem; background-image: url(../images/del_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.9;}
 .nctouch-order-item-footer .handle p { position: absolute; z-index: 1; top: 0.4rem; left: 0; display: block; font-size: 0.6rem; line-height: 1.2rem; color: #ED5564; display: inline-block; }
+
+.nctouch-order-item-footer .store-fenxiao { min-height: 0.9rem; padding: 0.5rem 0; font-size: 0; text-align: left; border-bottom: solid 0.05rem #EEE;}
+.nctouch-order-item-footer .store-fenxiao span { vertical-align: middle; display: inline-block; font-size: 0.6rem; line-height: 0.9rem;padding-right:1rem;}
+
 
 .check-payment em { font-size: 0.7rem; font-weight: 600;}
 

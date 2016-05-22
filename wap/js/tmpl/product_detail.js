@@ -1,4 +1,5 @@
 var goods_id = getQueryString("goods_id");
+var inviter = getQueryString("inviter");
 var map_list = [];
 var map_index_id = "";
 var store_id;
@@ -102,7 +103,8 @@ $(function() {
             type: "get",
             data: {
                 goods_id: r,
-                key: e
+                key: e,
+				inviter:inviter
             },
             dataType: "json",
             success: function(e) {
@@ -440,6 +442,15 @@ $(function() {
     function() {
         window.location.href = WapSiteUrl + "/tmpl/product_eval_list.html?goods_id=" + goods_id
     });
+	
+	$("body").on("click", "#goodsFenxiao,#goodsFenxiao1", function() {
+		window.location.href = WapSiteUrl + "/tmpl/product_info_fenxiao.html?goods_id=" + goods_id
+	});
+	
+	$("#goodsDetail").click(function() {
+		window.location.href = WapSiteUrl + "/tmpl/product_detail.html?goods_id=" + goods_id
+	});
+
     $("#list-address-scroll").on("click", "dl > a", map);
     $("#map_all").on("click", map)
 });

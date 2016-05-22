@@ -18,8 +18,6 @@ var virtual = getQueryString("virtual");
 var ci = getQueryString("ci");
 var myDate = new Date;
 var searchTimes = myDate.getTime();
-    var key = getCookie("key");
-
 $(function() {
 	$.animationLeft({
 		valve: "#search_adv",
@@ -27,7 +25,7 @@ $(function() {
 		scroll: "#list-items-scroll"
 	});
 	$("#header").on("click", ".header-inp", function() {
-		location.href = WapSiteUrl + "/tmpl/search.html?keyword=" + keyword
+		location.href = WapSiteUrl + "/tmpl/search_fenxiao.html?keyword=" + keyword
 	});
 	if (keyword != "") {
 		$("#keyword").html(keyword)
@@ -82,6 +80,8 @@ $(function() {
 });
 
 function get_list() {
+    var key = getCookie("key");
+
 	$(".loading").remove();
 	if (!hasmore) {
 		return false
@@ -103,7 +103,7 @@ function get_list() {
 	if (order != "") {
 		param.order = order
 	}
-	$.getJSON(ApiUrl + "/index.php?act=goods&op=goods_list" + window.location.search.replace("?", "&"), param, function(e) {
+	$.getJSON(ApiUrl + "/index.php?act=goods&op=fenxiao_list" + window.location.search.replace("?", "&"), param, function(e) {
 		if (!e) {
 			e = [];
 			e.datas = [];

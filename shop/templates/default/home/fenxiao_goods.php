@@ -1,5 +1,5 @@
 <?php defined('InShopNC') or exit('Access Invalid!');?>
-<script src="<?php echo SHOP_RESOURCE_SITE_URL.'/js/search_goods.js';?>"></script>
+<script src="<?php echo SHOP_RESOURCE_SITE_URL.'/js/search_goods_fenxiao.js';?>"></script>
 <link href="<?php echo SHOP_TEMPLATES_URL;?>/css/layout.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 body {

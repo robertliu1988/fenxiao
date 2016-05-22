@@ -49,6 +49,8 @@ function buildUrl(e, t) {
     switch (e) {
     case "keyword":
         return WapSiteUrl + "/tmpl/product_list.html?keyword=" + encodeURIComponent(t);
+    case "keyword_fenxiao":
+        return WapSiteUrl + "/tmpl/fenxiao_list.html?keyword=" + encodeURIComponent(t);
     case "special":
         return WapSiteUrl + "/special.html?special_id=" + t;
     case "goods":

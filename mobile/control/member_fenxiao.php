@@ -179,7 +179,7 @@ class member_fenxiaoControl extends mobileMemberControl {
 
 
         $page_count = $model_fenxiao_fanli->gettotalpage();
-        
+
         output_data(array('fenxiao_goods_list' => $goods_list), mobile_page($page_count));
     }
 
